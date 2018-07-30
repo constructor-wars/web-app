@@ -1,5 +1,5 @@
-import React from "react";
-import LoginContainer from "../Containers/LoginContainer";
+import React from 'react';
+import LoginContainer from '../Containers/LoginContainer';
 
 class LoginRoute extends React.Component {
   render() {
