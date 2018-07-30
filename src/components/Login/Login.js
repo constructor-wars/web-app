@@ -13,30 +13,35 @@ export default class Login extends React.Component {
       password: ''
     };
 
-    this.onChange = this.onChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
-  onChange(event) {
+  handleChange(event) {
     event.preventDefault();
+    const { name, value } = event.target;
     this.setState({
-      username: event.target.value
+      [name]: value
     });
   }
 
   render() {
+    console.log(this.state);
+
     return (
       <div>
-        UserName:{' '}
         <UserLogin
           placeholder="enter your user name"
           value={this.state.username}
-          onChange={this.onChange}
+          onChange={this.handleChange}
+          name="username"
+          label="User Name:"
         />
-        Password:{' '}
         <UserLogin
           value={this.state.password}
           placeholder="enter your password"
-          onChange={this.onChange}
+          onChange={this.handleChange}
+          name="password"
+          label="Password:"
         />
         <button>Log in</button>
         <hr />
