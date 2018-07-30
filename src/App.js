@@ -5,6 +5,7 @@ import Header from "./components/Header/Header";
 import LoginRoute from "./Routes/LoginRoute";
 import HomeRoute from "./Routes/HomeRoute";
 import ErrorRoute from "./Routes/ErrorRoute";
+import MonacoRoute from "./Routes/MonacoRoute";
 
 class App extends React.Component {
   render() {
@@ -14,6 +15,7 @@ class App extends React.Component {
         <Switch>
           <Route exact path="/" render={() => <HomeRoute />} />
           <Route exact path="/login" render={() => <LoginRoute />} />
+          <Route exact path="/monaco" render={() => <MonacoRoute />} />
           <Route component={ErrorRoute} />
         </Switch>
       </div>
