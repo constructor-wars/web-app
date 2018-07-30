@@ -1,36 +1,36 @@
 import React from "react";
 import MonacoEditor from "react-monaco-editor";
-
-export default class Monaco extends React.Component {
+class Monaco extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      code: "// type your code...",
-      output: ""
+      code:
+        "// type your code... \n console.log('hello'); \n let james = () => 1; \n james"
     };
     this.onChange = this.onChange.bind(this);
   }
-  componentDidUpdate() {}
-  editorDidMount(editor, monaco) {
-    // console.log("editorDidMount", editor);
-    const model = editor.getModel();
-    const value = model.getValue();
-    console.log(value);
-    editor.focus();
-  }
+
   onChange(newValue, e) {
-    // console.log("onChange", newValue, e);
-    this.setState({ output: newValue });
+    this.setState({ code: newValue });
   }
+
+  editorDidMount(editor) {
+    console.log("editorDidMount", editor, editor.getValue(), editor.getModel());
+  }
+
   render() {
-    const code = this.state.code;
+    const { code } = this.state;
     const options = {
-      selectOnLineNumbers: true
+      selectOnLineNumbers: true,
+      roundedSelection: false,
+      readOnly: false,
+      cursorStyle: "line",
+      automaticLayout: false
     };
     return (
       <div style={{ display: "flex" }}>
         <MonacoEditor
-          width="800"
+          width="400"
           height="600"
           language="javascript"
           theme="vs-dark"
@@ -41,9 +41,13 @@ export default class Monaco extends React.Component {
         />
         <div>
           <h1>console</h1>
-          {this.state.output}
+          {eval(this.state.code)}
+          {/* {this.state.code} */}
+          <div id="logger" />
         </div>
       </div>
     );
   }
 }
+
+export default Monaco;
