@@ -1,11 +1,11 @@
-import React, { Component } from "react";
-import "./StyleHeader.css";
+import React, { Component } from 'react';
+import './StyleHeader.css';
 
 export default class Header extends Component {
   render() {
     return (
       <header>
-        <div>Constructor Wars</div>
+        <div className="background">Constructor Wars</div>
       </header>
     );
   }
