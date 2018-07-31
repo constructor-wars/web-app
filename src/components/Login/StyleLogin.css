@@ -24,6 +24,10 @@
   align-self: center;
 }
 
+img{
+  background-image: var(--logo);
+}
+
 .logo {
   padding-bottom: 50px;
   width: 200px;

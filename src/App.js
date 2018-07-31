@@ -11,7 +11,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        {/* <Header /> */}
+        <Header />
         <Switch>
           <Route exact path="/" render={() => <HomeRoute />} />
           <Route exact path="/login" render={() => <LoginRoute />} />

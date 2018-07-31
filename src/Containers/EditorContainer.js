@@ -1,7 +1,9 @@
-import { connect } from "react-redux";
-import Editor from "../components/Editor/Editor";
+import { connect } from 'react-redux';
+import Editor from '../components/Editor/Editor';
 
-const mapReduxStateToProps = reduxState => ({});
+const mapReduxStateToProps = reduxState => ({
+  instructions: `hello`
+});
 
 const mapDispatchToProps = dispatch => ({});
 
