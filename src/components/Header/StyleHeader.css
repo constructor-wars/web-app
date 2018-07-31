@@ -1,3 +1,7 @@
-body {
+.background {
   background-color: pink;
+  margin: 0 0 0 0;
+  padding: 0;
+  min-height: 100px;
+  
 }
