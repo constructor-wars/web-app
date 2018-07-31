@@ -1,16 +1,15 @@
-import React from 'react';
-import './StyleLogin.css';
-import UserLogin from './UserLogin';
-import UserRegister from './UserRegister';
-import { EventEmitter } from 'events';
+import React from "react";
+import "./StyleLogin.css";
+import UserLogin from "./UserLogin";
+import Logo from "../../images/constructor-labs-badge.png";
 
 export default class Login extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      username: '',
-      password: '',
+      username: "",
+      password: "",
       isLoggedin: false
     };
 
@@ -31,18 +30,14 @@ export default class Login extends React.Component {
     this.setState({
       isLoggedin: true
     });
-    localStorage.setItem('LoggedIn', JSON.stringify(this.state.username));
+    localStorage.setItem("LoggedIn", JSON.stringify(this.state.username));
   }
 
   render() {
-    console.log(this.state);
     return (
       <div className="login_main">
         <div className="login_container">
-          <img
-            className="logo"
-            src="./static/images/constructor-labs-badge.png"
-          />
+          <img className="logo" src={Logo} />
           <form className="form_container" onSubmit={this.handleSubmit}>
             <UserLogin
               placeholder="enter your user name"
