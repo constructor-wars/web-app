@@ -61,7 +61,7 @@ export default class Login extends React.Component {
 
             <button className="login_button">Log in</button>
             <a href="#"> Forgot Password?</a>
-            <hr />
+            <hr className="hr_line" />
             <button className="signup_button">Sign Up</button>
           </form>
         </div>

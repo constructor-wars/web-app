@@ -39,8 +39,9 @@
   border-radius: 5px;
 }
 
-hr {
-  width: 130%;
+.hr_line {
+  width: 100%;
+  align-self: center;
   /* align-self: center; */
 }
 
