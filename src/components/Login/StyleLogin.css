@@ -12,7 +12,7 @@
   min-height: 884px;
   min-width: 402px;
 
-  background-color: var(--background__color)
+  background-color: var(--background__color);
 }
 
 .login_container {
@@ -23,6 +23,10 @@
 .label_container {
   width: 136%;
   align-self: center;
+}
+
+img{
+  background-image: var(--logo);
 }
 
 .logo {
@@ -52,5 +56,5 @@
   margin: 20px 0px;
   width: 120%;
   align-self: center;
-  background-color: var(--dark)
+  background-color: var(--dark);
 }

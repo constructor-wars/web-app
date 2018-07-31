@@ -3,6 +3,7 @@ import './StyleLogin.css';
 import UserLogin from './UserLogin';
 import UserRegister from './UserRegister';
 import { EventEmitter } from 'events';
+import Logo from '../../images/constructor-labs-badge.png';
 
 export default class Login extends React.Component {
   constructor(props) {
@@ -39,10 +40,7 @@ export default class Login extends React.Component {
     return (
       <div className="login_main">
         <div className="login_container">
-          <img
-            className="logo"
-            src="./static/images/constructor-labs-badge.png"
-          />
+          <img className="logo" src={Logo} />
           <form className="form_container" onSubmit={this.handleSubmit}>
             <UserLogin
               placeholder="enter your user name"
