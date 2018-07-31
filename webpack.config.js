@@ -10,6 +10,18 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.(png|jpg|gif)$/i,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              name: "[path][name].[ext]",
+              publicPath: "static/"
+            }
+          }
+        ]
+      },
+      {
         test: /\.js$/,
         exclude: /(node_modules)/,
         loader: require.resolve("babel-loader")
