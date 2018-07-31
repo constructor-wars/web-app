@@ -10,10 +10,12 @@ export default class Login extends React.Component {
 
     this.state = {
       username: '',
-      password: ''
+      password: '',
+      isLoggedin: false
     };
 
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(event) {
@@ -24,30 +26,39 @@ export default class Login extends React.Component {
     });
   }
 
+  handleSubmit(event) {
+    event.preventDefault();
+    this.setState({
+      isLoggedin: true
+    });
+    localStorage.setItem('LoggedIn', this.state.username);
+  }
+
   render() {
     console.log(this.state);
-
     return (
       <div>
-        <UserLogin
-          placeholder="enter your user name"
-          value={this.state.username}
-          onChange={this.handleChange}
-          name="username"
-          label="User Name:"
-        />
-        <UserLogin
-          value={this.state.password}
-          placeholder="enter your password"
-          onChange={this.handleChange}
-          name="password"
-          label="Password:"
-        />
-        <button>Log in</button>
+        <form className="form_container" onSubmit={this.handleSubmit}>
+          <UserLogin
+            placeholder="enter your user name"
+            value={this.state.username}
+            onChange={this.handleChange}
+            name="username"
+            label="User Name: "
+          />
+          <UserLogin
+            value={this.state.password}
+            placeholder="enter your password"
+            onChange={this.handleChange}
+            name="password"
+            label="Password: "
+          />
+
+          <button>Log in</button>
+        </form>
         <hr />
         <p>to Sign up, Register here</p>
-        {/* User Name:<UserRegister placeholder="create a new account" />
-        Email: <UserRegister placeholder="your email address" /> */}
+
         <button>Register </button>
       </div>
     );
