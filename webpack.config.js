@@ -5,7 +5,7 @@ module.exports = {
   devtool: "source-map",
   output: {
     filename: "bundle.js",
-    path: path.resolve(__dirname, "static")
+    path: path.resolve(__dirname, "dist")
   },
   module: {
     rules: [
@@ -16,7 +16,7 @@ module.exports = {
             loader: "file-loader",
             options: {
               name: "[path][name].[ext]",
-              publicPath: "static/"
+              publicPath: "dist/"
             }
           }
         ]
