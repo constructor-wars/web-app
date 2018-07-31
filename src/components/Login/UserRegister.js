@@ -3,7 +3,7 @@ import React from 'react';
 function UserRegister(props) {
   return (
     <form>
-      <input placeholder={props.placeholder} />
+      <input className=""placeholder={props.placeholder} />
     </form>
   );
 }

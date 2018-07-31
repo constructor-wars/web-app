@@ -31,35 +31,40 @@ export default class Login extends React.Component {
     this.setState({
       isLoggedin: true
     });
-    localStorage.setItem('LoggedIn', this.state.username);
+    localStorage.setItem('LoggedIn', JSON.stringify(this.state.username));
   }
 
   render() {
     console.log(this.state);
     return (
-      <div>
-        <form className="form_container" onSubmit={this.handleSubmit}>
-          <UserLogin
-            placeholder="enter your user name"
-            value={this.state.username}
-            onChange={this.handleChange}
-            name="username"
-            label="User Name: "
+      <div className="login_main">
+        <div className="login_container">
+          <img
+            className="logo"
+            src="./static/images/constructor-labs-badge.png"
           />
-          <UserLogin
-            value={this.state.password}
-            placeholder="enter your password"
-            onChange={this.handleChange}
-            name="password"
-            label="Password: "
-          />
+          <form className="form_container" onSubmit={this.handleSubmit}>
+            <UserLogin
+              placeholder="enter your user name"
+              value={this.state.username}
+              onChange={this.handleChange}
+              name="username"
+              label="✉️"
+            />
+            <UserLogin
+              value={this.state.password}
+              placeholder="enter your password"
+              onChange={this.handleChange}
+              name="password"
+              label="🔐"
+            />
 
-          <button>Log in</button>
-        </form>
-        <hr />
-        <p>to Sign up, Register here</p>
-
-        <button>Register </button>
+            <button className="login_button">Log in</button>
+            <a href="#"> Forgot Password?</a>
+            <hr />
+            <button className="signup_button">Sign Up</button>
+          </form>
+        </div>
       </div>
     );
   }
