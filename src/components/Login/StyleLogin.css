@@ -12,7 +12,7 @@
   min-height: 884px;
   min-width: 402px;
 
-  background-color: #618598;
+  background-color: var(--background__color)
 }
 
 .login_container {
@@ -32,7 +32,7 @@
 }
 
 .inputfield {
-  background-color: #f2faff;
+  background-color: var(--light);
   width: 85%;
   height: 20px;
   margin: 5px 0px;
@@ -47,10 +47,10 @@
 
 .login_button,
 .signup_button {
-  color: white;
+  color: var(--light);
   height: 25px;
   margin: 20px 0px;
   width: 120%;
   align-self: center;
-  background-color: #2a4e61;
+  background-color: var(--dark)
 }
