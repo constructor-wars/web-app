@@ -1,0 +1,56 @@
+.form_container {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  max-width: 50vh;
+}
+
+.login_main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 884px;
+  min-width: 402px;
+
+  background-color: #618598;
+}
+
+.login_container {
+  align-self: center;
+  padding: 50px 0;
+}
+
+.label_container {
+  width: 136%;
+  align-self: center;
+}
+
+.logo {
+  padding-bottom: 50px;
+  width: 200px;
+  height: 200px;
+}
+
+.inputfield {
+  background-color: #f2faff;
+  width: 85%;
+  height: 20px;
+  margin: 5px 0px;
+  border-radius: 5px;
+}
+
+.hr_line {
+  width: 100%;
+  align-self: center;
+  /* align-self: center; */
+}
+
+.login_button,
+.signup_button {
+  color: white;
+  height: 25px;
+  margin: 20px 0px;
+  width: 120%;
+  align-self: center;
+  background-color: #2a4e61;
+}

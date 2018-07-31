@@ -2,13 +2,16 @@ import React from 'react';
 
 function UserLogin(props) {
   return (
-    <form>
+    <label className="label_container">
+      {props.label}
       <input
+        className="inputfield"
         value={props.value}
         placeholder={props.placeholder}
         onChange={props.onChange}
+        name={props.name}
       />
-    </form>
+    </label>
   );
 }
 

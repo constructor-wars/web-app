@@ -10,40 +10,61 @@ export default class Login extends React.Component {
 
     this.state = {
       username: '',
-      password: ''
+      password: '',
+      isLoggedin: false
     };
 
-    this.onChange = this.onChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  onChange(event) {
+  handleChange(event) {
     event.preventDefault();
+    const { name, value } = event.target;
     this.setState({
-      username: event.target.value
+      [name]: value
     });
   }
 
+  handleSubmit(event) {
+    event.preventDefault();
+    this.setState({
+      isLoggedin: true
+    });
+    localStorage.setItem('LoggedIn', JSON.stringify(this.state.username));
+  }
+
   render() {
+    console.log(this.state);
     return (
-      <div>
-        UserName:{' '}
-        <UserLogin
-          placeholder="enter your user name"
-          value={this.state.username}
-          onChange={this.onChange}
-        />
-        Password:{' '}
-        <UserLogin
-          value={this.state.password}
-          placeholder="enter your password"
-          onChange={this.onChange}
-        />
-        <button>Log in</button>
-        <hr />
-        <p>to Sign up, Register here</p>
-        {/* User Name:<UserRegister placeholder="create a new account" />
-        Email: <UserRegister placeholder="your email address" /> */}
-        <button>Register </button>
+      <div className="login_main">
+        <div className="login_container">
+          <img
+            className="logo"
+            src="./static/images/constructor-labs-badge.png"
+          />
+          <form className="form_container" onSubmit={this.handleSubmit}>
+            <UserLogin
+              placeholder="enter your user name"
+              value={this.state.username}
+              onChange={this.handleChange}
+              name="username"
+              label="✉️"
+            />
+            <UserLogin
+              value={this.state.password}
+              placeholder="enter your password"
+              onChange={this.handleChange}
+              name="password"
+              label="🔐"
+            />
+
+            <button className="login_button">Log in</button>
+            <a href="#"> Forgot Password?</a>
+            <hr className="hr_line" />
+            <button className="signup_button">Sign Up</button>
+          </form>
+        </div>
       </div>
     );
   }
