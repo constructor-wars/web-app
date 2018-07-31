@@ -1,17 +1,16 @@
-import React from 'react';
-import './StyleLogin.css';
-import UserLogin from './UserLogin';
-import UserRegister from './UserRegister';
-import { EventEmitter } from 'events';
-import Logo from '../../images/constructor-labs-badge.png';
+
+import React from "react";
+import "./StyleLogin.css";
+import UserLogin from "./UserLogin";
+import Logo from "../../images/constructor-labs-badge.png";
 
 export default class Login extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      username: '',
-      password: '',
+      username: "",
+      password: "",
       isLoggedin: false
     };
 
@@ -32,11 +31,10 @@ export default class Login extends React.Component {
     this.setState({
       isLoggedin: true
     });
-    localStorage.setItem('LoggedIn', JSON.stringify(this.state.username));
+    localStorage.setItem("LoggedIn", JSON.stringify(this.state.username));
   }
 
   render() {
-    console.log(this.state);
     return (
       <div className="login_main">
         <div className="login_container">

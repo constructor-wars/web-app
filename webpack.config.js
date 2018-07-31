@@ -4,18 +4,18 @@ module.exports = {
   entry: './src/index.js',
   devtool: 'source-map',
   output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, 'static')
+    filename: "bundle.js",
+    path: path.resolve(__dirname, "dist")
   },
   module: {
-    rules: [
-      {
-        test: /\.(png|jpg|gif)$/,
+    rules: [{
+        test: /\.(png|jpg|gif)$/i,
         use: [
           {
-            loader: 'file-loader',
+            loader: "file-loader",
             options: {
-              name: '[path][name].[ext]'
+              name: "[path][name].[ext]",
+              publicPath: "dist/"
             }
           }
         ]
