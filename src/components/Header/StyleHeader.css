@@ -9,18 +9,16 @@
 
 .searchbar {
   width: 250px;
-  margin-left: 100px;
+  align-self: center;
+
 }
 
-.profile,
-.score {
-  margin: 0 150px;
+.profile {
+  margin: auto 30px auto auto;
 }
 
 .logoimg {
+
   height: 50px;
   width: 50px;
 }
-/* .score {
-  margin-left: auto;
-} */

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './StyleHeader.css';
 import Logo from './Logo';
 import Searchbar from './Searchbar';
-import Score from './Score';
 import Profile from './Profile';
 
 export default class Header extends Component {
@@ -12,7 +11,6 @@ export default class Header extends Component {
         <div className="background">
           <Logo />
           <Searchbar />
-          <Score />
           <Profile />
         </div>
       </header>
