@@ -50,9 +50,9 @@
     "test:w": "npm run test -- --watch"
   },
   "devDependencies": {
+    "css-loader": "^1.0.0",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
-    "css-loader": "^1.0.0",
     "node-sass": "^4.9.2",
     "react-test-renderer": "^16.4.1",
     "sass-loader": "^7.0.3",
