@@ -10,6 +10,15 @@
     ]
   },
   "dependencies": {
+    "body-parser": "^1.18.3",
+    "connect-ensure-login": "^0.1.1",
+    "dotenv": "^6.0.0",
+    "express-session": "^1.15.6",
+    "hbs": "^4.0.1",
+    "http-errors": "^1.7.0",
+    "morgan": "^1.9.0",
+    "passport": "^0.4.0",
+    "passport-github": "^1.1.0",
     "@types/express": "^4.16.0",
     "@types/prop-types": "^15.5.3",
     "@types/react": "^16.4.6",
@@ -44,10 +53,10 @@
     "dev": "webpack --mode development",
     "dev:w": "npm run dev -- --watch",
     "build": "webpack --mode production",
-    "server": "node server.js",
-    "server:w": "nodemon server.js",
     "test": "jest",
-    "test:w": "npm run test -- --watch"
+    "test:w": "npm run test -- --watch",
+    "start": "NODE_ENV=development node server.js",
+    "start:w": "NODE_ENV=development nodemon server.js"
   },
   "devDependencies": {
     "css-loader": "^1.0.0",
