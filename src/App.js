@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
+import Footer from './components/Footer/Footer';
 
 import Header from './components/Header/Header';
 import LoginRoute from './Routes/LoginRoute';
@@ -19,6 +20,7 @@ class App extends React.Component {
           <Route exact path="/profile" render={() => <ProfileRoute />} />
           <Route component={ErrorRoute} />
         </Switch>
+        <Footer />
       </div>
     );
   }

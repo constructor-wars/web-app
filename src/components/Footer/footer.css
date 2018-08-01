@@ -1,0 +1,5 @@
+.footer_container {
+  background-color: var(--dark);
+  margin: auto;
+  max-height: 100px;
+}
