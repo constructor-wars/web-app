@@ -6,16 +6,17 @@ import LoginRoute from './Routes/LoginRoute';
 import HomeRoute from './Routes/HomeRoute';
 import EditorRoute from './Routes/EditorRoute';
 import ErrorRoute from './Routes/ErrorRoute';
+import ProfileRoute from './Routes/ProfileRoute';
 
 class App extends React.Component {
   render() {
     return (
       <div>
-        <Header />
         <Switch>
           <Route exact path="/" render={() => <HomeRoute />} />
           <Route exact path="/login" render={() => <LoginRoute />} />
           <Route exact path="/editor" render={() => <EditorRoute />} />
+          <Route exact path="/profile" render={() => <ProfileRoute />} />
           <Route component={ErrorRoute} />
         </Switch>
       </div>
