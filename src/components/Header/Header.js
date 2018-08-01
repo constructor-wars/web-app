@@ -10,8 +10,8 @@ export default class Header extends Component {
     return (
       <header>
         <div className="background">
-          <Logo className="logo" />
-          <Searchbar className="searchbar" />
+          <Logo />
+          <Searchbar />
           <Score />
           <Profile />
         </div>
