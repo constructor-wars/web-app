@@ -1,8 +1,10 @@
 import { connect } from 'react-redux';
-import Editor from '../components/Editor/Editor';
+import Profile from '../components/Profile/Profile';
 
 const mapReduxStateToProps = reduxState => ({
-  instructions: `instruction`
+  username: 'It is ME, the user!',
+  cohort:'#2',
+  lastLogin:'01-01-2010 12:30'
 });
 
 const mapDispatchToProps = dispatch => ({});
@@ -10,4 +12,4 @@ const mapDispatchToProps = dispatch => ({});
 export default connect(
   mapReduxStateToProps,
   mapDispatchToProps
-)(Editor);
+)(Profile);
