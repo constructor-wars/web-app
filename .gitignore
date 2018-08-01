@@ -64,3 +64,4 @@ typings/
 /static/bundle.js.map
 
 dist
+.env.development
