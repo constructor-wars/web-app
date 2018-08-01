@@ -7,21 +7,10 @@ const router = express.Router();
 /*get home page*/
 
 router.get("/", function(req, res, next) {
-  // passport.authenticate("github", function(err, user, info) {
-  //   if (err) {
-  //     return next(err);
-  //   }
-  //   if (!user) {
-  //     return res.redirect("/login");
-  //   } else
-  //     return req.logIn(user, function(err) {
-  //       if (err) {
-  //         return next(err);
-  //       }
-  //       return res.redirect("/profile/" + user.username);
-  //     });
-  // });
-  res.render("index", { title: "Constructor Wars", user: req.user });
+  if (!req.user) {
+    return res.redirect("/login/");
+  }
+  res.render("profile", { title: "Constructor Wars", user: req.user });
 });
 
 router.get("/login", function(req, res, next) {
@@ -29,7 +18,7 @@ router.get("/login", function(req, res, next) {
 });
 
 router.get("/profile", function(req, res, next) {
-  res.render("profile", { title: "Profile" });
+  res.render("profile", { title: "Profile", user: req.user });
 });
 
 router.get("/logout", function(req, res) {

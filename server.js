@@ -15,8 +15,6 @@ require("dotenv").config({
 
 const indexRouter = require("./routes/index");
 
-/* passport*/
-
 passport.use(
   new GitHubStrategy(
     {
@@ -33,8 +31,6 @@ passport.use(
 passport.serializeUser((user, cb) => cb(null, user));
 passport.deserializeUser((obj, cb) => cb(null, obj));
 
-/* express*/
-
 const app = express();
 
 app.set("views", path.join(__dirname, "views"));
@@ -43,7 +39,7 @@ app.set("view engine", "hbs");
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-//app.use(cookieParser());
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(
   session({
@@ -53,28 +49,21 @@ app.use(
   })
 );
 
-//passport middleware
-//restore authentication state(if any)
-
 app.use(passport.initialize());
 app.use(passport.session());
 
 app.use("/", indexRouter);
+
 app.use("/profile", connection.ensureLoggedIn());
 app.use("/dist", express.static(path.join(__dirname, "/dist")));
 
-//catch 404 and forward to handle
 app.use(function(req, res, next) {
   next(createError(404));
 });
 
-//error handler
 app.use(function(err, req, res, next) {
-  //set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get("env") === "development" ? err : {};
-
-  //render the error page
   res.status(err.status || 500);
   res.render("error");
 });
@@ -83,5 +72,3 @@ const port = process.env.PORT || 8080;
 app.listen(port, function() {
   console.log(`Listening on port ${port}!`);
 });
-
-module.exports = app;
