@@ -1,4 +1,6 @@
 const path = require("path");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
+const CleanWebpackPlugin = require("clean-webpack-plugin");
 
 module.exports = {
   entry: "./src/index.js",
@@ -15,7 +17,7 @@ module.exports = {
           {
             loader: "file-loader",
             options: {
-              name: "[path][name].[ext]",
+              name: "[name].[ext]",
               publicPath: "dist/"
             }
           }
@@ -38,5 +40,9 @@ module.exports = {
         ]
       }
     ]
-  }
+  },
+  plugins: [
+    new CleanWebpackPlugin("./dist"),
+    new CopyWebpackPlugin(["./static"])
+  ]
 };
