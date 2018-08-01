@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Login matches the snapshot 1`] = `
+<div
+  className="login_main"
+>
+  <div
+    className="login_container"
+  >
+    <img
+      className="logo"
+      src="test-file-stub"
+    />
+    <form
+      className="form_container"
+      onSubmit={[Function]}
+    >
+      <label
+        className="label_container"
+      >
+        ✉️
+        <input
+          className="inputfield"
+          name="username"
+          onChange={[Function]}
+          placeholder="enter your user name"
+          value=""
+        />
+      </label>
+      <label
+        className="label_container"
+      >
+        🔐
+        <input
+          className="inputfield"
+          name="password"
+          onChange={[Function]}
+          placeholder="enter your password"
+          value=""
+        />
+      </label>
+      <button
+        className="login_button"
+      >
+        Log in
+      </button>
+      <a
+        href="#"
+      >
+         Forgot Password?
+      </a>
+      <hr
+        className="hr_line"
+      />
+      <button
+        className="signup_button"
+      >
+        Sign Up
+      </button>
+    </form>
+  </div>
+</div>
+`;
