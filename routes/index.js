@@ -21,7 +21,7 @@ router.get("/", function(req, res, next) {
   //       return res.redirect("/profile/" + user.username);
   //     });
   // });
-  res.render("profile", { title: "Constructor Wars", user: req.user });
+  res.render("index", { title: "Constructor Wars", user: req.user });
 });
 
 router.get("/login", function(req, res, next) {
@@ -44,6 +44,7 @@ router.get(
   passport.authenticate("github", { failureRedirect: "/login" }),
   (req, res) => {
     res.redirect("/profile");
+    // 'add user to database here'
   }
 );
 
