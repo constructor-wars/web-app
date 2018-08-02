@@ -1,24 +1,15 @@
-import React from 'react';
-import Header from '../Header/Header';
-
-import './Profile.css';
-import Markdown from 'react-remarkable';
+import React from "react";
+import "./Profile.css";
 
 class Profile extends React.Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     return (
       <div>
         <div className="profile_container">
           <img className="profileImg" src={this.props.profilepic} />
-
           <p>Username:{this.props.username}</p>
-          <p>Cohort:{this.props.cohort}</p>
-          <p>Last login:{this.props.lastLogin}</p>
-
-          <Markdown source={this.props.profileDesciption} />
+          <p>displayName:{this.props.displayName}</p>
+          <a href={this.props.profileUrl}>Github url:{this.props.profileUrl}</a>
         </div>
       </div>
     );
