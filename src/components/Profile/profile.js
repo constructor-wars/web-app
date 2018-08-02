@@ -1,7 +1,6 @@
-import React from 'react';
-import Header from '../Header/Header';
-import profilepic from '../../images/potatoe.jpg';
-import './Profile.css';
+import React from "react";
+import profilepic from "../../images/potatoe.jpg";
+import "./Profile.css";
 
 class Profile extends React.Component {
   constructor(props) {
@@ -10,7 +9,6 @@ class Profile extends React.Component {
   render() {
     return (
       <div>
-        <Header />
         <div className="profile_container">
           <img className="profileImg" src={profilepic} />
           <p>Username:{this.props.username}</p>

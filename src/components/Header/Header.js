@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import './StyleHeader.css';
-import Logo from './Logo';
-import Searchbar from './Searchbar';
-import Profile from './Profile';
+import React, { Component } from "react";
+import "./StyleHeader.css";
+import Logo from "./Logo";
+import Searchbar from "./Searchbar";
+import { NavLinks } from "./NavLinks";
 
 export default class Header extends Component {
   render() {
@@ -11,7 +11,7 @@ export default class Header extends Component {
         <div className="background">
           <Logo />
           <Searchbar />
-          <Profile />
+          <NavLinks />
         </div>
       </header>
     );
