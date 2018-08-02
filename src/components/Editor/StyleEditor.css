@@ -1,0 +1,38 @@
+.editor__wrap {
+  display: grid;
+  grid-template-columns: 1fr repeat(2, 2fr);
+  grid-template-rows: 250px 250px 250px;
+  grid-gap: 20px;
+  background-color: #fcfbf7;
+}
+
+.editor__sections {
+  background-color: #324755;
+  padding: 20px;
+  color: #f1938f;
+  font-size: 30px;
+  font-family: sans-serif;
+}
+
+.editor__wrap__instructions {
+  grid-row: 1 / 3;
+  overflow: scroll;
+  font-size: 18px;
+  
+}
+
+.editor__wrap__comments {
+  grid-row: 3 / 4;
+}
+
+.editor__wrap__edit-window {
+  grid-row: 1 / 4;
+}
+
+.editor__wrap__display-window {
+  grid-row: 1 / 3;
+}
+
+.editor__wrap__test-window {
+  grid-row: 3 / 4;
+}

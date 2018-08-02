@@ -1,3 +1,18 @@
-body {
-  background-color: pink;
+.background {
+  display: flex;
+  flex-direction: row;
+  background-color: var(--background__color);
+  margin: 0 0;
+  padding: 10px;
+  min-height: 60px;
+}
+
+.searchbar {
+  width: 250px;
+  align-self: center;
+}
+
+.logoimg {
+  height: 50px;
+  width: 50px;
 }

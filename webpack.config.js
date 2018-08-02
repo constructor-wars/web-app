@@ -1,22 +1,41 @@
 const path = require("path");
 const webpack = require("webpack");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MonacoWebpackPlugin = require("monaco-editor-webpack-plugin");
 
 module.exports = {
-  entry: {
-    app: "./src/index.js",
-    monaco: "./src/Containers/MonacoContainer.js"
-  },
-  devtool: "source-map",
+  entry: './src/index.js',
+  devtool: 'source-map',
   output: {
-    filename: "[name].js",
-    path: path.resolve(__dirname, "dist")
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'dist')
   },
-
   module: {
     rules: [
+      {
+        test: /\.md$/,
+        use: [
+          {
+            loader: 'html-loader'
+          },
+          {
+            loader: 'markdown-loader'
+          }
+        ]
+      },
+      {
+        test: /\.(png|jpg|gif)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              publicPath: 'dist/'
+            }
+          }
+        ]
+      },
       {
         test: /\.js$/,
         exclude: /(node_modules)/,
@@ -26,10 +45,10 @@ module.exports = {
         test: /\.css$/,
         use: [
           {
-            loader: "style-loader"
+            loader: 'style-loader'
           },
           {
-            loader: "css-loader"
+            loader: 'css-loader'
           }
         ]
       }
@@ -40,6 +59,7 @@ module.exports = {
       /^((fs)|(path)|(os)|(crypto)|(source-map-support))$/,
       /vs(\/|\\)language(\/|\\)typescript(\/|\\)lib/
     ),
+    new CopyWebpackPlugin(['./static']),
     new CleanWebpackPlugin(["dist"]),
     new HtmlWebpackPlugin({ template: "./index.html" }),
     new MonacoWebpackPlugin({
@@ -66,6 +86,7 @@ module.exports = {
         "wordHighlighter",
         "wordOperations"
       ]
-    })
+    }),
+
   ]
 };
