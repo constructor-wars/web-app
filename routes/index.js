@@ -8,11 +8,11 @@ const router = express.Router();
 
 router.get("/", function(req, res, next) {
   if (!req.user) {
-    return res.redirect("/login/");
+    return res.redirect("/login");
   }
   res.render("profile", {
     title: "Profile",
-    GITHUB_DATA: JSON.stringify(req.user)
+    GITHUB_DATA: JSON.stringify({ GITHUB_DATA: req.user })
   });
 });
 
@@ -23,7 +23,7 @@ router.get("/login", function(req, res, next) {
 router.get("/profile", function(req, res, next) {
   res.render("profile", {
     title: "Profile",
-    GITHUB_DATA: JSON.stringify(req.user)
+    GITHUB_DATA: JSON.stringify({ GITHUB_DATA: req.user })
   });
 });
 

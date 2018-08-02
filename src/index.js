@@ -9,7 +9,14 @@ import rootReducer from "./reducers";
 import thunkMiddleware from "redux-thunk";
 import { BrowserRouter } from "react-router-dom";
 
-const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
+const el = document.getElementById("user-data");
+const initialState = JSON.parse(el.innerHTML);
+
+const store = createStore(
+  rootReducer,
+  initialState,
+  applyMiddleware(thunkMiddleware)
+);
 
 ReactDOM.render(
   <BrowserRouter>
