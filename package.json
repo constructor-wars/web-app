@@ -26,6 +26,7 @@
     "body-parser": "^1.18.3",
     "classnames": "^2.2.6",
     "clean-webpack-plugin": "^0.1.19",
+    "concurrently": "^3.6.1",
     "connect-ensure-login": "^0.1.1",
     "copy-webpack-plugin": "^4.5.2",
     "dotenv": "^6.0.0",
@@ -61,7 +62,8 @@
     "test": "jest",
     "test:w": "npm run test -- --watch",
     "start": "NODE_ENV=development node server.js",
-    "start:w": "NODE_ENV=development nodemon server.js"
+    "start:w": "NODE_ENV=development nodemon server.js",
+    "go": "concurrently 'npm run dev:w' 'npm run start:w' "
   },
   "devDependencies": {
     "@mdx-js/loader": "^0.15.0-2",
