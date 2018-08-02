@@ -1,15 +1,15 @@
 const path = require("path");
 const webpack = require("webpack");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 const MonacoWebpackPlugin = require("monaco-editor-webpack-plugin");
 
 module.exports = {
-  entry: './src/index.js',
-  devtool: 'source-map',
+  entry: "./src/index.js",
+  devtool: "source-map",
   output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist')
+    filename: "bundle.js",
+    path: path.resolve(__dirname, "dist")
   },
   module: {
     rules: [
@@ -17,10 +17,10 @@ module.exports = {
         test: /\.md$/,
         use: [
           {
-            loader: 'html-loader'
+            loader: "html-loader"
           },
           {
-            loader: 'markdown-loader'
+            loader: "markdown-loader"
           }
         ]
       },
@@ -28,10 +28,10 @@ module.exports = {
         test: /\.(png|jpg|gif)$/i,
         use: [
           {
-            loader: 'file-loader',
+            loader: "file-loader",
             options: {
-              name: '[name].[ext]',
-              publicPath: 'dist/'
+              name: "[name].[ext]",
+              publicPath: "dist/"
             }
           }
         ]
@@ -45,10 +45,10 @@ module.exports = {
         test: /\.css$/,
         use: [
           {
-            loader: 'style-loader'
+            loader: "style-loader"
           },
           {
-            loader: 'css-loader'
+            loader: "css-loader"
           }
         ]
       }
@@ -59,11 +59,10 @@ module.exports = {
       /^((fs)|(path)|(os)|(crypto)|(source-map-support))$/,
       /vs(\/|\\)language(\/|\\)typescript(\/|\\)lib/
     ),
-    new CopyWebpackPlugin(['./static']),
+    new CopyWebpackPlugin(["./static"]),
     new CleanWebpackPlugin(["dist"]),
-    new HtmlWebpackPlugin({ template: "./index.html" }),
     new MonacoWebpackPlugin({
-      languages: ["javascript, json, markdown"],
+      languages: ["javascript, json, markdown, html, css"],
       features: [
         "clipboard",
         "comment",
@@ -86,7 +85,6 @@ module.exports = {
         "wordHighlighter",
         "wordOperations"
       ]
-    }),
-
+    })
   ]
 };
