@@ -9,4 +9,5 @@
   width: 100px;
   align-self: center;
   background-color: var(--dark);
+  cursor: pointer;
 }
