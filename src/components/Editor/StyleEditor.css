@@ -16,6 +16,9 @@
 
 .editor__wrap__instructions {
   grid-row: 1 / 3;
+  overflow: scroll;
+  font-size: 18px;
+  
 }
 
 .editor__wrap__comments {
