@@ -65,3 +65,4 @@ typings/
 
 dist
 .env.development
+package-lock.json
