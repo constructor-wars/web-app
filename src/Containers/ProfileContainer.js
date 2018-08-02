@@ -7,7 +7,7 @@ const mapReduxStateToProps = reduxState => ({
   cohort: '#2',
   lastLogin: '01-01-2010 12:30',
   profilepic: profilepic,
-  profileDesciption: "**Markdown is awesome!**"
+  profileDesciption: '**Markdown is awesome!**'
 });
 
 const mapDispatchToProps = dispatch => ({});
