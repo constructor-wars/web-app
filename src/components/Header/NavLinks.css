@@ -1,0 +1,12 @@
+.nav_links {
+  margin: auto 30px auto auto;
+}
+
+.nav_buttons {
+  color: var(--light);
+  height: 25px;
+  margin: 20px 0px;
+  width: 100px;
+  align-self: center;
+  background-color: var(--dark);
+}
