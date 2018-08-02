@@ -10,7 +10,10 @@ router.get("/", function(req, res, next) {
   if (!req.user) {
     return res.redirect("/login/");
   }
-  res.render("profile", { title: "Constructor Wars", user: req.user });
+  res.render("profile", {
+    title: "Profile",
+    GITHUB_DATA: JSON.stringify(req.user)
+  });
 });
 
 router.get("/login", function(req, res, next) {
@@ -18,7 +21,10 @@ router.get("/login", function(req, res, next) {
 });
 
 router.get("/profile", function(req, res, next) {
-  res.render("profile", { title: "Profile", user: req.user });
+  res.render("profile", {
+    title: "Profile",
+    GITHUB_DATA: JSON.stringify(req.user)
+  });
 });
 
 router.get("/logout", function(req, res) {
