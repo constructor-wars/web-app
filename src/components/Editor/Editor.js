@@ -1,16 +1,14 @@
 import React from 'react';
 import './StyleEditor.css';
 import Instructions from '../Instructions/Instructions';
-import Header from '../Header/Header';
 
 export default class Editor extends React.Component {
   render() {
     return (
       <div>
-        <Header />
         <div className="editor__wrap">
           <div className="editor__wrap__instructions editor__sections">
-            <Instructions data={this.props.instructions} />
+            <Instructions instructions={this.props.instructions} />
           </div>
           <div className="editor__wrap__comments editor__sections">
             2 comments

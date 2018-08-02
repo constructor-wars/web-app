@@ -1,13 +1,11 @@
-import React from 'react';
-import Logoimg from '../../images/constructor-labs-badge.png';
-import { Link } from 'react-router-dom';
-
+import React from "react";
+import Logoimg from "../../images/constructor-labs-badge.png";
 export default function Logo() {
   return (
     <div>
-      <Link to="/login">
+      <a href="/">
         <img className="logoimg" src={Logoimg} />
-      </Link>
+      </a>
     </div>
   );
 }

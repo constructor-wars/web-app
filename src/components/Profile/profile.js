@@ -11,7 +11,6 @@ class Profile extends React.Component {
   render() {
     return (
       <div>
-        <Header />
         <div className="profile_container">
           <img className="profileImg" src={this.props.profilepic} />
 
