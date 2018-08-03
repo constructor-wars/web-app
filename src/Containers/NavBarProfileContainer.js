@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import Profile from "../components/Profile/Profile";
+import NavBarProfile from "../components/NavBarProfile/NavBarProfile";
 
 const mapReduxStateToProps = reduxState => {
   const {
@@ -23,4 +23,4 @@ const mapDispatchToProps = dispatch => ({});
 export default connect(
   mapReduxStateToProps,
   mapDispatchToProps
-)(Profile);
+)(NavBarProfile);
