@@ -8,17 +8,23 @@ const router = express.Router();
 
 router.get("/", function(req, res, next) {
   if (!req.user) {
-    return res.redirect("/login/");
+    return res.redirect("/login");
   }
-  res.render("profile", { title: "Constructor Wars", user: req.user });
+  res.render("profile", {
+    title: "Profile",
+    GITHUB_DATA: JSON.stringify({ GITHUB_DATA: req.user })
+  });
 });
 
 router.get("/login", function(req, res, next) {
-  res.render("login", { title: "Login", user: req.user });
+  res.render("login", { title: "Login" });
 });
 
 router.get("/profile", function(req, res, next) {
-  res.render("profile", { title: "Profile", user: req.user });
+  res.render("profile", {
+    title: "Profile",
+    GITHUB_DATA: JSON.stringify({ GITHUB_DATA: req.user })
+  });
 });
 
 router.get("/logout", function(req, res) {

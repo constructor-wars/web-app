@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header matches the snapshot 1`] = `
+<header>
+  <div
+    className="background"
+  >
+    <div>
+      <img
+        className="logoimg"
+        src="test-file-stub"
+      />
+    </div>
+    <div>
+      <input
+        className="searchbar"
+      />
+    </div>
+    <div
+      className="score"
+    >
+      Score
+    </div>
+    <div
+      className="profile"
+    >
+      Profile
+    </div>
+  </div>
+</header>
+`;
