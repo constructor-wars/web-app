@@ -23,12 +23,7 @@
       margin: 0;
     }
 
-    .form_container {
-      display: flex;
-      flex-direction: column;
-      text-align: left;
-      max-width: 50vh;
-    }
+
 
     .login_main {
       display: flex;
@@ -41,14 +36,15 @@
 
     .login_container {
 
-      text-align: center;
       padding: 50px 0;
+      height: 500px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
 
-    .label_container {
-      width: 136%;
-      align-self: center;
-    }
+
 
     img {
       background-image: var(--logo);
@@ -60,28 +56,20 @@
       height: 200px;
     }
 
-    .inputfield {
-      background-color: var(--light);
-      width: 85%;
-      height: 20px;
-      margin: 5px 0px;
-      border-radius: 5px;
-    }
 
-    .hr_line {
-      width: 100%;
-      align-self: center;
-      /* align-self: center; */
-    }
 
-    .login_button,
-    .signup_button {
+    .login_button {
       color: var(--light);
       height: 25px;
       margin: 20px 0px;
-      width: 120%;
+      width: 200px;
       align-self: center;
       background-color: var(--dark);
+      cursor: pointer;
+    }
+
+    .github_login {
+      width: 200px;
     }
   </style>
 </head>
@@ -92,7 +80,7 @@
     <div class="login_container">
       <img class="logo" src='./dist/constructor-labs-badge.png' />
 
-      <a href="/auth/github">
+      <a class="github_login" href="/auth/github">
         <button class="login_button">Login in with Github</button>
       </a>
 

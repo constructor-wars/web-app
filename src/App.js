@@ -3,12 +3,10 @@ import { Route, Switch } from "react-router-dom";
 import Footer from "./components/Footer/Footer";
 
 import Header from "./components/Header/Header";
-import LoginRoute from "./Routes/LoginRoute";
-import HomeRoute from "./Routes/HomeRoute";
 import EditorRoute from "./Routes/EditorRoute";
-import ErrorRoute from "./Routes/ErrorRoute";
 import ProfileRoute from "./Routes/ProfileRoute";
 import CurriculumRoute from "./Routes/CurriculumRoute";
+import AdminRoute from "./Routes/AdminRoute";
 
 class App extends React.Component {
   render() {
@@ -20,6 +18,7 @@ class App extends React.Component {
           <Route exact path="/editor" render={() => <EditorRoute />} />
           <Route exact path="/profile" render={() => <ProfileRoute />} />
           <Route exact path="/curriculum" render={() => <CurriculumRoute />} />
+          <Route exact path="/admin" render={() => <AdminRoute />} />
         </Switch>
         <Footer />
       </div>
