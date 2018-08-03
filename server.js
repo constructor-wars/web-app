@@ -14,6 +14,7 @@ require("dotenv").config({
 });
 
 const indexRouter = require("./routes/index");
+const apiRouter = require("./routes/api");
 
 passport.use(
   new GitHubStrategy(
@@ -53,6 +54,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use("/", indexRouter);
+app.use("/api", apiRouter);
 
 app.use("/profile", connection.ensureLoggedIn());
 app.use("/dist", express.static(path.join(__dirname, "/dist")));
