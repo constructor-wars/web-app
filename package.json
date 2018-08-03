@@ -45,6 +45,7 @@
     "nodemon": "^1.18.2",
     "passport": "^0.4.0",
     "passport-github": "^1.1.0",
+    "pg-promise": "^8.4.5",
     "prop-types": "^15.6.2",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
@@ -65,7 +66,8 @@
     "test": "jest",
     "test:w": "npm run test -- --watch",
     "start": "NODE_ENV=development node server.js",
-    "start:w": "NODE_ENV=development nodemon server.js"
+    "start:w": "NODE_ENV=development nodemon server.js",
+    "db:w": "NODE_ENV=development nodemon ./routes/database.js"
   },
   "devDependencies": {
     "@mdx-js/loader": "^0.15.0-2",
