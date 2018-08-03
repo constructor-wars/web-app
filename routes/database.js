@@ -43,6 +43,36 @@ function getAllQuestions() {
     .catch(error => console.log(error));
 }
 
+function sumbitQuestionOnDatabase(data) {
+  const {
+    question,
+    test,
+    difficulty_id,
+    category_id,
+    instruction,
+    link_syllabus,
+    intital_code,
+    created_by
+  } = data;
+  return db
+    .one(
+      `INSERT INTO questions_answers (question, test, difficulty_id, category_id, instruction, link_syllabus, intital_code, created_by)
+  VALUES ($1, $2, $3,$4,$5,$6,$7,$8)`,
+      [
+        question,
+        test,
+        difficulty_id,
+        category_id,
+        instruction,
+        link_syllabus,
+        intital_code,
+        created_by
+      ]
+    )
+    .then(() => res.json({ submit: OK }))
+    .catch(error => console.log(error));
+}
+
 // getAllQuestions().then(data => console.log(data));
 
 // getUserByUsername("mickey mouse").then(data => console.log(data));
@@ -50,5 +80,6 @@ function getAllQuestions() {
 module.exports = {
   getUserByUsername,
   getQuestions,
-  getAllQuestions
+  getAllQuestions,
+  sumbitQuestionOnDatabase
 };
