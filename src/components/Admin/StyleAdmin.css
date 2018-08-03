@@ -1,0 +1,14 @@
+.admin_container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.admin__form__text_area {
+  display: flex;
+  flex-direction: column;
+  width: 1000px;
+  height: 500px;
+}
