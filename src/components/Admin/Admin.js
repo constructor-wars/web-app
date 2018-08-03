@@ -2,10 +2,15 @@ import React from "react";
 import "./StyleAdmin.css";
 
 const TextArea = ({ displayName, id, fn }) => (
-  <div>
+  <React.Fragment>
     <label htmlFor={id}> {displayName} </label>
-    <input onChange={fn} type="textarea" id={id} />
-  </div>
+    <textarea
+      className="admin__form__text_area"
+      onChange={fn}
+      type="textarea"
+      id={id}
+    />
+  </React.Fragment>
 );
 
 const DropDown = ({ options, displayName, fn, id }) => {
@@ -58,7 +63,7 @@ class Admin extends React.Component {
   render() {
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
+        <form className="admin_container" onSubmit={this.handleSubmit}>
           <TextArea
             id="question"
             displayName="question"
