@@ -5,7 +5,8 @@ class Searchbar extends React.Component {
     super(props);
 
     this.state = {
-      userSearch: ""
+      userSearch: "",
+      data: []
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -14,7 +15,6 @@ class Searchbar extends React.Component {
   }
   handleChange(event) {
     event.preventDefault();
-    //console.log("hello", event.target.value);
     this.setState({
       userSearch: event.target.value
     });
@@ -25,23 +25,19 @@ class Searchbar extends React.Component {
     this.fetchResults(this.state.userSearch);
   }
 
-  fetchResults() {
+  fetchResults(query) {
     const makeHTML = text => {
-      const target = document.querySelector("#target");
       const div = document.createElement("div");
       div.innerHTML = text;
       const items = div.querySelectorAll(".result-list-item h4 a");
-      target.innerHTML = [...items]
-        .map(
-          item =>
-            `<li><a href=${item.href} target="_blank">${
-              item.textContent
-            }  </a></li>`
-        )
-        .join("");
+      return [...items].map(item =>
+        this.setState(preveState => ({
+          data: [item, ...preveState.data]
+        }))
+      );
     };
 
-    const fetchResults = q => {
+    const getResultsFromMdn = q => {
       const url = `https://developer.mozilla.org/en-US/search?q=${q}`;
       fetch(`https://cors-anywhere.herokuapp.com/${url}`)
         .then(res => res.text())
@@ -49,7 +45,7 @@ class Searchbar extends React.Component {
         .catch(err => console.log(err));
     };
 
-    fetchResults();
+    getResultsFromMdn(query);
   }
 
   render() {
@@ -57,13 +53,21 @@ class Searchbar extends React.Component {
       <div>
         <input
           className="searchbar"
-          placeholder="Feeling stuck..? get some help"
+          placeholder="Feeling stuck..? Dont be a potato...Let Search MDN for you"
           onChange={this.handleChange}
         />
         <button type="Submit" onClick={this.handleSubmit}>
           Submit
         </button>
-        <ul id="target" />
+        <ul>
+          {this.state.data.map(item => (
+            <li key={item}>
+              <a href={item.href} target="_blank">
+                {item.textContent}
+              </a>
+            </li>
+          ))}
+        </ul>
       </div>
     );
   }
