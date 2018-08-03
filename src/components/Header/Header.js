@@ -3,6 +3,7 @@ import "./StyleHeader.css";
 import Logo from "./Logo";
 import Searchbar from "./Searchbar";
 import { NavLinks } from "./NavLinks";
+import NavBarProfile from "../../Containers/NavBarProfileContainer";
 
 export default class Header extends Component {
   render() {
@@ -12,6 +13,7 @@ export default class Header extends Component {
           <Logo />
           <Searchbar />
           <NavLinks />
+          <NavBarProfile />
         </div>
       </header>
     );

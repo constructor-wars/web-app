@@ -6,6 +6,7 @@ import Header from "./components/Header/Header";
 import EditorRoute from "./Routes/EditorRoute";
 import ProfileRoute from "./Routes/ProfileRoute";
 import CurriculumRoute from "./Routes/CurriculumRoute";
+import AdminRoute from "./Routes/AdminRoute";
 
 class App extends React.Component {
   render() {
@@ -17,6 +18,7 @@ class App extends React.Component {
           <Route exact path="/editor" render={() => <EditorRoute />} />
           <Route exact path="/profile" render={() => <ProfileRoute />} />
           <Route exact path="/curriculum" render={() => <CurriculumRoute />} />
+          <Route exact path="/admin" render={() => <AdminRoute />} />
         </Switch>
         <Footer />
       </div>
