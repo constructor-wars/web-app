@@ -12,15 +12,6 @@
     "url": "https://github.com/constructor-wars/web-app/issues"
   },
   "main": "index.js",
-  "babel": {
-    "presets": [
-      "babel-preset-react",
-      "babel-preset-env"
-    ],
-    "plugins": [
-      "transform-object-rest-spread"
-    ]
-  },
   "homepage": "https://github.com/constructor-wars/web-app#readme",
   "dependencies": {
     "@mdx-js/loader": "^0.15.0-2",

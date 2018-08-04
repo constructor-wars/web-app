@@ -31,8 +31,6 @@ class MonacoEditor extends React.Component {
     return (
       <div style={{ display: "flex" }}>
         <ReactMonacoEditor
-          width="400"
-          height="600"
           language="javascript"
           theme="vs-dark"
           value={code}

@@ -52,12 +52,12 @@ app.use(
 
 app.use(passport.initialize());
 app.use(passport.session());
-
-app.use("/", indexRouter);
+app.use("/dist", express.static(path.join(__dirname, "/dist")));
 app.use("/api", apiRouter);
 
+app.use("/", indexRouter);
+
 app.use("/profile", connection.ensureLoggedIn());
-app.use("/dist", express.static(path.join(__dirname, "/dist")));
 
 app.use(function(req, res, next) {
   next(createError(404));
@@ -73,6 +73,4 @@ app.use(function(err, req, res, next) {
 const port = process.env.PORT || 8080;
 app.listen(port, function() {
   console.log(`Listening on port ${port}!`);
-
-  
 });

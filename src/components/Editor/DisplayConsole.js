@@ -1,7 +1,6 @@
 import React from "react";
 
-import update from "immutability-helper";
-import { Hook, Console, Decode } from "console-feed";
+import { Hook, Console, Decode, Unhook } from "console-feed/lib";
 
 class DisplayConsole extends React.Component {
   constructor(props) {
@@ -13,11 +12,12 @@ class DisplayConsole extends React.Component {
 
   componentDidMount() {
     Hook(window.console, log => {
-      this.setState(state => update(state, { logs: { $push: [Decode(log)] } }));
+      this.setState({ logs: [Decode(log)] });
     });
-
-    console.log(`Hello world!`);
   }
+  // componentWillUnmount() {
+  //   Unhook(true);
+  // }
 
   render() {
     return (
