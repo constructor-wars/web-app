@@ -17,6 +17,9 @@ export function NavLinks() {
       <Link to="/profile">
         <button className="nav_buttons">Profile</button>
       </Link>
+      <Link to="/admin">
+        <button className="nav_buttons">Admin</button>
+      </Link>
       <a href="/logout">
         <button className="nav_buttons">Logout</button>
       </a>
