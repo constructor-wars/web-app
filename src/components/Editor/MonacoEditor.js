@@ -6,7 +6,7 @@ class MonacoEditor extends React.Component {
     super(props);
     this.state = {
       code:
-        "// type your code... \n console.log('hello'); \n let james = () => 1; \n james"
+        "// type your code... \n console.log('hello'); \n let james = () => 1; \n james()"
     };
     this.onChange = this.onChange.bind(this);
   }
@@ -30,7 +30,11 @@ class MonacoEditor extends React.Component {
     };
     return (
       <div style={{ display: "flex" }}>
+        <div onClick={() => this.props.tranferCode(this.state.code)}>
+          run your code ->
+        </div>
         <ReactMonacoEditor
+          height="1000"
           language="javascript"
           theme="vs-dark"
           value={code}

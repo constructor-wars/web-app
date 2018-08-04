@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Hook, Console, Decode, Unhook } from "console-feed/lib";
 
 export default class EvalWindow extends Component {
   constructor(props) {
@@ -11,7 +12,13 @@ export default class EvalWindow extends Component {
     };
     this.state = {
       code: this.props.codeToEval,
-      reply: ""
+      reply: [
+        {
+          id: 1,
+          method: "result",
+          data: ["Your code will run here!!"]
+        }
+      ]
     };
 
     this.handelClick = this.handelClick.bind(this);
@@ -25,11 +32,17 @@ export default class EvalWindow extends Component {
   componentWillUnmount() {
     window.removeEventListener("message", this.handleFrameTasks);
   }
+
   handleFrameTasks(event) {
     if (event.data.evalCode === "evalCode") {
-      this.setState({ reply: event.data.result }, () =>
-        console.log(this.state)
-      );
+      const reply = {
+        id: this.state.reply.length + 1,
+        method: "result",
+        data: [event.data.result]
+      };
+      this.setState(prevState => ({
+        reply: [...prevState.reply, reply]
+      }));
     }
   }
   handelClick() {
@@ -39,9 +52,7 @@ export default class EvalWindow extends Component {
   render() {
     return (
       <div>
-        <pre ref={this.setCodeTarget}>
-          <code>{this.state.reply}</code>
-        </pre>
+        <Console logs={this.state.reply} variant="dark" />
         <div onClick={this.handelClick}>click</div>
         <iframe
           ref={this.setTargetFrame}

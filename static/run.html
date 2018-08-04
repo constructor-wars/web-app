@@ -1,0 +1,32 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <textarea id='code'>let camel = 'duck'; camel</textarea>
+
+    <button onclick='handelSubmit()'>click</button>
+    <iframe sandbox='allow-scripts' id='targetFrame' src='iframePage.html' style="display: none;"></iframe>
+    <pre><code id='code-result'></code></pre>
+
+    <script>
+        function handelSubmit() {
+            let code = document.getElementById('code').value;
+            document.getElementById('targetFrame')
+                .contentWindow.postMessage(code, '*')
+        };
+        window.addEventListener('message', event => {
+            let codeResult = document.getElementById('code-result');
+            if (event.origin === "null"
+                || (event.origin === (window.location.protocol + "//" + window.location.host))) {
+                codeResult.innerHTML = event.data.result
+            }
+        });
+    </script>
+
+</body>
+
+</html>

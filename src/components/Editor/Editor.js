@@ -5,7 +5,7 @@ import MonacoEditor from "./MonacoEditor";
 import DisplayConsole from "./DisplayConsole";
 import EvalWindow from "./EvalWindow";
 
-export default ({ instructions, tranferCode, codeToEval }) => (
+export default ({ instructions, tranferCode, codeToEval, runCode }) => (
   <div>
     <div className="editor__wrap">
       <div className="editor__wrap__instructions editor__sections">
@@ -16,7 +16,7 @@ export default ({ instructions, tranferCode, codeToEval }) => (
         <MonacoEditor tranferCode={tranferCode} />
       </div>
       <div className="editor__wrap__display-window editor__sections">
-        <EvalWindow codeToEval={`let camel = 'duck'; camel`} />
+        <EvalWindow codeToEval={codeToEval} runCode={runCode} />
       </div>
       <div className="editor__wrap__test-window editor__sections">
         <DisplayConsole />

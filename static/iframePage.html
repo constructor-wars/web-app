@@ -19,11 +19,11 @@
             } catch (err) {
                 result = 'eval() threw an exception.';
             }
-            console.log('html ', result);
             const send = {
                 result,
                 evalCode: 'evalCode'
             }
+            console.log(result)
             event.source.postMessage(send, event.origin);
         });
     </script>
