@@ -1,13 +1,13 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import Footer from "./components/Footer/Footer";
-
 import Header from "./components/Header/Header";
 import EditorRoute from "./Routes/EditorRoute";
 import ProfileRoute from "./Routes/ProfileRoute";
 import SyllabusRoute from "./Routes/SyllabusRoute";
 import AdminRoute from "./Routes/AdminRoute";
 import AboutRoute from "./Routes/AboutRoute";
+
 
 class App extends React.Component {
   render() {
