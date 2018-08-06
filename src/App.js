@@ -7,6 +7,7 @@ import EditorRoute from "./Routes/EditorRoute";
 import ProfileRoute from "./Routes/ProfileRoute";
 import CurriculumRoute from "./Routes/CurriculumRoute";
 import AdminRoute from "./Routes/AdminRoute";
+import DashboardRoute from "./Routes/DashboardRoute";
 
 class App extends React.Component {
   render() {
@@ -19,6 +20,7 @@ class App extends React.Component {
           <Route exact path="/profile" render={() => <ProfileRoute />} />
           <Route exact path="/curriculum" render={() => <CurriculumRoute />} />
           <Route exact path="/admin" render={() => <AdminRoute />} />
+          <Route exact path="/dashboard" render={() => <DashboardRoute />} />
         </Switch>
         <Footer />
       </div>

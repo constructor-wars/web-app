@@ -1,0 +1,52 @@
+.dashboard__wrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 2fr);
+  grid-template-rows: 400px 400px;
+  background-color: pink;
+  border: 1px solid red;
+}
+
+/***** PROFILE COMMON STYLES****/
+
+.profile__container,
+.profile__askD,
+.profile__progress__bar,
+.profile__progress__question {
+  margin: 30px;
+  padding: 20px;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+/*****PROFILE MAIN*********/
+.profile__container {
+  background-color: yellow;
+}
+
+/*****PROFILE ASKD*********/
+.profile__askD {
+  background-color: red;
+}
+
+/*****PROFILE PROGRESS BAR*********/
+.profile__progress__bar {
+  background-color: green;
+}
+
+.current__progress {
+  background-color: lightgray;
+  width: 75%;
+  height: 80%;
+  border-radius: 5px;
+}
+
+.total__progress {
+  border: 2px solid black;
+  padding: 2px;
+  border-radius: 5px;
+}
+
+/*****PROFILE DIMS*********/
+.profile__progress__question {
+  background-color: blue;
+}
