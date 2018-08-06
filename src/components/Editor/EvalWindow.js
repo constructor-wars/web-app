@@ -7,11 +7,7 @@ export default class EvalWindow extends Component {
     this.setTargetFrame = element => {
       this.targetFrame = element;
     };
-    this.setCodeTarget = element => {
-      this.codeTarget = element;
-    };
     this.state = {
-      code: this.props.codeToEval,
       reply: [
         {
           id: 1,
@@ -21,20 +17,25 @@ export default class EvalWindow extends Component {
       ]
     };
 
-    this.handelClick = this.handelClick.bind(this);
+    // this.executeCodeInIframe = this.executeCodeInIframe.bind(this);
     this.handleFrameTasks = this.handleFrameTasks.bind(this);
   }
 
   componentDidMount() {
     window.addEventListener("message", this.handleFrameTasks);
-    // this.targetFrame.contentWindow.postMessage(this.state.code, "*");
   }
   componentWillUnmount() {
     window.removeEventListener("message", this.handleFrameTasks);
   }
+  componentWillReceiveProps(nextProps) {
+    this.targetFrame.contentWindow.postMessage(this.props.codeToEval, "*");
+  }
 
   handleFrameTasks(event) {
     if (event.data.evalCode === "evalCode") {
+      console.log("handleFrameTasks:", this.props.reply);
+      console.log("handleFrameTasks:", event);
+      console.log("handleFrameTasks:", this.props.reply);
       const reply = {
         id: this.state.reply.length + 1,
         method: "result",
@@ -45,21 +46,22 @@ export default class EvalWindow extends Component {
       }));
     }
   }
-  handelClick() {
-    this.targetFrame.contentWindow.postMessage(this.state.code, "*");
-  }
+  // executeCodeInIframe() {
+  //   this.targetFrame.contentWindow.postMessage(this.state.code, "*");
+  // }
 
   render() {
+    console.log("reply:", this.props.reply);
+
     return (
       <div>
         <Console logs={this.state.reply} variant="dark" />
-        <div onClick={this.handelClick}>click</div>
         <iframe
           ref={this.setTargetFrame}
           sandbox="allow-scripts"
           id="targetFrame"
           src="/dist/iframePage.html"
-          // style={{ display: "none" }}
+          style={{ display: "none" }}
         />
       </div>
     );

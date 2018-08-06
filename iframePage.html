@@ -13,17 +13,14 @@
         window.addEventListener('message', event => {
             if (event.origin !== (window.location.protocol + "//" + window.location.host))
                 return;
-            let result = 'not run any code';
+            const mainWindow = event.source;
+            let result;
             try {
                 result = eval(event.data);
             } catch (err) {
-                result = `eval() threw an exception. ${err}`;
+                result = 'eval() threw an exception.';
             }
-            const send = {
-                result,
-                evalCode: 'evalCode'
-            }
-            event.source.postMessage(send, event.origin);
+            mainWindow.postMessage(result, event.origin);
         });
     </script>
 </body>
