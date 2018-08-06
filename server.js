@@ -53,10 +53,9 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use("/profile", connection.ensureLoggedIn());
 app.use("/dist", express.static(path.join(__dirname, "/dist")));
-
 app.use("/api", apiRouter);
+app.use("/profile", connection.ensureLoggedIn());
 app.use("/", indexRouter);
 
 app.use(function(req, res, next) {
