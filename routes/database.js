@@ -84,6 +84,18 @@ function getUserData(user_id) {
     .catch(error => console.log(error));
 }
 
+function getUserProgress(github_username) {
+  return db
+    .oneOrNone(
+      `SELECT COUNT(completed) from users, user_data 
+      WHERE users.github_username = $1
+      AND user_data.user_id = users.id 
+      AND completed = true`,
+      [github_username]
+    )
+    .catch(error => console.log(error));
+}
+
 // getAllQuestions().then(data => console.log(data));
 
 // getUserByUsername("mickey mouse").then(data => console.log(data));
@@ -93,5 +105,6 @@ module.exports = {
   getQuestions,
   getAllQuestions,
   sumbitQuestionOnDatabase,
-  getUserData
+  getUserData,
+  getUserProgress
 };

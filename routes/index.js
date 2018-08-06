@@ -42,8 +42,4 @@ router.get(
   }
 );
 
-router.get("*", function(req, res, next) {
-  res.redirect("/profile");
-});
-
 module.exports = router;

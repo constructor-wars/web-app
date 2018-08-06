@@ -53,11 +53,29 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.get("/editor", (req, res) => {
+  res.render("profile", {
+    title: "Editor",
+    GITHUB_DATA: JSON.stringify({ GITHUB_DATA: req.user })
+  });
+});
+
+app.get("/editor/:id", (req, res) => {
+  res.render("profile", {
+    title: "Editor",
+    GITHUB_DATA: JSON.stringify({ GITHUB_DATA: req.user })
+  });
+});
+
 app.use("/profile", connection.ensureLoggedIn());
 app.use("/dist", express.static(path.join(__dirname, "/dist")));
 
 app.use("/api", apiRouter);
 app.use("/", indexRouter);
+
+app.get("*", function(req, res) {
+  res.redirect("/profile");
+});
 
 app.use(function(req, res, next) {
   next(createError(404));

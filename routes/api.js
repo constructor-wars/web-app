@@ -7,7 +7,8 @@ const {
   getQuestions,
   getAllQuestions,
   sumbitQuestionOnDatabase,
-  getUserData
+  getUserData,
+  getUserProgress
 } = require("./database");
 
 router.get("/:username", function(req, res) {
@@ -34,6 +35,11 @@ router.post("/submitnewquestion", function(req, res) {
 router.get("/getuserdata/:id", function(req, res) {
   const user_id = req.params.id;
   getUserData(user_id).then(data => res.json(data));
+});
+
+router.get("/getprogress/:username", function(req, res) {
+  const github_username = req.params.username;
+  getUserProgress(github_username).then(data => res.json(data));
 });
 
 module.exports = router;
