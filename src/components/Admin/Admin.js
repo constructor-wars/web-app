@@ -34,14 +34,13 @@ class Admin extends React.Component {
 
     this.state = {
       question: {
-        question: "",
+        question_title: "",
         test: "",
-        instructions: "",
-        linkToSyllabus: "",
-        initialCode: "",
-        createdBy: this.props.userID,
-        levelId: 1,
-        categoryId: 1
+        difficulty_id: 1,
+        category_id: 1,
+        instruction: "",
+        link_syllabus: "",
+        initial_code: ""
       }
     };
     this.handleChange = this.handleChange.bind(this);
@@ -65,35 +64,35 @@ class Admin extends React.Component {
       <div>
         <form className="admin_container" onSubmit={this.handleSubmit}>
           <TextArea
-            id="question"
-            displayName="question"
+            id="question_title"
+            displayName="question_title"
             fn={this.handleChange}
           />
           <TextArea id="test" displayName="test" fn={this.handleChange} />
           <TextArea
-            id="instructions"
-            displayName="instructions"
+            id="instruction"
+            displayName="instruction"
             fn={this.handleChange}
           />
           <TextArea
-            id="linkToSyllabus"
-            displayName="linkToSyllabus"
+            id="link_syllabus"
+            displayName="link_syllabus"
             fn={this.handleChange}
           />
           <TextArea
-            id="initialCode"
-            displayName="initialCode"
+            id="initial_code"
+            displayName="initial_code"
             fn={this.handleChange}
           />
           <DropDown
-            id="levelId"
-            displayName="Level Options"
+            id="difficulty_id"
+            displayName="difficulty_id"
             options={this.props.LevelOptions}
             fn={this.handleChange}
           />
           <DropDown
-            id="categoryId"
-            displayName="Category Options"
+            id="category_id"
+            displayName="category_id"
             options={this.props.CategoryOptions}
             fn={this.handleChange}
           />
