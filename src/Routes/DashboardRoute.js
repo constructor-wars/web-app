@@ -1,5 +1,5 @@
 import React from "react";
-import DashboardContainer from "../Containers/DashboardContainer";
+import DashboardContainer from "../Containers/DashBoardContainer";
 
 class DashboardRoute extends React.Component {
   render() {
