@@ -1,5 +1,4 @@
 export function sendToServerAction(payload) {
-  console.log("SEND_TO_SERVER", payload);
   fetch("/api/submitnewquestion", {
     method: "POST",
     body: JSON.stringify({ payload }),
@@ -18,4 +17,11 @@ export function sendToServerAction(payload) {
           : Promise.reject(res)
     )
     .catch(error => console.log(error));
+}
+export function codeToEvalAction(payload) {
+  console.log("CODE_TO_EVAL", payload);
+  return {
+    type: "CODE_TO_EVAL",
+    payload
+  };
 }
