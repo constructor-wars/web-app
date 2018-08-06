@@ -26,7 +26,9 @@ export default class EvalWindow extends Component {
     window.removeEventListener("message", this.handleFrameTasks);
   }
   componentWillReceiveProps(nextProps) {
-    this.targetFrame.contentWindow.postMessage(this.props.codeToEval, "*");
+    if (nextProps.performEval) {
+      this.targetFrame.contentWindow.postMessage(nextProps.codeToEval, "*");
+    }
   }
 
   handleFrameTasks(event) {
