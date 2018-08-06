@@ -16,8 +16,6 @@ export default class EvalWindow extends Component {
         }
       ]
     };
-
-    // this.executeCodeInIframe = this.executeCodeInIframe.bind(this);
     this.handleFrameTasks = this.handleFrameTasks.bind(this);
   }
 
@@ -33,9 +31,6 @@ export default class EvalWindow extends Component {
 
   handleFrameTasks(event) {
     if (event.data.evalCode === "evalCode") {
-      console.log("handleFrameTasks:", this.props.reply);
-      console.log("handleFrameTasks:", event);
-      console.log("handleFrameTasks:", this.props.reply);
       const reply = {
         id: this.state.reply.length + 1,
         method: "result",
@@ -46,13 +41,8 @@ export default class EvalWindow extends Component {
       }));
     }
   }
-  // executeCodeInIframe() {
-  //   this.targetFrame.contentWindow.postMessage(this.state.code, "*");
-  // }
 
   render() {
-    console.log("reply:", this.props.reply);
-
     return (
       <div>
         <Console logs={this.state.reply} variant="dark" />

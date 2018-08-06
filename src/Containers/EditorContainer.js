@@ -40,8 +40,6 @@ class Editor extends React.Component {
     this.setState({ codeToEval: this.state.currentCode });
   }
   render() {
-    console.log(this.state.codeToEval);
-
     return (
       <div>
         <div className="editor__wrap">
