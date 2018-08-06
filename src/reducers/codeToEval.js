@@ -1,6 +1,6 @@
-export function sendToServer(state = {}, action) {
+export function codeToEval(state = "", action) {
   switch (action.type) {
-    case "SEND_TO_SERVER":
+    case "CODE_TO_EVAL":
       return action.payload;
     default:
       return state;
