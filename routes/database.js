@@ -7,14 +7,22 @@ require("dotenv").config({
 });
 
 const db = pgp({
-  host: process.env.HEROKU_HOST,
-  port: process.env.HEROKU_PORT,
-  database: process.env.HEROKU_DATABASE_URL,
-  user: process.env.HEROKU_USER,
-  ssl: process.env.HEROKU_SSL,
-  password: process.env.HEROKU_PASSWORD,
-  uri: process.env.HEROKU_URI
+  host: process.env.POSTGRES_HOST,
+  port: process.env.POSTGRES_PORT,
+  database: process.env.POSTGRES_DATABASE,
+  username: process.env.POSTGRES_USERNAME,
+  password: process.env.POSTGRES_PASSWORD
 });
+
+// const db = pgp({
+//   host: process.env.HEROKU_HOST,
+//   port: process.env.HEROKU_PORT,
+//   database: process.env.HEROKU_DATABASE_URL,
+//   user: process.env.HEROKU_USER,
+//   ssl: process.env.HEROKU_SSL,
+//   password: process.env.HEROKU_PASSWORD,
+//   uri: process.env.HEROKU_URI
+// });
 
 function getUserByUsername(github_username) {
   return db
@@ -37,9 +45,54 @@ function getQuestions(id) {
 function getAllQuestions() {
   return db
     .any(`SELECT * FROM questions_answers`)
-    .then(function(data) {
-      return data;
-    })
+    .then(data => data)
+    .catch(error => console.log(error));
+}
+
+function sumbitQuestionOnDatabase(data) {
+  console.log(data);
+  const {
+    question_title,
+    test,
+    difficulty_id,
+    category_id,
+    instruction,
+    link_syllabus,
+    initial_code
+  } = data.payload;
+  return db
+    .none(
+      `INSERT INTO questions_answers (question_title, test, difficulty_id, category_id, instruction, link_syllabus, initial_code)
+  VALUES ($1, $2, $3,$4,$5,$6,$7)`,
+      [
+        question_title,
+        test,
+        difficulty_id,
+        category_id,
+        instruction,
+        link_syllabus,
+        initial_code
+      ]
+    )
+
+    .catch(error => console.log(error));
+}
+
+function getUserData(user_id) {
+  return db
+    .any(`SELECT * FROM   user_data WHERE user_data.user_id = $1`, [user_id])
+    .catch(error => console.log(error));
+}
+
+function getUserProgress(github_username) {
+  return db
+    .oneOrNone(
+      `SELECT COUNT(completed) from users, user_data 
+      WHERE users.github_username = $1
+      AND user_data.user_id = users.id 
+      AND completed = true`,
+      [github_username]
+    )
     .catch(error => console.log(error));
 }
 
@@ -50,5 +103,8 @@ function getAllQuestions() {
 module.exports = {
   getUserByUsername,
   getQuestions,
-  getAllQuestions
+  getAllQuestions,
+  sumbitQuestionOnDatabase,
+  getUserData,
+  getUserProgress
 };

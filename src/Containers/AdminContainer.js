@@ -26,7 +26,7 @@ const mapReduxStateToProps = reduxState => {
   return {
     LevelOptions,
     CategoryOptions,
-    userID: id,
+    username: username,
     GITHUB_DATA: {
       id,
       username,

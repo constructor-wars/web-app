@@ -1,7 +1,27 @@
 export function sendToServerAction(payload) {
-  console.log("SEND_TO_SERVER", payload);
+  fetch("/api/submitnewquestion", {
+    method: "POST",
+    body: JSON.stringify({ payload }),
+    credentials: "same-origin",
+    headers: {
+      "content-type": "application/json"
+    }
+  })
+    .then(
+      response =>
+        response.ok
+          ? {
+              type: "SEND_TO_SERVER",
+              payload
+            }
+          : Promise.reject(res)
+    )
+    .catch(error => console.log(error));
+}
+export function codeToEvalAction(payload) {
+  console.log("CODE_TO_EVAL", payload);
   return {
-    type: "SEND_TO_SERVER",
+    type: "CODE_TO_EVAL",
     payload
   };
 }

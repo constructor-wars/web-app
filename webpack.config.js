@@ -1,28 +1,26 @@
-const path = require('path');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const path = require("path");
+const webpack = require("webpack");
+const CleanWebpackPlugin = require("clean-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
+const MonacoWebpackPlugin = require("monaco-editor-webpack-plugin");
 
 module.exports = {
-  entry: './src/index.js',
-  devtool: 'source-map',
+  entry: "./src/index.js",
+  devtool: "source-map",
   output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist')
+    filename: "bundle.js",
+    path: path.resolve(__dirname, "dist")
   },
   module: {
     rules: [
       {
         test: /\.md$/,
-        use: ['babel-loader', '@mdx-js/loader']
-      },
-      {
-        test: /\.md$/,
         use: [
           {
-            loader: 'html-loader'
+            loader: "html-loader"
           },
           {
-            loader: 'markdown-loader'
+            loader: "markdown-loader"
           }
         ]
       },
@@ -30,10 +28,10 @@ module.exports = {
         test: /\.(png|jpg|gif)$/i,
         use: [
           {
-            loader: 'file-loader',
+            loader: "file-loader",
             options: {
-              name: '[name].[ext]',
-              publicPath: 'dist/'
+              name: "[name].[ext]",
+              publicPath: "dist/"
             }
           }
         ]
@@ -41,23 +39,56 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /(node_modules)/,
-        loader: require.resolve('babel-loader')
+        loader: "babel-loader"
       },
       {
         test: /\.css$/,
         use: [
           {
-            loader: 'style-loader'
+            loader: "style-loader"
           },
           {
-            loader: 'css-loader'
+            loader: "css-loader"
           }
         ]
       }
     ]
   },
   plugins: [
-    new CleanWebpackPlugin('./dist'),
-    new CopyWebpackPlugin(['./static'])
+    new webpack.IgnorePlugin(
+      /^((fs)|(path)|(os)|(crypto)|(source-map-support))$/,
+      /vs(\/|\\)language(\/|\\)typescript(\/|\\)lib/
+    ),
+    new CopyWebpackPlugin(["./static"]),
+    new CleanWebpackPlugin(["dist"]),
+    new webpack.ContextReplacementPlugin(
+      /monaco-editor(\\|\/)esm(\\|\/)vs(\\|\/)editor(\\|\/)common(\\|\/)services/,
+      __dirname
+    ),
+    new MonacoWebpackPlugin({
+      languages: ["javascript, json, markdown, html, css"],
+      features: [
+        "clipboard",
+        "comment",
+        "contextmenu",
+        "coreCommands",
+        "cursorUndo",
+        "dnd",
+        "find",
+        "format",
+        "hover",
+        "inPlaceReplace",
+        "iPadShowKeyboard",
+        "linesOperations",
+        "links",
+        "parameterHints",
+        "quickCommand",
+        "quickFixCommands",
+        "smartSelect",
+        "suggest",
+        "wordHighlighter",
+        "wordOperations"
+      ]
+    })
   ]
 };
