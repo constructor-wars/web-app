@@ -8,7 +8,6 @@ import SyllabusRoute from "./Routes/SyllabusRoute";
 import AdminRoute from "./Routes/AdminRoute";
 import AboutRoute from "./Routes/AboutRoute";
 
-
 class App extends React.Component {
   render() {
     return (

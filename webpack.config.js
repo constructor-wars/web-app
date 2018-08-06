@@ -61,6 +61,10 @@ module.exports = {
     ),
     new CopyWebpackPlugin(["./static"]),
     new CleanWebpackPlugin(["dist"]),
+    new webpack.ContextReplacementPlugin(
+      /monaco-editor(\\|\/)esm(\\|\/)vs(\\|\/)editor(\\|\/)common(\\|\/)services/,
+      __dirname
+    ),
     new MonacoWebpackPlugin({
       languages: ["javascript, json, markdown, html, css"],
       features: [

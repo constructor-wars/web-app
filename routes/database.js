@@ -50,32 +50,31 @@ function getAllQuestions() {
 }
 
 function sumbitQuestionOnDatabase(data) {
+  console.log(data);
   const {
-    question,
+    question_title,
     test,
     difficulty_id,
     category_id,
     instruction,
     link_syllabus,
-    initial_code,
-    created_by
-  } = data;
+    initial_code
+  } = data.payload;
   return db
-    .one(
-      `INSERT INTO questions_answers (question, test, difficulty_id, category_id, instruction, link_syllabus, initial_code, created_by)
-  VALUES ($1, $2, $3,$4,$5,$6,$7,$8)`,
+    .none(
+      `INSERT INTO questions_answers (question_title, test, difficulty_id, category_id, instruction, link_syllabus, initial_code)
+  VALUES ($1, $2, $3,$4,$5,$6,$7)`,
       [
-        question,
+        question_title,
         test,
         difficulty_id,
         category_id,
         instruction,
         link_syllabus,
-        initial_code,
-        created_by
+        initial_code
       ]
     )
-    .then(() => res.json({ submit: OK }))
+
     .catch(error => console.log(error));
 }
 
