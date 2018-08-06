@@ -8,8 +8,8 @@ export function sendToServerAction(payload) {
     }
   })
     .then(
-      response =>
-        response.ok
+      res =>
+        res.ok
           ? {
               type: "SEND_TO_SERVER",
               payload
