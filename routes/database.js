@@ -7,14 +7,22 @@ require("dotenv").config({
 });
 
 const db = pgp({
-  host: process.env.HEROKU_HOST,
-  port: process.env.HEROKU_PORT,
-  database: process.env.HEROKU_DATABASE_URL,
-  user: process.env.HEROKU_USER,
-  ssl: process.env.HEROKU_SSL,
-  password: process.env.HEROKU_PASSWORD,
-  uri: process.env.HEROKU_URI
+  host: process.env.POSTGRES_HOST,
+  port: process.env.POSTGRES_PORT,
+  database: process.env.POSTGRES_DATABASE,
+  username: process.env.POSTGRES_USERNAME,
+  password: process.env.POSTGRES_PASSWORD
 });
+
+// const db = pgp({
+//   host: process.env.HEROKU_HOST,
+//   port: process.env.HEROKU_PORT,
+//   database: process.env.HEROKU_DATABASE_URL,
+//   user: process.env.HEROKU_USER,
+//   ssl: process.env.HEROKU_SSL,
+//   password: process.env.HEROKU_PASSWORD,
+//   uri: process.env.HEROKU_URI
+// });
 
 function getUserByUsername(github_username) {
   return db
@@ -37,9 +45,7 @@ function getQuestions(id) {
 function getAllQuestions() {
   return db
     .any(`SELECT * FROM questions_answers`)
-    .then(function(data) {
-      return data;
-    })
+    .then(data => data)
     .catch(error => console.log(error));
 }
 
@@ -51,12 +57,12 @@ function sumbitQuestionOnDatabase(data) {
     category_id,
     instruction,
     link_syllabus,
-    intital_code,
+    initial_code,
     created_by
   } = data;
   return db
     .one(
-      `INSERT INTO questions_answers (question, test, difficulty_id, category_id, instruction, link_syllabus, intital_code, created_by)
+      `INSERT INTO questions_answers (question, test, difficulty_id, category_id, instruction, link_syllabus, initial_code, created_by)
   VALUES ($1, $2, $3,$4,$5,$6,$7,$8)`,
       [
         question,
@@ -65,11 +71,17 @@ function sumbitQuestionOnDatabase(data) {
         category_id,
         instruction,
         link_syllabus,
-        intital_code,
+        initial_code,
         created_by
       ]
     )
     .then(() => res.json({ submit: OK }))
+    .catch(error => console.log(error));
+}
+
+function getUserData(user_id) {
+  return db
+    .any(`SELECT * FROM   user_data WHERE user_data.user_id = $1`, [user_id])
     .catch(error => console.log(error));
 }
 
@@ -81,5 +93,6 @@ module.exports = {
   getUserByUsername,
   getQuestions,
   getAllQuestions,
-  sumbitQuestionOnDatabase
+  sumbitQuestionOnDatabase,
+  getUserData
 };

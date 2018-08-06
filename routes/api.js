@@ -6,7 +6,8 @@ const {
   getUserByUsername,
   getQuestions,
   getAllQuestions,
-  sumbitQuestionOnDatabase
+  sumbitQuestionOnDatabase,
+  getUserData
 } = require("./database");
 
 router.get("/:username", function(req, res) {
@@ -27,8 +28,12 @@ router.get("/question", function(req, res) {
 
 router.post("/submitnewquestion", function(req, res) {
   const data = req.body;
-  console.log("data");
   sumbitQuestionOnDatabase(data).then(data => res.json(data));
+});
+
+router.get("/getuserdata/:id", function(req, res) {
+  const user_id = req.params.id;
+  getUserData(user_id).then(data => res.json(data));
 });
 
 module.exports = router;
