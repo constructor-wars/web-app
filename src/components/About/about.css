@@ -1,0 +1,15 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--light2);
+}
+
+.about__wrapper {
+  width: 600px;
+  margin: 5em auto;
+  padding: 50px;
+  background-color: var(--cyan);
+  border-radius: 1em;
+  color: var(--dark);
+  text-align: center;
+}
