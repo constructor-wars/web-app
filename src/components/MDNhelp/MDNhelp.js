@@ -30,11 +30,14 @@ class Searchbar extends React.Component {
       const div = document.createElement("div");
       div.innerHTML = text;
       const items = div.querySelectorAll(".result-list-item h4 a");
-      return [...items].map(item =>
-        this.setState(preveState => ({
-          data: [item, ...preveState.data]
-        }))
-      );
+
+      this.setState({ data: [] }, () => {
+        return [...items].map(item =>
+          this.setState(preveState => ({
+            data: [item, ...preveState.data]
+          }))
+        );
+      });
     };
 
     const getResultsFromMdn = q => {
@@ -53,7 +56,7 @@ class Searchbar extends React.Component {
       <div>
         <input
           className="searchbar"
-          placeholder="Feeling stuck..? Dont be a potato...Let Search MDN for you"
+          placeholder="Feeling stuck..? Let MDN help..."
           onChange={this.handleChange}
         />
         <button type="Submit" onClick={this.handleSubmit}>
