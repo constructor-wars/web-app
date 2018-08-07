@@ -57,6 +57,7 @@
     "monaco-editor-webpack-plugin": "^1.4.0",
     "morgan": "^1.9.0",
     "nodemon": "^1.18.2",
+    "parcel-bundler": "^1.9.7",
     "passport": "^0.4.0",
     "passport-github": "^1.1.0",
     "pg-promise": "^8.4.5",
@@ -85,7 +86,8 @@
     "start": "NODE_ENV=development node server.js",
     "start:w": "NODE_ENV=development nodemon server.js",
     "go": "concurrently 'npm run dev:w' 'npm run start:w' ",
-    "db:w": "NODE_ENV=development nodemon ./routes/database.js"
+    "db:w": "NODE_ENV=development nodemon ./routes/database.js",
+    "styling": "parcel ./static/styling.html"
   },
   "devDependencies": {}
 }

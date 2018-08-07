@@ -6,6 +6,9 @@ import EditorRoute from "./Routes/EditorRoute";
 import ProfileRoute from "./Routes/ProfileRoute";
 import SyllabusRoute from "./Routes/SyllabusRoute";
 import AdminRoute from "./Routes/AdminRoute";
+
+import DashboardRoute from "./Routes/DashboardRoute";
+
 import AboutRoute from "./Routes/AboutRoute";
 
 class App extends React.Component {
@@ -19,6 +22,7 @@ class App extends React.Component {
           <Route exact path="/about" render={() => <AboutRoute />} />
           <Route exact path="/syllabus" render={() => <SyllabusRoute />} />
           <Route exact path="/admin" render={() => <AdminRoute />} />
+          <Route exact path="/dashboard" render={() => <DashboardRoute />} />
         </Switch>
         <Footer />
       </div>

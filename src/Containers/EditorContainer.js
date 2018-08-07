@@ -28,7 +28,8 @@ class Editor extends React.Component {
     super(props);
     this.state = {
       codeToEval: this.props.codeToEval,
-      currentCode: this.props.currentTask.startCode
+      currentCode: this.props.currentTask.startCode,
+      performEval: false
     };
     this.onChange = this.onChange.bind(this);
     this.runCode = this.runCode.bind(this);
@@ -37,7 +38,14 @@ class Editor extends React.Component {
     this.setState({ currentCode: code });
   }
   runCode() {
-    this.setState({ codeToEval: this.state.currentCode });
+    this.setState({ codeToEval: this.state.currentCode, performEval: true });
+  }
+  componentDidUpdate() {
+    if (this.state.performEval) {
+      this.setState({
+        performEval: false
+      });
+    }
   }
   render() {
     return (
@@ -57,7 +65,10 @@ class Editor extends React.Component {
             />
           </div>
           <div className="editor__wrap__display-window editor__sections">
-            <EvalWindow codeToEval={this.state.codeToEval} />
+            <EvalWindow
+              codeToEval={this.state.codeToEval}
+              performEval={this.state.performEval}
+            />
           </div>
           <div className="editor__wrap__test-window editor__sections">
             <DisplayConsole />
