@@ -8,16 +8,27 @@ export function sendToServerAction(payload) {
     }
   })
     .then(
-      res =>
-        res.ok
-          ? {
-              type: "SEND_TO_SERVER",
-              payload
-            }
-          : Promise.reject(res)
+      res => res.ok
+      // ? {
+      //     type: "SEND_TO_SERVER",
+      //     payload
+      //   }
+      // : Promise.reject(res)
     )
     .catch(error => console.log(error));
 }
+
+export function fetchAllQuestions() {
+  return function(dispatch) {
+    fetch("/api/questions")
+      .then(response => response.json())
+      .then(questions => {
+        dispatch(allQuestionsAction(questions));
+      })
+      .catch(error => console.log(error));
+  };
+}
+
 export function codeToEvalAction(payload) {
   console.log("CODE_TO_EVAL", payload);
   return {

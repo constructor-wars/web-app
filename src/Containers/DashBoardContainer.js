@@ -1,5 +1,9 @@
 import { connect } from "react-redux";
 import Dashboard from "../components/Dashboard/Dashboard";
+import {
+  allQuestionsAction,
+  fetchAllQuestions
+} from "../_Redux/actions/actions";
 
 const mapReduxStateToProps = reduxState => {
   const {
@@ -9,6 +13,8 @@ const mapReduxStateToProps = reduxState => {
     username,
     photos
   } = reduxState.GITHUB_DATA;
+
+  const totalQuestionsAnswered = ["one quesiotn", " dos question"];
 
   return {
     user: {
@@ -20,12 +26,14 @@ const mapReduxStateToProps = reduxState => {
     },
     total: "100",
     current: "20",
-    question: ["one quesiotn", " dos question"],
-    messages: "poo poo"
+    messages: "poo poo",
+    questions: reduxState.allQuestions
   };
 };
 
-const mapDispatchToProps = dispatch => ({});
+const mapDispatchToProps = dispatch => ({
+  getAllQuestions: () => dispatch(fetchAllQuestions())
+});
 
 export default connect(
   mapReduxStateToProps,

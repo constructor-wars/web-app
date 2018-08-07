@@ -6,6 +6,10 @@ import ProfileAskD from "../ProfileAskD/ProfileAskD";
 import "./style.css";
 
 export default class Dashboard extends React.Component {
+  componentDidMount() {
+    this.props.getAllQuestions();
+  }
+
   render() {
     return (
       <div className="dashboard__wrapper">
