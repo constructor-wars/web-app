@@ -24,7 +24,7 @@ const mapReduxStateToProps = reduxState => {
       profilepic: photos[0].value
     },
     total: reduxState.allQuestions.length,
-    current: reduxState.userProgress,
+    current: reduxState.userProgress.count,
     messages: "poo poo",
     questions: reduxState.allQuestions
   };
