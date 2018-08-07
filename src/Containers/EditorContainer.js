@@ -5,6 +5,7 @@ import { codeToEvalAction } from "../_Redux/actions/actions";
 
 import Instructions from "../components/Instructions/Instructions";
 import { MonacoEditor, DisplayConsole, EvalWindow } from "../components/Editor";
+import MDNhelp from "../components/MDNhelp/MDNhelp";
 
 const mapReduxStateToProps = reduxState => ({
   user: {
@@ -56,6 +57,7 @@ class Editor extends React.Component {
           </div>
           <div className="editor__wrap__comments editor__sections">
             <div onClick={this.runCode}>\>- Run code -> </div>
+            <MDNhelp />
           </div>
           <div className="editor__wrap__edit-window editor__sections">
             <MonacoEditor
