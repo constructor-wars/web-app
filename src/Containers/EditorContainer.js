@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { codeToEvalAction } from "../actions/actions";
+import { codeToEvalAction } from "../_Redux/actions/actions";
 
 import Instructions from "../components/Instructions/Instructions";
 import { MonacoEditor, DisplayConsole, EvalWindow } from "../components/Editor";
