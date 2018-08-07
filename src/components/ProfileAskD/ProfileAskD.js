@@ -1,13 +1,22 @@
 import React from "react";
+import "./styles.css";
+import DmirtiHead from "./dmitri-thanks.png";
 
 class ProfileAskD extends React.Component {
   render() {
     return (
-      <div>
+      <a href="https://api.whatsapp.com/send?text=help">
         <div className="profile__askD">
-          <p>this will display Dimitris nodding....</p>
+          Ask me a question when you get stuck
+          {process.env.NODE_ENV === "development" ? null : (
+            <img
+              className="dmitri"
+              src={DmirtiHead}
+              alt="May you questions get answered"
+            />
+          )}
         </div>
-      </div>
+      </a>
     );
   }
 }
