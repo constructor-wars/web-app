@@ -25,3 +25,45 @@ export function codeToEvalAction(payload) {
     payload
   };
 }
+
+export function userByUsernameAction(payload) {
+  return {
+    type: "USER_BY_USERNAME",
+    payload
+  };
+}
+
+export function questionByIdAction(payload) {
+  return {
+    type: "QUESTION_BY_ID",
+    payload
+  };
+}
+
+export function allQuestionsAction(payload) {
+  return {
+    type: "ALL_QUESTIONS",
+    payload
+  };
+}
+
+export function sendQuestionToDatabaseAction(payload) {
+  return {
+    type: "SEND_QUESTION_TO_DATABASE",
+    payload
+  };
+}
+
+export function userDataAction(payload) {
+  return {
+    type: "USER_DATA",
+    payload
+  };
+}
+
+export function userProgressAction(payload) {
+  return {
+    type: "USER_PROGRESS",
+    payload
+  };
+}
