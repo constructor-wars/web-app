@@ -2,29 +2,45 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./NavLinks.css";
 
+import { FiPlay, FiBookOpen, FiLogOut } from "react-icons/fi";
+import { GoInfo, GoGear, GoDashboard } from "react-icons/go";
+
 export function NavLinks() {
   return (
     <div className="nav_links">
       <Link to="/editor">
-        <button className="nav_buttons">Start Coding</button>
+        <div className="nav_buttons">
+          <FiPlay className="nav_links__icon" /> Start Coding
+        </div>
       </Link>
       <Link to="/dashboard">
-        <button className="nav_buttons">Dashboard</button>
+        <div className="nav_buttons">
+          <GoDashboard className="nav_links__icon" /> Dashboard
+        </div>
       </Link>
       <Link to="/syllabus">
-        <button className="nav_buttons">Syllabus</button>
-      </Link>
-      <Link to="/profile">
-        <button className="nav_buttons">Profile</button>
+        <div className="nav_buttons">
+          {" "}
+          <FiBookOpen className="nav_links__icon" /> Syllabus
+        </div>
       </Link>
       <Link to="/about">
-        <button className="nav_buttons">About</button>
+        <div className="nav_buttons">
+          {" "}
+          <GoInfo className="nav_links__icon" /> About
+        </div>
       </Link>
       <a href="/logout">
-        <button className="nav_buttons">Logout</button>
+        <div className="nav_buttons">
+          {" "}
+          <FiLogOut className="nav_links__icon" /> Logout
+        </div>
       </a>
       <Link to="/admin">
-        <button className="nav_buttons">Admin</button>
+        <div className="nav_buttons">
+          {" "}
+          <GoGear className="nav_links__icon" /> Admin
+        </div>
       </Link>
     </div>
   );

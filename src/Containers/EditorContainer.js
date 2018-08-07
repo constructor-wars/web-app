@@ -5,6 +5,7 @@ import { codeToEvalAction } from "../_Redux/actions/actions";
 
 import Instructions from "../components/Instructions/Instructions";
 import { MonacoEditor, DisplayConsole, EvalWindow } from "../components/Editor";
+import MDNhelp from "../components/MDNhelp/MDNhelp";
 
 const mapReduxStateToProps = reduxState => ({
   user: {
@@ -13,14 +14,13 @@ const mapReduxStateToProps = reduxState => ({
   },
   currentTask: {
     instructions: `# instruction`,
-    startCode: "let question = 'Hello World' \n question",
-    answer: `Hello world`
+    startCode: `let sayHi = ${reduxState.GITHUB_DATA.displayName} \n sayHi`,
+    answer: reduxState.GITHUB_DATA.displayName
   }
 });
 
 const mapDispatchToProps = dispatch => ({
-  // tranferCode: code => dispatch(codeToEvalAction(code)),
-  // runcode: () => dispatch()
+  saveCode: currentCode => console.log("saved", currentCode)
 });
 
 class Editor extends React.Component {
@@ -33,12 +33,16 @@ class Editor extends React.Component {
     };
     this.onChange = this.onChange.bind(this);
     this.runCode = this.runCode.bind(this);
+    this.saveCode = this.saveCode.bind(this);
   }
   onChange(code) {
     this.setState({ currentCode: code });
   }
   runCode() {
     this.setState({ codeToEval: this.state.currentCode, performEval: true });
+  }
+  saveCode() {
+    this.props.saveCode(this.state.currentCode);
   }
   componentDidUpdate() {
     if (this.state.performEval) {
@@ -48,14 +52,25 @@ class Editor extends React.Component {
     }
   }
   render() {
+    console.log(
+      this.state.codeToEval === this.props.currentTask.answer ? "yay" : "nahh"
+    );
     return (
       <div>
+        <div className="editor__wrap__buttons">
+          <div className="editor__wrap__button" onClick={this.runCode}>
+            Run code ->
+          </div>
+          <div className="editor__wrap__button" onClick={this.saveCode}>
+            Save code ->
+          </div>
+        </div>
         <div className="editor__wrap">
           <div className="editor__wrap__instructions editor__sections">
             <Instructions instructions={this.props.currentTask.instructions} />
           </div>
           <div className="editor__wrap__comments editor__sections">
-            <div onClick={this.runCode}>\>- Run code -> </div>
+            <MDNhelp />
           </div>
           <div className="editor__wrap__edit-window editor__sections">
             <MonacoEditor

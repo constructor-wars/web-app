@@ -1,13 +1,30 @@
 .nav_links {
   margin: auto 30px auto auto;
+  display: flex;
+}
+.nav_links a {
+  text-decoration: none;
 }
 
 .nav_buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: var(--light);
   height: 25px;
-  margin: 20px 0px;
-  width: 85px;
+  margin: 0px 20px 0px 0px;
+  padding: 3px 10px 3px 5px;
   align-self: center;
-  background-color: var(--dark);
   cursor: pointer;
+  border: 1px solid var(--background__color);
+  border-radius: 5px;
+}
+
+.nav_buttons:hover {
+  border: 1px solid #f1938f;
+  color: #f1938f;
+}
+
+.nav_links__icon {
+  padding-right: 5px;
 }
