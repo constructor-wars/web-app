@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 
 import { codeToEvalAction } from "../_Redux/actions/actions";
+import { FiPlayCircle, FiSave } from "react-icons/fi";
 
 import Instructions from "../components/Instructions/Instructions";
 import { MonacoEditor, DisplayConsole, EvalWindow } from "../components/Editor";
@@ -56,38 +57,44 @@ class Editor extends React.Component {
       this.state.codeToEval === this.props.currentTask.answer ? "yay" : "nahh"
     );
     return (
-      <div>
+      <div className="editor__wrap">
         <div className="editor__wrap__buttons">
-          <div className="editor__wrap__button" onClick={this.runCode}>
-            Run code ->
+          <div
+            className="editor__wrap__button editor__wrap__button--save"
+            onClick={this.saveCode}
+          >
+            <FiSave />
+            <span>Save</span>
           </div>
-          <div className="editor__wrap__button" onClick={this.saveCode}>
-            Save code ->
+          <div
+            className="editor__wrap__button editor__wrap__button--run"
+            onClick={this.runCode}
+          >
+            <FiPlayCircle />
+            <span>Run</span>
           </div>
         </div>
-        <div className="editor__wrap">
-          <div className="editor__wrap__instructions editor__sections">
-            <Instructions instructions={this.props.currentTask.instructions} />
-          </div>
-          <div className="editor__wrap__comments editor__sections">
-            <MDNhelp />
-          </div>
-          <div className="editor__wrap__edit-window editor__sections">
-            <MonacoEditor
-              codeToEval={this.state.currentCode}
-              onChange={this.onChange}
-              user={this.props.user}
-            />
-          </div>
-          <div className="editor__wrap__display-window editor__sections">
-            <EvalWindow
-              codeToEval={this.state.codeToEval}
-              performEval={this.state.performEval}
-            />
-          </div>
-          <div className="editor__wrap__test-window editor__sections">
-            <DisplayConsole />
-          </div>
+        <div className="editor__wrap__instructions editor__sections">
+          <Instructions instructions={this.props.currentTask.instructions} />
+        </div>
+        <div className="editor__wrap__comments editor__sections">
+          <MDNhelp />
+        </div>
+        <div className="editor__wrap__edit-window editor__sections">
+          <MonacoEditor
+            codeToEval={this.state.currentCode}
+            onChange={this.onChange}
+            user={this.props.user}
+          />
+        </div>
+        <div className="editor__wrap__display-window editor__sections">
+          <EvalWindow
+            codeToEval={this.state.codeToEval}
+            performEval={this.state.performEval}
+          />
+        </div>
+        <div className="editor__wrap__test-window editor__sections">
+          <DisplayConsole />
         </div>
       </div>
     );
