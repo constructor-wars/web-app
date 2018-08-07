@@ -1,6 +1,6 @@
 import React from "react";
 
-class ProfileProgBar extends React.Component {
+class ProgressBar extends React.Component {
   render() {
     return (
       <div className="profile__progress__bar">
@@ -18,4 +18,4 @@ class ProfileProgBar extends React.Component {
   }
 }
 
-export default ProfileProgBar;
+export default ProgressBar;

@@ -2,7 +2,7 @@ import React from "react";
 import "./styles.css";
 import DmirtiHead from "./dmitri-thanks.png";
 
-class ProfileAskD extends React.Component {
+class AskDimi extends React.Component {
   render() {
     return (
       <a href="https://api.whatsapp.com/send?text=help">
@@ -21,4 +21,4 @@ class ProfileAskD extends React.Component {
   }
 }
 
-export default ProfileAskD;
+export default AskDimi;
