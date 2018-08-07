@@ -31,3 +31,10 @@
 .editor__wrap__test-window {
   grid-row: 3 / 4;
 }
+
+.editor__wrap__buttons {
+  text-align: center;
+}
+.editor__wrap__button {
+  display: inline;
+}
