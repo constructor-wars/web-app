@@ -14,7 +14,7 @@
 .profile__progress__question {
   margin: 30px;
   padding: 20px;
-  border: 1px solid black;
+  border: 2px solid black;
   border-radius: 5px;
 }
 
@@ -33,17 +33,18 @@
   background-color: green;
 }
 
-.current__progress {
-  background-color: lightgray;
-  width: 75%;
-  height: 80%;
+.progress__bar {
+  height: 20px;
   border-radius: 5px;
+  border: 2px solid black;
+  padding: 0;
 }
 
-.total__progress {
-  border: 2px solid black;
-  padding: 2px;
-  border-radius: 5px;
+.progress__bar__filler {
+  background: salmon;
+  height: 100%;
+  border-radius: inherit;
+  transition: width 0.2s ease-in;
 }
 
 /*****PROFILE DIMS*********/

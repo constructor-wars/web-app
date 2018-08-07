@@ -18,8 +18,8 @@ const mapReduxStateToProps = reduxState => {
       profileUrl,
       profilepic: photos[0].value
     },
-    total: "",
-    current: "5",
+    total: "100",
+    current: "20",
     question: ["one quesiotn", " dos question"],
     messages: "poo poo"
   };
