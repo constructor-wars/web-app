@@ -1,7 +1,9 @@
 import React from "react";
 
-class ProfileQuestions extends React.Component {
+class Questions extends React.Component {
   render() {
+    console.log(this.props);
+
     return (
       <div>
         <div className="profile__progress__question">
@@ -12,4 +14,4 @@ class ProfileQuestions extends React.Component {
   }
 }
 
-export default ProfileQuestions;
+export default Questions;
