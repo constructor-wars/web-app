@@ -1,7 +1,7 @@
 .background {
   display: flex;
   flex-direction: row;
-  background-color: var(--background__color);
+  background-color: var(--dark);
   margin: 0 0;
   padding: 10px;
   min-height: 60px;

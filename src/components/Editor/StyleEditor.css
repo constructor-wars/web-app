@@ -1,40 +1,68 @@
 .editor__wrap {
   display: grid;
   grid-template-columns: 1fr repeat(2, 2fr);
-  grid-template-rows: 250px 250px 250px;
-  grid-gap: 5px;
+  grid-template-rows: 60px 250px 250px 250px;
   background-color: var(--light);
+  grid-column-gap: 5px;
 }
 
 .editor__sections {
-  background-color: var(--dark);
+  background-color: #696969;
   color: var(--pink);
 }
 
 .editor__wrap__instructions {
-  grid-row: 1 / 3;
+  grid-row: 1 / 4;
   overflow: scroll;
 }
 
 .editor__wrap__comments {
-  grid-row: 3 / 4;
+  margin-top: 5px;
+  grid-row: 4 / 5;
 }
 
 .editor__wrap__edit-window {
-  grid-row: 1 / 4;
+  grid-row: 2 / 5;
 }
 
 .editor__wrap__display-window {
-  grid-row: 1 / 3;
+  grid-row: 1 / 4;
 }
 
 .editor__wrap__test-window {
-  grid-row: 3 / 4;
+  margin-top: 5px;
+  grid-row: 4 / 5;
 }
 
 .editor__wrap__buttons {
-  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  background-color: #1e1e1e;
+  color: white;
+  padding: 5px;
 }
 .editor__wrap__button {
-  display: inline;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border: 1px solid white;
+  border-radius: 5px;
+  margin: 10px;
+  padding: 5px;
+  width: 80px;
+  text-align: center;
+}
+
+.editor__wrap__button span {
+  margin-left: 5px;
+}
+
+.editor__wrap__button--run:hover {
+  color: #67ac5b;
+  border: 1px solid #67ac5b;
+}
+.editor__wrap__button--save:hover {
+  color: gold;
+  border: 1px solid gold;
 }

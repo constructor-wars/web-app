@@ -16,7 +16,7 @@
   padding: 3px 10px 3px 5px;
   align-self: center;
   cursor: pointer;
-  border: 1px solid var(--background__color);
+  border: 1px solid var(--dark);
   border-radius: 5px;
 }
 
