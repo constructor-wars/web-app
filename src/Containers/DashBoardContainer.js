@@ -2,7 +2,8 @@ import { connect } from "react-redux";
 import Dashboard from "../components/Dashboard/Dashboard";
 import {
   allQuestionsAction,
-  fetchAllQuestions
+  fetchAllQuestions,
+  fetchUserProgress
 } from "../_Redux/actions/actions";
 
 const mapReduxStateToProps = reduxState => {
@@ -14,8 +15,6 @@ const mapReduxStateToProps = reduxState => {
     photos
   } = reduxState.GITHUB_DATA;
 
-  const totalQuestionsAnswered = ["one quesiotn", " dos question"];
-
   return {
     user: {
       id,
@@ -24,15 +23,16 @@ const mapReduxStateToProps = reduxState => {
       profileUrl,
       profilepic: photos[0].value
     },
-    total: "100",
-    current: "20",
+    total: reduxState.allQuestions.length,
+    current: reduxState.userProgress,
     messages: "poo poo",
     questions: reduxState.allQuestions
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-  getAllQuestions: () => dispatch(fetchAllQuestions())
+  getAllQuestions: () => dispatch(fetchAllQuestions()),
+  getProgress: username => dispatch(fetchUserProgress(username))
 });
 
 export default connect(

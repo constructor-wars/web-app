@@ -29,6 +29,17 @@ export function fetchAllQuestions() {
   };
 }
 
+export function fetchUserProgress(username) {
+  return function(dispatch) {
+    fetch(`api/getprogress/${username}`)
+      .then(response => response.json())
+      .then(progress => {
+        dispatch(userProgressAction(progress));
+      })
+      .catch(error => console.log(error));
+  };
+}
+
 export function codeToEvalAction(payload) {
   console.log("CODE_TO_EVAL", payload);
   return {

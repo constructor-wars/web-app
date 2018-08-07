@@ -24,15 +24,6 @@ const db = pgp({
 //   uri: process.env.HEROKU_URI
 // });
 
-function getUserByUsername(github_username) {
-  return db
-    .one(`SELECT * FROM users WHERE github_username = $1`, [github_username])
-    .then(function(data) {
-      return data;
-    })
-    .catch(error => console.log(error));
-}
-
 function getQuestions(id) {
   return db
     .any(`SELECT * FROM questions_answers WHERE id = $1`, [id])
@@ -50,7 +41,6 @@ function getAllQuestions() {
 }
 
 function sumbitQuestionOnDatabase(data) {
-  console.log(data);
   const {
     question_title,
     test,
@@ -96,6 +86,31 @@ function getUserProgress(github_username) {
     .catch(error => console.log(error));
 }
 
+function getUserByUsername(github_username) {
+  return db
+    .one(`SELECT * FROM users WHERE github_username = $1`, [github_username])
+    .catch(error => {
+      console.log(error);
+      return "User unknown";
+    });
+}
+
+// getUserByUsername("mickey mousex").then(data => console.log(data));
+
+function addUserOnLogIn(usernameAreYouThere) {
+  getUserByUsername(usernameAreYouThere)
+    .then(data => {
+      console.log({ data });
+
+      if (data === "User unknown") {
+        db.none(`INSERT INTO users (github_username) VALUES ($1) `, [
+          usernameAreYouThere
+        ]).catch(error => console.log({ error }));
+      }
+    })
+    .catch(error => console.log({ error }));
+}
+
 // getAllQuestions().then(data => console.log(data));
 
 // getUserByUsername("mickey mouse").then(data => console.log(data));
@@ -106,5 +121,6 @@ module.exports = {
   getAllQuestions,
   sumbitQuestionOnDatabase,
   getUserData,
-  getUserProgress
+  getUserProgress,
+  addUserOnLogIn
 };
