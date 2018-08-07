@@ -1,3 +1,5 @@
+const database = require("./database");
+
 const express = require("express");
 const passport = require("passport");
 
@@ -37,8 +39,8 @@ router.get(
   "/auth/github/callback",
   passport.authenticate("github", { failureRedirect: "/login" }),
   (req, res) => {
+    database.addUserOnLogIn(req.user.username);
     res.redirect("/profile");
-    // 'add user to database here'
   }
 );
 

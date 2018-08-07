@@ -6,6 +6,11 @@ import AskDimi from "../AskDimi/AskDimi";
 import "./style.css";
 
 export default class Dashboard extends React.Component {
+  componentDidMount() {
+    this.props.getAllQuestions();
+    this.props.getProgress(this.props.user.username);
+  }
+
   render() {
     return (
       <div className="dashboard__wrapper">

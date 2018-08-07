@@ -8,16 +8,48 @@ export function sendToServerAction(payload) {
     }
   })
     .then(
-      res =>
-        res.ok
-          ? {
-              type: "SEND_TO_SERVER",
-              payload
-            }
-          : Promise.reject(res)
+      res => res.ok
+      // ? {
+      //     type: "SEND_TO_SERVER",
+      //     payload
+      //   }
+      // : Promise.reject(res)
     )
     .catch(error => console.log(error));
 }
+
+export function fetchAllQuestions() {
+  return function(dispatch) {
+    fetch("/api/questions")
+      .then(response => response.json())
+      .then(questions => {
+        dispatch(allQuestionsAction(questions));
+      })
+      .catch(error => console.log(error));
+  };
+}
+
+export function fetchUserProgress(username) {
+  return function(dispatch) {
+    fetch(`api/getprogress/${username}`)
+      .then(response => response.json())
+      .then(progress => {
+        dispatch(userProgressAction(progress));
+      })
+      .catch(error => console.log(error));
+  };
+}
+
+export function fetchQuestionById(id) {
+  console.log("fetchQuestionById");
+  return function(dispatch) {
+    fetch(`api/question/${id}`)
+      .then(response => response.json())
+      .then(question => dispatch(questionByIdAction(question)))
+      .catch(error => console.log(error));
+  };
+}
+
 export function codeToEvalAction(payload) {
   console.log("CODE_TO_EVAL", payload);
   return {

@@ -1,5 +1,10 @@
 import { connect } from "react-redux";
 import Dashboard from "../components/Dashboard/Dashboard";
+import {
+  allQuestionsAction,
+  fetchAllQuestions,
+  fetchUserProgress
+} from "../_Redux/actions/actions";
 
 const quesitons = [
   {
@@ -41,14 +46,17 @@ const mapReduxStateToProps = reduxState => {
       profileUrl,
       profilepic: photos[0].value
     },
-    total: "100",
-    current: "20",
-    questions: quesitons,
-    messages: "poo poo"
+    total: reduxState.allQuestions.length,
+    current: reduxState.userProgress.count,
+    messages: "poo poo",
+    questions: reduxState.allQuestions
   };
 };
 
-const mapDispatchToProps = dispatch => ({});
+const mapDispatchToProps = dispatch => ({
+  getAllQuestions: () => dispatch(fetchAllQuestions()),
+  getProgress: username => dispatch(fetchUserProgress(username))
+});
 
 export default connect(
   mapReduxStateToProps,
