@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import Admin from "../components/Admin/Admin";
-import { sendToServerAction } from "../actions/actions";
+import { sendToServerAction } from "../_Redux/actions/actions";
 
 const LevelOptions = {
   3: "Hard",

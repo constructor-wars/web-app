@@ -5,7 +5,7 @@ import "./global.css";
 
 import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
-import rootReducer from "./reducers";
+import rootReducer from "./_Redux/reducers";
 import thunkMiddleware from "redux-thunk";
 import { BrowserRouter } from "react-router-dom";
 
