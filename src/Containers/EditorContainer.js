@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { codeToEvalAction } from "../_Redux/actions/actions";
+import { codeToEvalAction, fetchQuestionById } from "../_Redux/actions/actions";
 
 import Instructions from "../components/Instructions/Instructions";
 import { MonacoEditor, DisplayConsole, EvalWindow } from "../components/Editor";
@@ -13,14 +13,15 @@ const mapReduxStateToProps = reduxState => ({
     displayName: reduxState.GITHUB_DATA.displayName
   },
   currentTask: {
-    instructions: `# instruction`,
-    startCode: `let sayHi = ${reduxState.GITHUB_DATA.displayName} \n sayHi`,
-    answer: reduxState.GITHUB_DATA.displayName
+    instructions: reduxState.questionById.instruction,
+    startCode: reduxState.questionById.initial_code,
+    answer: reduxState.questionById.test
   }
 });
 
 const mapDispatchToProps = dispatch => ({
-  saveCode: currentCode => console.log("saved", currentCode)
+  saveCode: currentCode => console.log("saved", currentCode),
+  getCurrentQuestion: id => dispatch(fetchQuestionById(id))
 });
 
 class Editor extends React.Component {
@@ -44,6 +45,13 @@ class Editor extends React.Component {
   saveCode() {
     this.props.saveCode(this.state.currentCode);
   }
+
+  componentDidMount() {
+    const currentQuestionId = 1;
+    this.props.getCurrentQuestion(currentQuestionId);
+    console.log("componentDidUpdate()");
+  }
+
   componentDidUpdate() {
     if (this.state.performEval) {
       this.setState({

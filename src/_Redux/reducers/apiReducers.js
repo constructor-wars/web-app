@@ -7,10 +7,11 @@ export function userByUsername(state = "", action) {
   }
 }
 
-export function questionById(state = "", action) {
+export function questionById(state = [], action) {
   switch (action.type) {
     case "QUESTION_BY_ID":
-      return action.payload;
+      console.log("QUESTION_BY_ID", action.payload[0]);
+      return action.payload[0];
     default:
       return state;
   }

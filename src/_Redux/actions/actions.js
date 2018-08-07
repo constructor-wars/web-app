@@ -40,6 +40,16 @@ export function fetchUserProgress(username) {
   };
 }
 
+export function fetchQuestionById(id) {
+  console.log("fetchQuestionById");
+  return function(dispatch) {
+    fetch(`api/question/${id}`)
+      .then(response => response.json())
+      .then(question => dispatch(questionByIdAction(question)))
+      .catch(error => console.log(error));
+  };
+}
+
 export function codeToEvalAction(payload) {
   console.log("CODE_TO_EVAL", payload);
   return {
