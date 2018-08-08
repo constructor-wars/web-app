@@ -31,6 +31,8 @@ const mapDispatchToProps = dispatch => ({
   getCurrentQuestion: id => dispatch(fetchQuestionById(id))
 });
 
+const getQueryParams = new URLSearchParams(location.search);
+
 class Editor extends React.Component {
   constructor(props) {
     super(props);
@@ -54,8 +56,9 @@ class Editor extends React.Component {
   }
 
   componentDidMount() {
-    const currentQuestionId = 1;
-    this.props.getCurrentQuestion(currentQuestionId);
+    getQueryParams.has("question")
+      ? this.props.getCurrentQuestion(getQueryParams.get("question"))
+      : this.props.getCurrentQuestion(1);
     console.log("componentDidUpdate()");
   }
 
