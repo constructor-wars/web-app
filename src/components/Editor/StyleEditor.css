@@ -74,3 +74,12 @@
   color: gold;
   border: 1px solid gold;
 }
+
+.search__links {
+  list-style: none;
+  text-decoration: none;
+}
+
+.search__links__text {
+  color: #f1938f;
+}
