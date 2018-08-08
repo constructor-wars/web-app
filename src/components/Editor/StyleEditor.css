@@ -1,36 +1,44 @@
 .editor__wrap {
+  height: 85vh;
   display: grid;
   grid-template-columns: 1fr repeat(2, 2fr);
-  grid-template-rows: 60px 250px 250px 250px;
+  /* grid-template-rows: 60px 250px 250px 250px; */
+  grid-template-rows: 60px 1fr 1fr 1fr;
   background-color: var(--light);
-  grid-column-gap: 5px;
+  grid-column-gap: 2px;
 }
 
 .editor__sections {
-  background-color: #696969;
+  background-color: var(--monoco_background);
   color: var(--pink);
 }
 
 .editor__wrap__instructions {
   grid-row: 1 / 4;
   overflow: scroll;
+  background-color: var(--monoco_background);
+  color: var(--light);
 }
 
 .editor__wrap__comments {
-  margin-top: 5px;
+  margin-top: 2px;
   grid-row: 4 / 5;
 }
 
 .editor__wrap__edit-window {
   grid-row: 2 / 5;
+  background-color: var(--monoco_background);
+  overflow: hidden;
 }
 
 .editor__wrap__display-window {
   grid-row: 1 / 4;
+  background-color: var(--monoco_background);
 }
 
 .editor__wrap__test-window {
-  margin-top: 5px;
+  background-color: var(--monoco_background);
+  margin-top: 2px;
   grid-row: 4 / 5;
 }
 
