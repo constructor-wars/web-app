@@ -5,14 +5,14 @@ import { sendToServerAction } from "../_Redux/actions/actions";
 const LevelOptions = {
   3: "Hard",
   1: "Easy",
-  2: "GodLevel"
+  2: "Medium"
 };
 
 const CategoryOptions = {
   1: "Arrays Methods",
-  2: "funtions",
-  3: "objects",
-  4: "optertators"
+  2: "Funtions",
+  3: "Objects",
+  4: "Optertators"
 };
 
 const mapReduxStateToProps = reduxState => {
