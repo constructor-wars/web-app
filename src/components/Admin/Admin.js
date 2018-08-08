@@ -64,10 +64,10 @@ class Admin extends React.Component {
         <form className="admin__container" onSubmit={this.handleSubmit}>
           <TextArea
             id="question_title"
-            displayName="question_title"
+            displayName="Question"
             fn={this.handleChange}
           />
-          <TextArea id="test" displayName="test" fn={this.handleChange} />
+          <TextArea id="test" displayName="Test" fn={this.handleChange} />
           <TextArea
             id="instruction"
             displayName="instruction"
@@ -75,29 +75,29 @@ class Admin extends React.Component {
           />
           <TextArea
             id="link_syllabus"
-            displayName="link_syllabus"
+            displayName="Help Link"
             fn={this.handleChange}
           />
           <TextArea
             id="initial_code"
-            displayName="initial_code"
+            displayName="Initial Code"
             fn={this.handleChange}
           />
-          <div className="admin__drop__down__area">
+          <div className="admin__label">
             <DropDown
               id="difficulty_id"
-              displayName="difficulty_id"
+              displayName="Difficulty Level"
               options={this.props.LevelOptions}
               fn={this.handleChange}
             />
             <DropDown
               id="category_id"
-              displayName="category_id"
+              displayName="Category"
               options={this.props.CategoryOptions}
               fn={this.handleChange}
             />
           </div>
-          <button>Submit</button>
+          <button className="admin__button">Submit</button>
         </form>
       </div>
     );
