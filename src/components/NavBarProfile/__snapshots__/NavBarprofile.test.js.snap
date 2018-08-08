@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`navprofilebar it matches and update progress 1`] = `
+<a
+  href="/profile"
+  onClick={[Function]}
+>
+  <div
+    className="navbarprofile_container"
+  >
+    <img
+      className="navbarprofile_picture"
+    />
+  </div>
+</a>
+`;

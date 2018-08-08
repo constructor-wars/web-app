@@ -4,6 +4,7 @@ exports[`Instructions matches the snapshot 1`] = `
 <div
   className="instructions__text"
 >
+  <h1 />
   <div />
 </div>
 `;
