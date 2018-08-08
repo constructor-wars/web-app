@@ -1,0 +1,9 @@
+<script>
+    const x = `function add(a, b){
+        return a + b;   
+                }`;
+    eval(x);
+    const args = [2, 5];
+    const output = window['add'].apply(null, args);
+    console.log(output);
+</script>

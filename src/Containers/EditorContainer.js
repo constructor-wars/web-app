@@ -51,6 +51,11 @@ class Editor extends React.Component {
   }
 
   componentDidMount() {
+    console.log(
+      typeof Number(getQueryParams.get("question")),
+      getQueryParams.get("question")
+    );
+
     getQueryParams.has("question")
       ? this.props.getCurrentQuestion(getQueryParams.get("question"))
       : this.props.getCurrentQuestion(1);

@@ -49,9 +49,8 @@ export default class EvalWindow extends Component {
     const result = this.state.reply[0].data[0];
     return (
       <div>
-        {this.props.performEval ? (
-          <TestCase evaledCode={result} testCase={this.props.testCase} />
-        ) : null}
+        <TestCase evaledCode={result} testCase={this.props.testCase} />
+
         <Console logs={this.state.reply} variant="dark" />
         <iframe
           ref={this.setTargetFrame}

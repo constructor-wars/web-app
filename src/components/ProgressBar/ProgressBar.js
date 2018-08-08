@@ -1,4 +1,5 @@
 import React from "react";
+import Questions from "../Questions/Questions";
 
 class ProgressBar extends React.Component {
   render() {
@@ -13,6 +14,7 @@ class ProgressBar extends React.Component {
             }}
           />
         </div>
+        <Questions questions={this.props.questions} />
       </div>
     );
   }
