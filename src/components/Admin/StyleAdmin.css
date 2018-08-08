@@ -1,14 +1,31 @@
-.admin_container {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.admin__wrapper {
+  padding: 10px;
 }
 
-.admin__form__text_area {
-  display: flex;
-  flex-direction: column;
-  width: 1000px;
-  height: 500px;
+.admin__container {
+  display: grid;
+  grid-gap: 30px;
+  grid-template-rows: 1fr;
+  grid-template-columns: repeat(auto-fit, 200px);
+  grid-template-areas:
+    "textareas"
+    "dropdowns";
+  text-align: center;
+}
+
+.admin__text_area {
+  grid-area: textareas;
+  width: 200px;
+  height: 10vh;
+}
+.admin__drop__down {
+  width: 200px;
+}
+
+.admin__drop__down__area {
+  grid-area: dropdowns;
+}
+
+.admin__label {
+  display: block;
 }
