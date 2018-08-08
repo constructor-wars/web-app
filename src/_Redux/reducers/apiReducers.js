@@ -7,7 +7,24 @@ export function userByUsername(state = "", action) {
   }
 }
 
-export function questionById(state = [], action) {
+export function questionById(
+  state = [
+    {
+      id: 25,
+      question_title: "Remove the middle string",
+      link_syllabus:
+        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
+      initial_code: "function removeMiddle(words){// enter your code here}",
+      test:
+        "test('Remove middle', () => {const words = [ 'mouse', 'giraffe', 'queen', 'window', 'bottle'];const expectedWords = [ 'mouse', 'giraffe', 'window', 'bottle'];const expectedOutput = [ 'queen' ];const output = removeMiddle( words );expect(output).toEqual(expectedOutput);expect(words).toEqual(expectedWords);});",
+      instruction:
+        "Words is an array which contains an odd number of strings. Return a new array containing only the middle word.The words array should no longer contain the middle word Hint: splice.",
+      difficulty_id: 2,
+      category_id: 2
+    }
+  ],
+  action
+) {
   switch (action.type) {
     case "QUESTION_BY_ID":
       console.log("QUESTION_BY_ID", action.payload[0]);
@@ -17,7 +34,24 @@ export function questionById(state = [], action) {
   }
 }
 
-export function allQuestions(state = {}, action) {
+export function allQuestions(
+  state = [
+    {
+      id: 25,
+      question_title: "Remove the middle string",
+      link_syllabus:
+        "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
+      initial_code: "function removeMiddle(words){// enter your code here}",
+      test:
+        "test('Remove middle', () => {const words = [ 'mouse', 'giraffe', 'queen', 'window', 'bottle'];const expectedWords = [ 'mouse', 'giraffe', 'window', 'bottle'];const expectedOutput = [ 'queen' ];const output = removeMiddle( words );expect(output).toEqual(expectedOutput);expect(words).toEqual(expectedWords);});",
+      instruction:
+        "Words is an array which contains an odd number of strings. Return a new array containing only the middle word.The words array should no longer contain the middle word Hint: splice.",
+      difficulty_id: 2,
+      category_id: 2
+    }
+  ],
+  action
+) {
   switch (action.type) {
     case "ALL_QUESTIONS":
       return action.payload;

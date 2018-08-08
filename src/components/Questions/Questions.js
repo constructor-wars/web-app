@@ -16,9 +16,9 @@ const MDNLogo = props => (
   </svg>
 );
 
-const SingleQuestion = ({ id, question_tile, link_syllabus }) => (
+const SingleQuestion = ({ id, question_title, link_syllabus }) => (
   <div>
-    <Link to={`/editor/${id}`}>{question_tile}</Link>
+    <Link to={`/editor/${id}`}>{question_title}</Link>
     <a href={link_syllabus}>
       <MDNLogo />
     </a>
