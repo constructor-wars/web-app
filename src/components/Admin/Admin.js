@@ -2,22 +2,21 @@ import React from "react";
 import "./StyleAdmin.css";
 
 const TextArea = ({ displayName, id, fn }) => (
-  <React.Fragment>
-    <label htmlFor={id}> {displayName} </label>
-    <textarea
-      className="admin__form__text_area"
-      onChange={fn}
-      type="textarea"
-      id={id}
-    />
-  </React.Fragment>
+  <div>
+    <label className="admin__label" htmlFor={id}>
+      {displayName}
+    </label>
+    <textarea className="admin__text_area" onChange={fn} id={id} />
+  </div>
 );
 
 const DropDown = ({ options, displayName, fn, id }) => {
   return (
     <div>
-      <label htmlFor={id}> {displayName} </label>
-      <select onChange={fn} id={id}>
+      <label className="admin__label" htmlFor={id}>
+        {displayName}
+      </label>
+      <select className="admin__drop__down" onChange={fn} id={id}>
         {Object.entries(options).map(([ID, value]) => (
           <option key={ID} id={id} value={ID}>
             {value}
@@ -61,8 +60,8 @@ class Admin extends React.Component {
 
   render() {
     return (
-      <div>
-        <form className="admin_container" onSubmit={this.handleSubmit}>
+      <div className="admin__wrapper">
+        <form className="admin__container" onSubmit={this.handleSubmit}>
           <TextArea
             id="question_title"
             displayName="question_title"
@@ -84,18 +83,20 @@ class Admin extends React.Component {
             displayName="initial_code"
             fn={this.handleChange}
           />
-          <DropDown
-            id="difficulty_id"
-            displayName="difficulty_id"
-            options={this.props.LevelOptions}
-            fn={this.handleChange}
-          />
-          <DropDown
-            id="category_id"
-            displayName="category_id"
-            options={this.props.CategoryOptions}
-            fn={this.handleChange}
-          />
+          <div className="admin__drop__down__area">
+            <DropDown
+              id="difficulty_id"
+              displayName="difficulty_id"
+              options={this.props.LevelOptions}
+              fn={this.handleChange}
+            />
+            <DropDown
+              id="category_id"
+              displayName="category_id"
+              options={this.props.CategoryOptions}
+              fn={this.handleChange}
+            />
+          </div>
           <button>Submit</button>
         </form>
       </div>
