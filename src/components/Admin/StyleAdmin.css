@@ -1,14 +1,60 @@
-.admin_container {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.admin__wrapper {
+  padding: 10px;
 }
 
-.admin__form__text_area {
+.admin__container {
+  display: grid;
+  grid-gap: 30px;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, 200px);
+  grid-template-areas:
+    "textareas"
+    "submit";
+  text-align: center;
+}
+
+.admin__text_area {
+  grid-area: textareas;
+  width: 200px;
+  height: 10vh;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  box-shadow: 4px 6px #888888;
+  border-radius: 5px;
+  border: solid #618598;
+}
+
+.admin__text_area:hover {
+  border: 3px solid #f1938f;
+}
+
+.admin__drop__down {
+  width: 180px;
+  height: 35px;
+}
+
+.admin__label {
+  display: block;
+  align-content: space-around;
+}
+
+.admin__button {
+  width: 95px;
   display: flex;
-  flex-direction: column;
-  width: 1000px;
-  height: 500px;
+  justify-content: center;
+  color: var(--light);
+  height: 25px;
+  margin: 0px 20px 0px 0px;
+  padding: 3px 10px 3px 5px;
+  cursor: pointer;
+  border: 1px solid var(--dark);
+  border-radius: 5px;
+  color: var(--dark);
+  grid-area: submit;
+  place-self: center;
+}
+
+.admin__button:hover {
+  border: 1px solid #f1938f;
+  color: #f1938f;
 }

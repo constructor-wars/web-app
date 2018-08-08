@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { codeToEvalAction, fetchQuestionById } from "../_Redux/actions/actions";
+import { fetchQuestionById } from "../_Redux/actions/actions";
 import { FiPlayCircle, FiSave } from "react-icons/fi";
 
 import Instructions from "../components/Instructions/Instructions";
@@ -14,9 +14,10 @@ const mapReduxStateToProps = reduxState => ({
     displayName: reduxState.GITHUB_DATA.displayName
   },
   currentTask: {
+    question_title: reduxState.questionById.question_title,
     instructions: reduxState.questionById.instruction,
     startCode: reduxState.questionById.initial_code,
-    answer: reduxState.questionById.test
+    testCase: reduxState.questionById.test
   }
 });
 
@@ -24,6 +25,8 @@ const mapDispatchToProps = dispatch => ({
   saveCode: currentCode => console.log("saved", currentCode),
   getCurrentQuestion: id => dispatch(fetchQuestionById(id))
 });
+
+const getQueryParams = new URLSearchParams(location.search);
 
 class Editor extends React.Component {
   constructor(props) {
@@ -48,9 +51,9 @@ class Editor extends React.Component {
   }
 
   componentDidMount() {
-    const currentQuestionId = 1;
-    this.props.getCurrentQuestion(currentQuestionId);
-    console.log("componentDidUpdate()");
+    getQueryParams.has("question")
+      ? this.props.getCurrentQuestion(getQueryParams.get("question"))
+      : this.props.getCurrentQuestion(1);
   }
 
   componentDidUpdate() {
@@ -61,9 +64,6 @@ class Editor extends React.Component {
     }
   }
   render() {
-    console.log(
-      this.state.codeToEval === this.props.currentTask.answer ? "yay" : "nahh"
-    );
     return (
       <div className="editor__wrap">
         <div className="editor__wrap__buttons">
@@ -83,7 +83,10 @@ class Editor extends React.Component {
           </div>
         </div>
         <div className="editor__wrap__instructions editor__sections">
-          <Instructions instructions={this.props.currentTask.instructions} />
+          <Instructions
+            question_title={this.props.currentTask.question_title}
+            instructions={this.props.currentTask.instructions}
+          />
         </div>
         <div className="editor__wrap__comments editor__sections">
           <MDNhelp />
@@ -99,6 +102,7 @@ class Editor extends React.Component {
           <EvalWindow
             codeToEval={this.state.codeToEval}
             performEval={this.state.performEval}
+            testCase={this.props.testCase}
           />
         </div>
         <div className="editor__wrap__test-window editor__sections">

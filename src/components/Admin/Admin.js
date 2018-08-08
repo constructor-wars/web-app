@@ -2,22 +2,21 @@ import React from "react";
 import "./StyleAdmin.css";
 
 const TextArea = ({ displayName, id, fn }) => (
-  <React.Fragment>
-    <label htmlFor={id}> {displayName} </label>
-    <textarea
-      className="admin__form__text_area"
-      onChange={fn}
-      type="textarea"
-      id={id}
-    />
-  </React.Fragment>
+  <div>
+    <label className="admin__label" htmlFor={id}>
+      {displayName}
+    </label>
+    <textarea className="admin__text_area" onChange={fn} id={id} />
+  </div>
 );
 
 const DropDown = ({ options, displayName, fn, id }) => {
   return (
     <div>
-      <label htmlFor={id}> {displayName} </label>
-      <select onChange={fn} id={id}>
+      <label className="admin__label" htmlFor={id}>
+        {displayName}
+      </label>
+      <select className="admin__drop__down" onChange={fn} id={id}>
         {Object.entries(options).map(([ID, value]) => (
           <option key={ID} id={id} value={ID}>
             {value}
@@ -61,14 +60,14 @@ class Admin extends React.Component {
 
   render() {
     return (
-      <div>
-        <form className="admin_container" onSubmit={this.handleSubmit}>
+      <div className="admin__wrapper">
+        <form className="admin__container" onSubmit={this.handleSubmit}>
           <TextArea
             id="question_title"
-            displayName="question_title"
+            displayName="Question"
             fn={this.handleChange}
           />
-          <TextArea id="test" displayName="test" fn={this.handleChange} />
+          <TextArea id="test" displayName="Test" fn={this.handleChange} />
           <TextArea
             id="instruction"
             displayName="instruction"
@@ -76,27 +75,29 @@ class Admin extends React.Component {
           />
           <TextArea
             id="link_syllabus"
-            displayName="link_syllabus"
+            displayName="Help Link"
             fn={this.handleChange}
           />
           <TextArea
             id="initial_code"
-            displayName="initial_code"
+            displayName="Initial Code"
             fn={this.handleChange}
           />
-          <DropDown
-            id="difficulty_id"
-            displayName="difficulty_id"
-            options={this.props.LevelOptions}
-            fn={this.handleChange}
-          />
-          <DropDown
-            id="category_id"
-            displayName="category_id"
-            options={this.props.CategoryOptions}
-            fn={this.handleChange}
-          />
-          <button>Submit</button>
+          <div className="admin__label">
+            <DropDown
+              id="difficulty_id"
+              displayName="Difficulty Level"
+              options={this.props.LevelOptions}
+              fn={this.handleChange}
+            />
+            <DropDown
+              id="category_id"
+              displayName="Category"
+              options={this.props.CategoryOptions}
+              fn={this.handleChange}
+            />
+          </div>
+          <button className="admin__button">Submit</button>
         </form>
       </div>
     );
