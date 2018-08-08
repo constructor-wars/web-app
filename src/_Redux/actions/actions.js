@@ -41,7 +41,6 @@ export function fetchUserProgress(username) {
 }
 
 export function fetchQuestionById(id) {
-  console.log("fetchQuestionById");
   return function(dispatch) {
     fetch(`api/question/${id}`)
       .then(response => response.json())
@@ -51,7 +50,6 @@ export function fetchQuestionById(id) {
 }
 
 export function codeToEvalAction(payload) {
-  console.log("CODE_TO_EVAL", payload);
   return {
     type: "CODE_TO_EVAL",
     payload

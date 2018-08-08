@@ -5,12 +5,7 @@ import { fetchQuestionById } from "../_Redux/actions/actions";
 import { FiPlayCircle, FiSave } from "react-icons/fi";
 
 import Instructions from "../components/Instructions/Instructions";
-import {
-  MonacoEditor,
-  DisplayConsole,
-  EvalWindow,
-  TestCase
-} from "../components/Editor";
+import { MonacoEditor, DisplayConsole, EvalWindow } from "../components/Editor";
 import MDNhelp from "../components/MDNhelp/MDNhelp";
 
 const mapReduxStateToProps = reduxState => ({
@@ -30,6 +25,8 @@ const mapDispatchToProps = dispatch => ({
   saveCode: currentCode => console.log("saved", currentCode),
   getCurrentQuestion: id => dispatch(fetchQuestionById(id))
 });
+
+const getQueryParams = new URLSearchParams(location.search);
 
 class Editor extends React.Component {
   constructor(props) {
@@ -54,9 +51,9 @@ class Editor extends React.Component {
   }
 
   componentDidMount() {
-    const currentQuestionId = 1;
-    this.props.getCurrentQuestion(currentQuestionId);
-    console.log("componentDidUpdate()");
+    getQueryParams.has("question")
+      ? this.props.getCurrentQuestion(getQueryParams.get("question"))
+      : this.props.getCurrentQuestion(1);
   }
 
   componentDidUpdate() {
@@ -67,9 +64,6 @@ class Editor extends React.Component {
     }
   }
   render() {
-    console.log(
-      this.state.codeToEval === this.props.currentTask.answer ? "yay" : "nahh"
-    );
     return (
       <div className="editor__wrap">
         <div className="editor__wrap__buttons">
