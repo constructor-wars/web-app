@@ -1,10 +1,10 @@
 import React from "react";
-import MDNhelp from "./MDNhelp";
+import Footer from "./Footer";
 import renderer from "react-test-renderer";
 
-describe("MDNhelp", () => {
+describe("Footer", () => {
   it("matches the snapshot", () => {
-    const tree = renderer.create(<MDNhelp />).toJSON();
+    const tree = renderer.create(<Footer />).toJSON();
     expect(tree).toMatchSnapshot();
   });
 });

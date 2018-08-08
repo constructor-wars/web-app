@@ -14,6 +14,6 @@ describe("Instructions", () => {
   it("tests instructions component", () => {
     const wrapper = shallow(<Instructions data="MockInstructions" />);
     const text = wrapper.find("div").text();
-    expect(text).toEqual("MockInstructions");
+    expect(text).toEqual("<Remarkable />");
   });
 });
