@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { Hook, Console, Decode, Unhook } from "console-feed/lib";
+import { Console } from "console-feed/lib";
+import { TestCase } from "./TestCase";
 
 export default class EvalWindow extends Component {
   constructor(props) {
@@ -45,8 +46,12 @@ export default class EvalWindow extends Component {
   }
 
   render() {
+    const result = this.state.reply[0].data[0];
     return (
       <div>
+        {this.props.performEval ? (
+          <TestCase evaledCode={result} testCase={this.props.testCase} />
+        ) : null}
         <Console logs={this.state.reply} variant="dark" />
         <iframe
           ref={this.setTargetFrame}
