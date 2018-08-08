@@ -1,36 +1,46 @@
 .dashboard__wrapper {
   display: grid;
-  grid-template-columns: repeat(2, 2fr);
+  grid-template-columns: repeat(2, 1fr);
   grid-template-rows: 400px 400px;
-  background-color: pink;
-  border: 1px solid red;
+  background-color: #fcfbf7;
+  padding: 20px;
 }
-
 /***** PROFILE COMMON STYLES****/
 
 .profile__container,
 .profile__askD,
 .profile__progress__bar,
 .profile__progress__question {
+  display: flex;
+  flex-direction: column;
+
   margin: 30px;
   padding: 20px;
-  border: 2px solid black;
-  border-radius: 5px;
+  border: 2px solid #2a4e61;
+  background-color: white;
+  box-shadow: 2px 5px darkgray;
+  border-radius: 3px;
 }
 
 /*****PROFILE MAIN*********/
 .profile__container {
-  background-color: yellow;
+}
+
+.profileImg {
+  align-self: center;
+}
+
+.profile__container > p {
+  align-self: center;
 }
 
 /*****PROFILE ASKD*********/
 .profile__askD {
-  background-color: red;
 }
 
 /*****PROFILE PROGRESS BAR*********/
 .profile__progress__bar {
-  background-color: green;
+  overflow: scroll;
 }
 
 .progress__bar {
@@ -41,7 +51,7 @@
 }
 
 .progress__bar__filler {
-  background: salmon;
+  background: #618598;
   height: 100%;
   border-radius: inherit;
   transition: width 0.2s ease-in;
@@ -49,5 +59,5 @@
 
 /*****PROFILE DIMS*********/
 .profile__progress__question {
-  background-color: blue;
+  overflow: scroll;
 }
