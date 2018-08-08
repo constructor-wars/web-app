@@ -5,12 +5,7 @@ import { fetchQuestionById } from "../_Redux/actions/actions";
 import { FiPlayCircle, FiSave } from "react-icons/fi";
 
 import Instructions from "../components/Instructions/Instructions";
-import {
-  MonacoEditor,
-  DisplayConsole,
-  EvalWindow,
-  TestCase
-} from "../components/Editor";
+import { MonacoEditor, DisplayConsole, EvalWindow } from "../components/Editor";
 import MDNhelp from "../components/MDNhelp/MDNhelp";
 
 const mapReduxStateToProps = reduxState => ({
@@ -59,7 +54,6 @@ class Editor extends React.Component {
     getQueryParams.has("question")
       ? this.props.getCurrentQuestion(getQueryParams.get("question"))
       : this.props.getCurrentQuestion(1);
-    console.log("componentDidUpdate()");
   }
 
   componentDidUpdate() {
@@ -70,9 +64,6 @@ class Editor extends React.Component {
     }
   }
   render() {
-    console.log(
-      this.state.codeToEval === this.props.currentTask.answer ? "yay" : "nahh"
-    );
     return (
       <div className="editor__wrap">
         <div className="editor__wrap__buttons">
