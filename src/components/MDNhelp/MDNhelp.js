@@ -13,6 +13,7 @@ class Searchbar extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.fetchResults = this.fetchResults.bind(this);
   }
+
   handleChange(event) {
     event.preventDefault();
     this.setState({
@@ -57,6 +58,7 @@ class Searchbar extends React.Component {
         <input
           className="searchbar"
           placeholder="Feeling stuck..? Let MDN help..."
+          value={this.state.userSearch}
           onChange={this.handleChange}
         />
         <button type="Submit" onClick={this.handleSubmit}>
