@@ -16,7 +16,7 @@ export default class Dashboard extends React.Component {
       <div className="dashboard__wrapper">
         <Profile {...this.props.user} />
         <ProgressBar current={this.props.current} total={this.props.total} />
-        <Questions questions={this.props.questions} />
+        <Questions questions={this.props.questions || []} />
         <AskDimi messages={this.props.messages} />
       </div>
     );

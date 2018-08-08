@@ -17,7 +17,6 @@ class MonacoEditor extends React.Component {
     return (
       <div style={{ display: "flex" }}>
         <ReactMonacoEditor
-          height="1000"
           language="javascript"
           theme="vs-dark"
           value={this.props.codeToEval}
