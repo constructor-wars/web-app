@@ -13,6 +13,7 @@ class Searchbar extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.fetchResults = this.fetchResults.bind(this);
   }
+
   handleChange(event) {
     event.preventDefault();
     this.setState({
@@ -57,6 +58,7 @@ class Searchbar extends React.Component {
         <input
           className="searchbar"
           placeholder="Feeling stuck..? Let MDN help..."
+          value={this.state.userSearch}
           onChange={this.handleChange}
         />
         <button type="Submit" onClick={this.handleSubmit}>
@@ -64,8 +66,12 @@ class Searchbar extends React.Component {
         </button>
         <ul>
           {this.state.data.map(item => (
-            <li key={item}>
-              <a href={item.href} target="_blank">
+            <li className="search__links" key={item}>
+              <a
+                className="search__links__text"
+                href={item.href}
+                target="_blank"
+              >
                 {item.textContent}
               </a>
             </li>
