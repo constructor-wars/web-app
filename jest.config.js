@@ -8,12 +8,3 @@ module.exports = {
     "\\.(css|less)$": "<rootDir>/src/__mocks__/styleMock.js"
   }
 };
-
-// "jest": {
-//   "transform": {
-//     "^.+\\.jsx?$": "babel-jest"
-//   },
-//   "moduleNameMapper": {
-//     "\\.(s?css|less)$": "identity-obj-proxy"
-//   }
-// },
