@@ -64,8 +64,12 @@ class Searchbar extends React.Component {
         </button>
         <ul>
           {this.state.data.map(item => (
-            <li key={item}>
-              <a href={item.href} target="_blank">
+            <li className="search__links" key={item}>
+              <a
+                className="search__links__text"
+                href={item.href}
+                target="_blank"
+              >
                 {item.textContent}
               </a>
             </li>
