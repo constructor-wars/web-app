@@ -4,11 +4,11 @@
   background-color: var(--dark);
   margin: 0 0;
   padding: 10px;
-  min-height: 60px;
+  min-height: 10vh;
 }
 
 .searchbar {
-  width: 250px;
+  width: 100%;
   align-self: center;
 }
 
