@@ -86,6 +86,7 @@
     "test": "jest",
     "test:w": "npm run test -- --watch",
     "start": "NODE_ENV=development node server.js",
+    "start:d": "NODE_ENV=development node --inspect server.js",
     "start:w": "NODE_ENV=development nodemon server.js",
     "go": "concurrently 'npm run dev:w' 'npm run start:w' ",
     "db:w": "NODE_ENV=development nodemon ./routes/database.js",
