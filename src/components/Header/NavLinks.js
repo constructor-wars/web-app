@@ -1,9 +1,9 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import "./NavLinks.css";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import './NavLinks.css';
 
-import { FiPlay, FiBookOpen, FiLogOut } from "react-icons/fi";
-import { GoInfo, GoGear, GoDashboard } from "react-icons/go";
+import { FiPlay, FiBookOpen, FiLogOut } from 'react-icons/fi';
+import { GoInfo, GoGear, GoDashboard } from 'react-icons/go';
 
 export function NavLinks() {
   return (
@@ -20,25 +20,25 @@ export function NavLinks() {
       </Link>
       <Link to="/syllabus">
         <div className="nav_buttons">
-          {" "}
+          {' '}
           <FiBookOpen className="nav_links__icon" /> Syllabus
         </div>
       </Link>
       <Link to="/about">
         <div className="nav_buttons">
-          {" "}
+          {' '}
           <GoInfo className="nav_links__icon" /> About
         </div>
       </Link>
       <a href="/logout">
         <div className="nav_buttons">
-          {" "}
+          {' '}
           <FiLogOut className="nav_links__icon" /> Logout
         </div>
       </a>
       <Link to="/admin">
         <div className="nav_buttons">
-          {" "}
+          {' '}
           <GoGear className="nav_links__icon" /> Admin
         </div>
       </Link>
