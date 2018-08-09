@@ -54,7 +54,7 @@ function sumbitQuestionOnDatabase(data) {
   return db
     .none(
       `INSERT INTO questions_answers (question_title, test, difficulty_id, category_id, instruction, link_syllabus, initial_code, test_spec)
-  VALUES ($1, $2, $3,$4,$5,$6,$7, $8)`,
+        VALUES ($1, $2, $3,$4,$5,$6,$7, $8)`,
       [
         question_title,
         test,
@@ -66,7 +66,6 @@ function sumbitQuestionOnDatabase(data) {
         test_spec
       ]
     )
-
     .catch(error => console.log(error));
 }
 

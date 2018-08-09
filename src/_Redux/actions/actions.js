@@ -31,7 +31,7 @@ export function fetchAllQuestions() {
 
 export function fetchUserProgress(username) {
   return function(dispatch) {
-    fetch(`api/getprogress/${username}`)
+    fetch(`/api/getprogress/${username}`)
       .then(response => response.json())
       .then(progress => {
         dispatch(userProgressAction(progress));
@@ -42,7 +42,7 @@ export function fetchUserProgress(username) {
 
 export function fetchQuestionById(id) {
   return function(dispatch) {
-    fetch(`api/question/${id}`)
+    fetch(`/api/question/${id}`)
       .then(response => response.json())
       .then(question => dispatch(questionByIdAction(question)))
       .catch(error => console.log(error));
