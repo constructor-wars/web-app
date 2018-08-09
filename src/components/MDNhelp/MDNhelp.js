@@ -1,4 +1,5 @@
 import React from "react";
+import "./MDNhelp.css";
 
 export const SearchResultList = ({ data }) =>
   data.map(item => (
@@ -63,14 +64,18 @@ class Searchbar extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="searchbar__wrapper">
         <input
-          className="searchbar"
+          className="searchbar__bar"
           placeholder="Feeling stuck..? Let MDN help..."
           value={this.state.userSearch}
           onChange={this.handleChange}
         />
-        <button type="Submit" onClick={this.handleSubmit}>
+        <button
+          className="searchbar__button"
+          type="Submit"
+          onClick={this.handleSubmit}
+        >
           Submit
         </button>
         <ul>
