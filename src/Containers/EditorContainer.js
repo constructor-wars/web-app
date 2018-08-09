@@ -1,7 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { fetchQuestionById } from "../_Redux/actions/actions";
+import {
+  fetchQuestionById,
+  sendCurrentCodeToDatabaseAction
+} from "../_Redux/actions/actions";
 import { FiPlayCircle, FiSave } from "react-icons/fi";
 
 import Instructions from "../components/Instructions/Instructions";
@@ -18,12 +21,15 @@ const mapReduxStateToProps = reduxState => ({
     instructions: reduxState.questionById.instruction,
     startCode: reduxState.questionById.initial_code,
     testCase: reduxState.questionById.test
-  }
+  },
+  user_id: reduxState.userData.user_id
 });
 
 const mapDispatchToProps = dispatch => ({
-  saveCode: currentCode => console.log("saved", currentCode),
-  getCurrentQuestion: id => dispatch(fetchQuestionById(id))
+  saveCode: currentCode =>
+    dispatch(sendCurrentCodeToDatabaseAction(currentCode)),
+  getCurrentQuestion: id => dispatch(fetchQuestionById(id)),
+  getUserData: user_id => dispatch(fetchUserData(user_id))
 });
 
 const getQueryParams = new URLSearchParams(location.search);
@@ -34,7 +40,8 @@ class Editor extends React.Component {
     this.state = {
       codeToEval: this.props.codeToEval,
       currentCode: this.props.currentTask.startCode,
-      performEval: false
+      performEval: false,
+      completed: false
     };
     this.onChange = this.onChange.bind(this);
     this.runCode = this.runCode.bind(this);
@@ -47,7 +54,15 @@ class Editor extends React.Component {
     this.setState({ codeToEval: this.state.currentCode, performEval: true });
   }
   saveCode() {
-    this.props.saveCode(this.state.currentCode);
+    const dataToSendToSever = {
+      user_id: this.props.user.username,
+      question_id: getQueryParams.get("question") || 1,
+      user_edits: this.state.currentCode,
+      completed: this.state.completed,
+      user_notes: this.props.currentTask.instructions,
+      ask_for_help: false
+    };
+    this.props.saveCode(dataToSendToSever);
   }
 
   componentDidMount() {

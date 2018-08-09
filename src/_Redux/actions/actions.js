@@ -18,6 +18,19 @@ export function sendToServerAction(payload) {
     .catch(error => console.log(error));
 }
 
+export function sendCurrentCodeToDatabaseAction(payload) {
+  fetch("/api/savecurrentcode", {
+    method: "POST",
+    body: JSON.stringify({ payload }),
+    credentials: "same-origin",
+    headers: {
+      "content-type": "application/json"
+    }
+  })
+    .then(response => response.ok)
+    .catch(error => console.log(error));
+}
+
 export function fetchAllQuestions() {
   return function(dispatch) {
     fetch("/api/questions")
@@ -31,7 +44,7 @@ export function fetchAllQuestions() {
 
 export function fetchUserProgress(username) {
   return function(dispatch) {
-    fetch(`api/getprogress/${username}`)
+    fetch(`/api/getprogress/${username}`)
       .then(response => response.json())
       .then(progress => {
         dispatch(userProgressAction(progress));
@@ -42,9 +55,18 @@ export function fetchUserProgress(username) {
 
 export function fetchQuestionById(id) {
   return function(dispatch) {
-    fetch(`api/question/${id}`)
+    fetch(`/api/question/${id}`)
       .then(response => response.json())
       .then(question => dispatch(questionByIdAction(question)))
+      .catch(error => console.log(error));
+  };
+}
+
+export function fetchUserData(user_id) {
+  return function(dispatch) {
+    fetch(`/api/getuserdata/${user_id}`)
+      .then(response => response.json())
+      .then(user_data => dispatch(userDataAction(user_data)))
       .catch(error => console.log(error));
   };
 }

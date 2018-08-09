@@ -69,6 +69,15 @@ export function sendQuestionToDatabase(state = {}, action) {
   }
 }
 
+export function sendCurrentCodeToDatabase(state = {}, action) {
+  switch (action.type) {
+    case "SEND_CURRENT_QUESTION_TO_DATABASE":
+      return action.payload;
+    default:
+      return state;
+  }
+}
+
 export function userData(state = {}, action) {
   switch (action.type) {
     case "USER_DATA":

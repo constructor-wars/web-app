@@ -8,7 +8,8 @@ import {
   allQuestions,
   sendQuestionToDatabase,
   userData,
-  userProgress
+  userProgress,
+  sendCurrentCodeToDatabase
 } from "./apiReducers";
 
 export default combineReducers({
@@ -20,5 +21,6 @@ export default combineReducers({
   allQuestions,
   sendQuestionToDatabase,
   userData,
-  userProgress
+  userProgress,
+  sendCurrentCodeToDatabase
 });
