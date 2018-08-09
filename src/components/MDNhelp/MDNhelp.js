@@ -1,5 +1,14 @@
 import React from "react";
 
+export const SearchResultList = ({ data }) =>
+  data.map(item => (
+    <li className="search__links" key={item.href}>
+      <a className="search__links__text" href={item.href} target="_blank">
+        {item.textContent}
+      </a>
+    </li>
+  ));
+
 class Searchbar extends React.Component {
   constructor(props) {
     super(props);
@@ -65,17 +74,7 @@ class Searchbar extends React.Component {
           Submit
         </button>
         <ul>
-          {this.state.data.map(item => (
-            <li className="search__links" key={item}>
-              <a
-                className="search__links__text"
-                href={item.href}
-                target="_blank"
-              >
-                {item.textContent}
-              </a>
-            </li>
-          ))}
+          <SearchResultList data={this.state.data} />
         </ul>
       </div>
     );
