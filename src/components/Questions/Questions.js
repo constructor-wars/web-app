@@ -18,7 +18,7 @@ const MDNLogo = props => (
 
 const SingleQuestion = ({ id, question_title, link_syllabus }) => (
   <div>
-    <Link to={`/editor/${id}`}>{question_title}</Link>
+    <a href={`/editor/?question=${id}`}>{question_title}</a>
     <a href={link_syllabus}>
       <MDNLogo />
     </a>
