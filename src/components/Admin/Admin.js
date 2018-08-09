@@ -1,12 +1,17 @@
 import React from "react";
 import "./StyleAdmin.css";
 
-const TextArea = ({ displayName, id, fn }) => (
+const TextArea = ({ displayName, id, fn, value }) => (
   <div>
     <label className="admin__label" htmlFor={id}>
       {displayName}
     </label>
-    <textarea className="admin__text_area" onChange={fn} id={id} />
+    <textarea
+      className="admin__text_area"
+      onChange={fn}
+      id={id}
+      value={value}
+    />
   </div>
 );
 
@@ -34,16 +39,24 @@ class Admin extends React.Component {
     this.state = {
       question: {
         question_title: "",
-        test: "",
+        test: "BLANK test_spec",
         difficulty_id: 1,
         category_id: 1,
         instruction: "",
-        link_syllabus: "",
-        initial_code: ""
+        link_syllabus:
+          "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
+        initial_code: "BLANK test_spec",
+        test_spec: {
+          functionName: "",
+          sampleInput: "[]",
+          expectedResult: "",
+          initialCode: ""
+        }
       }
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleObject = this.handleObject.bind(this);
   }
 
   handleSubmit(event) {
@@ -57,6 +70,15 @@ class Admin extends React.Component {
       question: { ...preveState.question, [id]: value }
     }));
   }
+  handleObject(event) {
+    const { id, value } = event.target;
+    this.setState(preveState => ({
+      question: {
+        ...preveState.question,
+        test_spec: { ...preveState.question.test_spec, [id]: value }
+      }
+    }));
+  }
 
   render() {
     return (
@@ -64,24 +86,45 @@ class Admin extends React.Component {
         <form className="admin__container" onSubmit={this.handleSubmit}>
           <TextArea
             id="question_title"
+            value={this.state.question.question_title}
             displayName="Question"
             fn={this.handleChange}
           />
-          <TextArea id="test" displayName="Test" fn={this.handleChange} />
+          <TextArea
+            id="expectedResult"
+            displayName="expectedResult"
+            value={this.state.question.test_spec.expectedResult}
+            fn={this.handleObject}
+          />
           <TextArea
             id="instruction"
+            value={this.state.question.instruction}
             displayName="instruction"
             fn={this.handleChange}
           />
           <TextArea
             id="link_syllabus"
+            value={this.state.question.link_syllabus}
             displayName="Help Link"
             fn={this.handleChange}
           />
           <TextArea
-            id="initial_code"
+            id="initialCode"
             displayName="Initial Code"
-            fn={this.handleChange}
+            value={this.state.question.test_spec.initialCode}
+            fn={this.handleObject}
+          />
+          <TextArea
+            id="sampleInput"
+            displayName="Sample Input"
+            value={this.state.question.test_spec.sampleInput}
+            fn={this.handleObject}
+          />
+          <TextArea
+            id="functionName"
+            displayName="Function Name"
+            value={this.state.question.test_spec.functionName}
+            fn={this.handleObject}
           />
           <div className="admin__label">
             <DropDown
