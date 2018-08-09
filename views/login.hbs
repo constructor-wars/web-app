@@ -13,7 +13,6 @@
       --background__color: #618598;
       --dark: #2a4e61;
       --light: #f2faff;
-
     }
 
     body {
@@ -23,15 +22,12 @@
       margin: 0;
     }
 
-
-
     .login_main {
       display: flex;
       flex-direction: column;
       justify-content: center;
       min-height: 100vh;
-
-      background-color: var(--background__color);
+      background-color: var(--dark);
     }
 
     .login_container {
@@ -44,28 +40,48 @@
       justify-content: center;
     }
 
-
-
     img {
       background-image: var(--logo);
+      -webkit-transition: all 0.5s ease;
+      -moz-transition: all 0.5s ease;
+      -o-transition: all 0.5s ease;
+      -ms-transition: all 0.5s ease;
+      transition: all 0.5s ease;
     }
 
     .logo {
       padding-bottom: 50px;
       width: 200px;
       height: 200px;
+
+    }
+
+    .logo:hover {
+      transition: transform .2s;
+      transform: scale(1.2);
+
     }
 
 
 
     .login_button {
       color: var(--light);
-      height: 25px;
+      height: 40px;
       margin: 20px 0px;
       width: 200px;
       align-self: center;
       background-color: var(--dark);
       cursor: pointer;
+      font-size: initial;
+      border-radius: 5px;
+    }
+
+    .login_button:hover {
+      border: 1px solid #f1938f;
+      color: #f1938f;
+      transition: transform .2s;
+      transform: scale(1.2);
+      border-radius: 5px;
     }
 
     .github_login {
@@ -78,9 +94,10 @@
 
   <div class="login_main">
     <div class="login_container">
-      <img class="logo" src='/dist/constructor-labs-badge.png' />
+
 
       <a class="github_login" href="/auth/github">
+        <img class="logo" src='/dist/constructor-labs-badge.png' />
         <button class="login_button">Login in with Github</button>
       </a>
 
