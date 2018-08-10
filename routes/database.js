@@ -6,28 +6,29 @@ require("dotenv").config({
   path: path.resolve(__dirname, `../.env.${process.env.NODE_ENV}`)
 });
 
-// const db = pgp({
-//   host: process.env.POSTGRES_HOST,
-//   port: process.env.POSTGRES_PORT,
-//   database: process.env.POSTGRES_DATABASE,
-//   username: process.env.POSTGRES_USERNAME,
-//   password: process.env.POSTGRES_PASSWORD
-// });
-
 const db = pgp({
-  host: process.env.HEROKU_HOST,
-  port: process.env.HEROKU_PORT,
-  database: process.env.HEROKU_DATABASE_URL,
-  user: process.env.HEROKU_USER,
-  ssl: process.env.HEROKU_SSL,
-  password: process.env.HEROKU_PASSWORD,
-  uri: process.env.HEROKU_URI
+  host: process.env.POSTGRES_HOST,
+  port: process.env.POSTGRES_PORT,
+  database: process.env.POSTGRES_DATABASE,
+  username: process.env.POSTGRES_USERNAME,
+  password: process.env.POSTGRES_PASSWORD
 });
+
+// const db = pgp({
+//   host: process.env.HEROKU_HOST,
+//   port: process.env.HEROKU_PORT,
+//   database: process.env.HEROKU_DATABASE_URL,
+//   user: process.env.HEROKU_USER,
+//   ssl: process.env.HEROKU_SSL,
+//   password: process.env.HEROKU_PASSWORD,
+//   uri: process.env.HEROKU_URI
+// });
 
 function getQuestions(id) {
   return db
-    .any(`SELECT * FROM questions_answers WHERE id = $1`, [id])
+    .one(`SELECT * FROM questions_answers WHERE id = $1`, [id])
     .then(function(data) {
+      console.log(data);
       return data;
     })
     .catch(error => console.log(error));
@@ -49,12 +50,13 @@ function sumbitQuestionOnDatabase(data) {
     instruction,
     link_syllabus,
     initial_code,
-    test_spec
+    test_spec,
+    github_username
   } = data.payload;
   return db
     .none(
-      `INSERT INTO questions_answers (question_title, test, difficulty_id, category_id, instruction, link_syllabus, initial_code, test_spec)
-  VALUES ($1, $2, $3,$4,$5,$6,$7, $8)`,
+      `INSERT INTO questions_answers (question_title, test, difficulty_id, category_id, instruction, link_syllabus, initial_code, test_spec,github_username)
+  VALUES ($1, $2, $3,$4,$5,$6,$7, $8, $9)`,
       [
         question_title,
         test,
@@ -63,7 +65,8 @@ function sumbitQuestionOnDatabase(data) {
         instruction,
         link_syllabus,
         initial_code,
-        test_spec
+        test_spec,
+        github_username
       ]
     )
 

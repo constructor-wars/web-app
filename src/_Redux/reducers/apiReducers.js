@@ -10,8 +10,8 @@ export function userByUsername(state = "", action) {
 export function questionById(
   state = [
     {
-      id: 25,
-      question_title: "Remove the middle string",
+      id: 42,
+      question_title: " default state Remove the middle string",
       link_syllabus:
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
       initial_code: "function removeMiddle(words){// enter your code here}",
@@ -20,7 +20,14 @@ export function questionById(
       instruction:
         "Words is an array which contains an odd number of strings. Return a new array containing only the middle word.The words array should no longer contain the middle word Hint: splice.",
       difficulty_id: 2,
-      category_id: 2
+      category_id: 2,
+      github_username: "Cantem",
+      test_spec: {
+        initialCode: "function addd(a, b){return a +b};",
+        sampleInput: "[1, 4]",
+        functionName: "addd",
+        expectedResult: "5"
+      }
     }
   ],
   action
@@ -30,7 +37,7 @@ export function questionById(
       console.log("QUESTION_BY_ID", action.payload[0]);
       return action.payload[0];
     default:
-      return state;
+      return state[0];
   }
 }
 

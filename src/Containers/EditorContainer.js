@@ -1,51 +1,26 @@
 import React from "react";
-import { connect } from "react-redux";
 
-import {
-  fetchQuestionById,
-  sendCurrentCodeToDatabaseAction
-} from "../_Redux/actions/actions";
 import { FiPlayCircle, FiSave } from "react-icons/fi";
 
 import Instructions from "../components/Instructions/Instructions";
 import { MonacoEditor, DisplayConsole, EvalWindow } from "../components/Editor";
 import MDNhelp from "../components/MDNhelp/MDNhelp";
 
-const mapReduxStateToProps = reduxState => ({
-  user: {
-    username: reduxState.GITHUB_DATA.username,
-    displayName: reduxState.GITHUB_DATA.displayName
-  },
-  currentTask: {
-    question_title: reduxState.questionById.question_title,
-    instructions: reduxState.questionById.instruction,
-    startCode: reduxState.questionById.initial_code,
-    testCase: reduxState.questionById.test
-  },
-  user_id: reduxState.userData.user_id
-});
-
-const mapDispatchToProps = dispatch => ({
-  saveCode: currentCode =>
-    dispatch(sendCurrentCodeToDatabaseAction(currentCode)),
-  getCurrentQuestion: id => dispatch(fetchQuestionById(id)),
-  getUserData: user_id => dispatch(fetchUserData(user_id))
-});
-
 const getQueryParams = new URLSearchParams(location.search);
 
-class Editor extends React.Component {
+export default class Editor extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      codeToEval: this.props.codeToEval,
-      currentCode: this.props.currentTask.startCode,
+      codeToEval: "",
+      currentCode: "",
       performEval: false,
       completed: false
     };
     this.onChange = this.onChange.bind(this);
     this.runCode = this.runCode.bind(this);
     this.saveCode = this.saveCode.bind(this);
+    this.fetchQuestionById = this.fetchQuestionById.bind(this);
   }
   onChange(code) {
     this.setState({ currentCode: code });
@@ -53,22 +28,27 @@ class Editor extends React.Component {
   runCode() {
     this.setState({ codeToEval: this.state.currentCode, performEval: true });
   }
-  saveCode() {
-    const dataToSendToSever = {
-      user_id: this.props.user.username,
-      question_id: getQueryParams.get("question") || 1,
-      user_edits: this.state.currentCode,
-      completed: this.state.completed,
-      user_notes: this.props.currentTask.instructions,
-      ask_for_help: false
-    };
-    this.props.saveCode(dataToSendToSever);
+  saveCode() {}
+
+  fetchQuestionById(id) {
+    return fetch(`/api/question/${id}`)
+      .then(response => response.json())
+      .then(data =>
+        this.setState({
+          currentCode: data.test_spec.initialCode,
+          question_title: data.question_title,
+          instructions: data.instruction,
+          test_spec: data.test_spec,
+          github_username: data.github_username
+        })
+      )
+      .catch(error => console.log(error));
   }
 
   componentDidMount() {
     getQueryParams.has("question")
-      ? this.props.getCurrentQuestion(getQueryParams.get("question"))
-      : this.props.getCurrentQuestion(1);
+      ? this.fetchQuestionById(getQueryParams.get("question"))
+      : this.fetchQuestionById(42);
   }
 
   componentDidUpdate() {
@@ -99,8 +79,8 @@ class Editor extends React.Component {
         </div>
         <div className="editor__wrap__instructions editor__sections">
           <Instructions
-            question_title={this.props.currentTask.question_title}
-            instructions={this.props.currentTask.instructions}
+            question_title={this.state.question_title}
+            instructions={this.state.instructions}
           />
         </div>
         <div className="editor__wrap__comments editor__sections">
@@ -110,14 +90,13 @@ class Editor extends React.Component {
           <MonacoEditor
             codeToEval={this.state.currentCode}
             onChange={this.onChange}
-            user={this.props.user}
           />
         </div>
         <div className="editor__wrap__display-window editor__sections">
           <EvalWindow
             codeToEval={this.state.codeToEval}
             performEval={this.state.performEval}
-            testCase={this.props.testCase}
+            test_spec={this.state.test_spec}
           />
         </div>
         <div className="editor__wrap__test-window editor__sections">
@@ -127,8 +106,3 @@ class Editor extends React.Component {
     );
   }
 }
-
-export default connect(
-  mapReduxStateToProps,
-  mapDispatchToProps
-)(Editor);
