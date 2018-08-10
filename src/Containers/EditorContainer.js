@@ -1,4 +1,5 @@
 import React from "react";
+import { Redirect } from "react-router-dom";
 
 import { FiPlayCircle, FiSave } from "react-icons/fi";
 
@@ -15,7 +16,11 @@ export default class Editor extends React.Component {
       codeToEval: "",
       currentCode: "",
       performEval: false,
-      completed: false
+      completed: false,
+      question_title: "",
+      instruction: "",
+      test_spec: "",
+      github_username: "github_username state"
     };
     this.onChange = this.onChange.bind(this);
     this.runCode = this.runCode.bind(this);
@@ -28,18 +33,69 @@ export default class Editor extends React.Component {
   runCode() {
     this.setState({ codeToEval: this.state.currentCode, performEval: true });
   }
-  saveCode() {}
+  addToDatabase(data) {
+    fetch("/api/submitnewquestion", {
+      method: "POST",
+      body: JSON.stringify(data),
+      credentials: "same-origin",
+      headers: {
+        "content-type": "application/json"
+      }
+    })
+      .then(res => (res.ok ? res.json() : Promise.reject()))
+      .then(({ id }) => (window.location = `/editor/?question=${id}`))
+      .catch(error => console.log(error));
+    console.log("addToDatabase(data)", data);
+  }
+
+  updateDatabase(data) {
+    fetch("/api/updatequestion", {
+      method: "POST",
+      body: JSON.stringify(data),
+      credentials: "same-origin",
+      headers: {
+        "content-type": "application/json"
+      }
+    })
+      .then(res => res.ok)
+      .catch(error => console.log(error));
+    console.log("updateDatabase(data)", data);
+  }
+
+  saveCode() {
+    const dataToSave = {
+      id: this.state.id,
+      question_title: this.state.question_title,
+      difficulty_id: this.state.difficulty_id,
+      category_id: this.state.category_id,
+      instruction: this.state.instruction,
+      link_syllabus: this.state.link_syllabus,
+      test_spec: {
+        initialCode: this.state.currentCode || "asd",
+        sampleInput: this.state.sampleInput || "asd",
+        functionName: this.state.functionName || "asd",
+        expectedResult: this.state.expectedResult || "asd"
+      },
+      github_username: this.props.username
+    };
+
+    if (this.state.questionCreator === this.props.username) {
+      this.updateDatabase(dataToSave);
+    }
+
+    if (this.state.questionCreator !== this.props.username) {
+      this.addToDatabase(dataToSave);
+    }
+  }
 
   fetchQuestionById(id) {
     return fetch(`/api/question/${id}`)
       .then(response => response.json())
       .then(data =>
         this.setState({
+          ...data,
           currentCode: data.test_spec.initialCode,
-          question_title: data.question_title,
-          instructions: data.instruction,
-          test_spec: data.test_spec,
-          github_username: data.github_username
+          questionCreator: data.github_username
         })
       )
       .catch(error => console.log(error));
@@ -80,7 +136,7 @@ export default class Editor extends React.Component {
         <div className="editor__wrap__instructions editor__sections">
           <Instructions
             question_title={this.state.question_title}
-            instructions={this.state.instructions}
+            instructions={this.state.instruction}
           />
         </div>
         <div className="editor__wrap__comments editor__sections">

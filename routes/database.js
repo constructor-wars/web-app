@@ -44,27 +44,54 @@ function getAllQuestions() {
 function sumbitQuestionOnDatabase(data) {
   const {
     question_title,
-    test,
     difficulty_id,
     category_id,
     instruction,
     link_syllabus,
-    initial_code,
-    test_spec,
-    github_username
-  } = data.payload;
+    github_username,
+    test_spec
+  } = data;
+
   return db
-    .none(
-      `INSERT INTO questions_answers (question_title, test, difficulty_id, category_id, instruction, link_syllabus, initial_code, test_spec,github_username)
-  VALUES ($1, $2, $3,$4,$5,$6,$7, $8, $9)`,
+    .one(
+      `INSERT INTO questions_answers (question_title, difficulty_id, category_id, instruction, link_syllabus, test_spec, github_username)
+  VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id`,
       [
         question_title,
-        test,
         difficulty_id,
         category_id,
         instruction,
         link_syllabus,
-        initial_code,
+        test_spec,
+        github_username
+      ]
+    )
+
+    .catch(error => console.log(error));
+}
+
+function updateYourQuestionOnDatabase(data) {
+  const {
+    id,
+    question_title,
+    difficulty_id,
+    category_id,
+    instruction,
+    link_syllabus,
+    test_spec,
+    github_username
+  } = data;
+  return db
+    .none(
+      `UPDATE questions_answers (question_title, difficulty_id, category_id, instruction, link_syllabus, test_spec,github_username)
+  SET($2, $3 ,$4 ,$5 ,$6 ,$7, $8) WHERE id=$1`,
+      [
+        id,
+        question_title,
+        difficulty_id,
+        category_id,
+        instruction,
+        link_syllabus,
         test_spec,
         github_username
       ]
@@ -157,6 +184,7 @@ module.exports = {
   getQuestions,
   getAllQuestions,
   sumbitQuestionOnDatabase,
+  updateYourQuestionOnDatabase,
   getUserData,
   getUserProgress,
   addUserOnLogIn,

@@ -28,6 +28,11 @@ router.post("/submitnewquestion", function(req, res) {
   sumbitQuestionOnDatabase(data).then(data => res.json(data));
 });
 
+router.post("/updatequestion", function(req, res) {
+  const data = req.body;
+  updateYourQuestionOnDatabase(data).then(data => res.json(data));
+});
+
 router.post("/savecurrentcode", function(req, res) {
   const data = req.body;
   addCodeOnSave(data);
