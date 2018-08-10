@@ -38,19 +38,18 @@ class Admin extends React.Component {
 
     this.state = {
       question: {
-        question_title: "",
-        test: "BLANK test_spec",
-        difficulty_id: 1,
-        category_id: 1,
-        instruction: "",
+        question_title: "Add Function title",
         link_syllabus:
           "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
-        initial_code: "BLANK test_spec",
+        instruction: "instructions: Add numbers",
+        difficulty_id: 1,
+        category_id: 1,
+        github_username: "jamesmcallister",
         test_spec: {
-          functionName: "",
-          sampleInput: "[]",
-          expectedResult: "",
-          initialCode: ""
+          initialCode: "function add(a, b){return a+b};",
+          sampleInput: "[1,3]",
+          functionName: "add",
+          expectedResult: "4"
         }
       }
     };

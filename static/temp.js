@@ -10,9 +10,8 @@ const DB = {
 };
 
 const { functionName, sampleInput, expectedResult, initial_code } = DB;
-if (window) {
-  eval(initial_code);
-  const output = window[functionName].apply(null, sampleInput);
-  const aaa = deepEqual(output, expectedResult);
-  console.log(output, aaa);
-}
+
+eval(initial_code);
+const output = window[functionName].apply(null, sampleInput);
+const aaa = deepEqual(output, expectedResult);
+console.log(output, aaa);

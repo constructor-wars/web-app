@@ -13,17 +13,16 @@
         window.addEventListener('message', event => {
             if (event.origin !== (window.location.protocol + "//" + window.location.host))
                 return;
-
-            event = {
-                userCode: `function add(a, b){
-                    return a + b;   
-                }`,
-                testInput: [2, 3],
-
-            }
             let result = 'not run any code';
             try {
-                result = eval(event.data);
+                const { codeToEval } = event.data
+                const { functionName, sampleInput, expectedResult } = event.data.testSpec
+
+                eval(codeToEval);
+                const output = window[functionName].apply(null, sampleInput);
+
+                result = { output, expectedResult }
+                console.log({ result })
             } catch (err) {
                 result = `eval() threw an exception. ${err}`;
             }

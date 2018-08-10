@@ -13,12 +13,10 @@ const mapReduxStateToProps = reduxState => ({
     username: reduxState.GITHUB_DATA.username,
     displayName: reduxState.GITHUB_DATA.displayName
   },
-  currentTask: {
-    question_title: reduxState.questionById.question_title,
-    instructions: reduxState.questionById.instruction,
-    startCode: reduxState.questionById.initial_code,
-    testCase: reduxState.questionById.test
-  }
+  question_title: reduxState.questionById.question_title,
+  instructions: reduxState.questionById.instruction,
+  test_spec: reduxState.questionById.test_spec,
+  github_username: reduxState.questionById.github_username
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -33,7 +31,7 @@ class Editor extends React.Component {
     super(props);
     this.state = {
       codeToEval: this.props.codeToEval,
-      currentCode: this.props.currentTask.startCode,
+      currentCode: this.props.test_spec.initialCode,
       performEval: false
     };
     this.onChange = this.onChange.bind(this);
@@ -54,7 +52,7 @@ class Editor extends React.Component {
     const questionToQuery = Number(getQueryParams.get("question"));
     getQueryParams.has("question")
       ? this.props.getCurrentQuestion(questionToQuery)
-      : this.props.getCurrentQuestion(25);
+      : this.props.getCurrentQuestion(1);
   }
 
   componentDidUpdate() {
@@ -85,8 +83,8 @@ class Editor extends React.Component {
         </div>
         <div className="editor__wrap__instructions editor__sections">
           <Instructions
-            question_title={this.props.currentTask.question_title}
-            instructions={this.props.currentTask.instructions}
+            question_title={this.props.question_title}
+            instructions={this.props.instructions}
           />
         </div>
         <div className="editor__wrap__comments editor__sections">
@@ -96,14 +94,13 @@ class Editor extends React.Component {
           <MonacoEditor
             codeToEval={this.state.currentCode}
             onChange={this.onChange}
-            user={this.props.user}
           />
         </div>
         <div className="editor__wrap__display-window editor__sections">
           <EvalWindow
             codeToEval={this.state.codeToEval}
             performEval={this.state.performEval}
-            testCase={this.props.testCase}
+            test_spec={this.props.test_spec}
           />
         </div>
         <div className="editor__wrap__test-window editor__sections">

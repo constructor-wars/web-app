@@ -1,11 +1,11 @@
 import React from "react";
-import AboutContainer from "../Containers/AboutContainer";
+import About from "../components/About/About";
 
 class AboutRoute extends React.Component {
   render() {
     return (
       <div>
-        <AboutContainer />
+        <About />
       </div>
     );
   }
