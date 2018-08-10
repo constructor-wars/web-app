@@ -16,3 +16,23 @@
   height: 50px;
   width: 50px;
 }
+
+@media (max-width: 500px) {
+  .nav_links {
+    display: flex;
+    flex-direction: column;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+  }
+
+  .navbarprofile_picture {
+    display: none;
+  }
+
+  .logoimg {
+    margin: 0 auto;
+  }
+}

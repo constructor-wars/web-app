@@ -23,6 +23,8 @@
 .nav_buttons:hover {
   border: 1px solid #f1938f;
   color: #f1938f;
+  transition: transform 0.2s;
+  transform: scale(1.1);
 }
 
 .nav_links__icon {

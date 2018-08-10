@@ -1,0 +1,36 @@
+.searchbar__wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.searchbar__bar,
+.searchbar__button {
+  height: 30px;
+  border-radius: 5px;
+  background-color: black;
+  color: white;
+  border: 2px solid white;
+}
+
+.searchbar__button {
+  margin-top: 10px;
+}
+
+.searchbar__bar:hover {
+  focus: none;
+  border: 2px solid green;
+}
+
+.searchbar__button:hover {
+  border: 2px solid green;
+  color: green;
+}
+
+a.search__links__text {
+  text-decoration: none;
+}
+
+a.search__links__text:hover {
+  transform: scale(1.1);
+}

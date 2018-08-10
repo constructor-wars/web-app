@@ -1,4 +1,14 @@
 import React from "react";
+import "./MDNhelp.css";
+
+export const SearchResultList = ({ data }) =>
+  data.map(item => (
+    <li className="search__links" key={item.href}>
+      <a className="search__links__text" href={item.href} target="_blank">
+        {item.textContent}
+      </a>
+    </li>
+  ));
 
 class Searchbar extends React.Component {
   constructor(props) {
@@ -54,28 +64,22 @@ class Searchbar extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="searchbar__wrapper">
         <input
-          className="searchbar"
+          className="searchbar__bar"
           placeholder="Feeling stuck..? Let MDN help..."
           value={this.state.userSearch}
           onChange={this.handleChange}
         />
-        <button type="Submit" onClick={this.handleSubmit}>
+        <button
+          className="searchbar__button"
+          type="Submit"
+          onClick={this.handleSubmit}
+        >
           Submit
         </button>
         <ul>
-          {this.state.data.map(item => (
-            <li className="search__links" key={item}>
-              <a
-                className="search__links__text"
-                href={item.href}
-                target="_blank"
-              >
-                {item.textContent}
-              </a>
-            </li>
-          ))}
+          <SearchResultList data={this.state.data} />
         </ul>
       </div>
     );
