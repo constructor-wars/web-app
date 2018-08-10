@@ -26,8 +26,9 @@ const db = pgp({
 
 function getQuestions(id) {
   return db
-    .any(`SELECT * FROM questions_answers WHERE id = $1`, [id])
+    .one(`SELECT * FROM questions_answers WHERE id = $1`, [id])
     .then(function(data) {
+      console.log(data);
       return data;
     })
     .catch(error => console.log(error));
@@ -43,30 +44,77 @@ function getAllQuestions() {
 function sumbitQuestionOnDatabase(data) {
   const {
     question_title,
-    test,
     difficulty_id,
     category_id,
     instruction,
     link_syllabus,
-    initial_code
-  } = data.payload;
+    github_username,
+    test_spec
+  } = data;
+
   return db
-    .none(
-      `INSERT INTO questions_answers (question_title, test, difficulty_id, category_id, instruction, link_syllabus, initial_code)
-  VALUES ($1, $2, $3,$4,$5,$6,$7)`,
+    .one(
+      `INSERT INTO questions_answers (question_title, difficulty_id, category_id, instruction, link_syllabus, test_spec, github_username)
+  VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id`,
       [
         question_title,
-        test,
         difficulty_id,
         category_id,
         instruction,
         link_syllabus,
-        initial_code
+        test_spec,
+        github_username
       ]
     )
 
     .catch(error => console.log(error));
 }
+
+function updateYourQuestionOnDatabase(data) {
+  const {
+    id,
+    question_title,
+    difficulty_id,
+    category_id,
+    instruction,
+    link_syllabus,
+    test_spec,
+    github_username
+  } = data;
+  return db
+    .none(
+      `UPDATE questions_answers (question_title, difficulty_id, category_id, instruction, link_syllabus, test_spec,github_username)
+  SET($2, $3 ,$4 ,$5 ,$6 ,$7, $8) WHERE id=$1`,
+      [
+        id,
+        question_title,
+        difficulty_id,
+        category_id,
+        instruction,
+        link_syllabus,
+        test_spec,
+        github_username
+      ]
+    )
+
+    .catch(error => console.log(error));
+}
+// function editQuestion(id) {
+//   const {
+//     question_title,
+//     test,
+//     difficulty_id,
+//     category_id,
+//     instruction,
+//     link_syllabus,
+//     initial_code,
+//     test_spec
+//   } = data.payload;
+
+//   return db
+//     .none(`UPDATE questions_answers ()`)
+//     .catch(error => consoel.log(error));
+// }
 
 function getUserData(user_id) {
   return db
@@ -111,6 +159,22 @@ function addUserOnLogIn(usernameAreYouThere) {
     .catch(error => console.log({ error }));
 }
 
+function addCodeOnSave(currentCodeToSave) {
+  const {
+    user_id,
+    question_id,
+    user_edits,
+    user_notes,
+    completed,
+    ask_for_help
+  } = currentCodeToSave;
+
+  db.none(
+    `INSERT INTO user_data (user_id, question_id, user_edits, user_notes, completed, ask_for_help) VALUES($1, $2, $3, $4, $5, $6)`,
+    [user_id, question_id, user_edits, user_notes, completed, ask_for_help]
+  );
+}
+
 // getAllQuestions().then(data => console.log(data));
 
 // getUserByUsername("mickey mouse").then(data => console.log(data));
@@ -120,7 +184,9 @@ module.exports = {
   getQuestions,
   getAllQuestions,
   sumbitQuestionOnDatabase,
+  updateYourQuestionOnDatabase,
   getUserData,
   getUserProgress,
-  addUserOnLogIn
+  addUserOnLogIn,
+  addCodeOnSave
 };

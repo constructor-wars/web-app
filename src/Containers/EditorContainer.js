@@ -1,44 +1,31 @@
 import React from "react";
-import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 
-import { fetchQuestionById } from "../_Redux/actions/actions";
 import { FiPlayCircle, FiSave } from "react-icons/fi";
 
 import Instructions from "../components/Instructions/Instructions";
 import { MonacoEditor, DisplayConsole, EvalWindow } from "../components/Editor";
 import MDNhelp from "../components/MDNhelp/MDNhelp";
 
-const mapReduxStateToProps = reduxState => ({
-  user: {
-    username: reduxState.GITHUB_DATA.username,
-    displayName: reduxState.GITHUB_DATA.displayName
-  },
-  currentTask: {
-    question_title: reduxState.questionById.question_title,
-    instructions: reduxState.questionById.instruction,
-    startCode: reduxState.questionById.initial_code,
-    testCase: reduxState.questionById.test
-  }
-});
-
-const mapDispatchToProps = dispatch => ({
-  saveCode: currentCode => console.log("saved", currentCode),
-  getCurrentQuestion: id => dispatch(fetchQuestionById(id))
-});
-
 const getQueryParams = new URLSearchParams(location.search);
 
-class Editor extends React.Component {
+export default class Editor extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      codeToEval: this.props.codeToEval,
-      currentCode: this.props.currentTask.startCode,
-      performEval: false
+      codeToEval: "",
+      currentCode: "",
+      performEval: false,
+      completed: false,
+      question_title: "",
+      instruction: "",
+      test_spec: "",
+      github_username: "github_username state"
     };
     this.onChange = this.onChange.bind(this);
     this.runCode = this.runCode.bind(this);
     this.saveCode = this.saveCode.bind(this);
+    this.fetchQuestionById = this.fetchQuestionById.bind(this);
   }
   onChange(code) {
     this.setState({ currentCode: code });
@@ -46,14 +33,78 @@ class Editor extends React.Component {
   runCode() {
     this.setState({ codeToEval: this.state.currentCode, performEval: true });
   }
+  addToDatabase(data) {
+    fetch("/api/submitnewquestion", {
+      method: "POST",
+      body: JSON.stringify(data),
+      credentials: "same-origin",
+      headers: {
+        "content-type": "application/json"
+      }
+    })
+      .then(res => (res.ok ? res.json() : Promise.reject()))
+      .then(({ id }) => (window.location = `/editor/?question=${id}`))
+      .catch(error => console.log(error));
+    console.log("addToDatabase(data)", data);
+  }
+
+  updateDatabase(data) {
+    fetch("/api/updatequestion", {
+      method: "POST",
+      body: JSON.stringify(data),
+      credentials: "same-origin",
+      headers: {
+        "content-type": "application/json"
+      }
+    })
+      .then(res => res.ok)
+      .catch(error => console.log(error));
+    console.log("updateDatabase(data)", data);
+  }
+
   saveCode() {
-    this.props.saveCode(this.state.currentCode);
+    const dataToSave = {
+      id: this.state.id,
+      question_title: this.state.question_title,
+      difficulty_id: this.state.difficulty_id,
+      category_id: this.state.category_id,
+      instruction: this.state.instruction,
+      link_syllabus: this.state.link_syllabus,
+      test_spec: {
+        initialCode: this.state.currentCode || "asd",
+        sampleInput: this.state.sampleInput || "asd",
+        functionName: this.state.functionName || "asd",
+        expectedResult: this.state.expectedResult || "asd"
+      },
+      github_username: this.props.username
+    };
+
+    if (this.state.questionCreator === this.props.username) {
+      this.updateDatabase(dataToSave);
+    }
+
+    if (this.state.questionCreator !== this.props.username) {
+      this.addToDatabase(dataToSave);
+    }
+  }
+
+  fetchQuestionById(id) {
+    return fetch(`/api/question/${id}`)
+      .then(response => response.json())
+      .then(data =>
+        this.setState({
+          ...data,
+          currentCode: data.test_spec.initialCode,
+          questionCreator: data.github_username
+        })
+      )
+      .catch(error => console.log(error));
   }
 
   componentDidMount() {
     getQueryParams.has("question")
-      ? this.props.getCurrentQuestion(getQueryParams.get("question"))
-      : this.props.getCurrentQuestion(1);
+      ? this.fetchQuestionById(getQueryParams.get("question"))
+      : this.fetchQuestionById(42);
   }
 
   componentDidUpdate() {
@@ -84,8 +135,8 @@ class Editor extends React.Component {
         </div>
         <div className="editor__wrap__instructions editor__sections">
           <Instructions
-            question_title={this.props.currentTask.question_title}
-            instructions={this.props.currentTask.instructions}
+            question_title={this.state.question_title}
+            instructions={this.state.instruction}
           />
         </div>
         <div className="editor__wrap__comments editor__sections">
@@ -95,14 +146,13 @@ class Editor extends React.Component {
           <MonacoEditor
             codeToEval={this.state.currentCode}
             onChange={this.onChange}
-            user={this.props.user}
           />
         </div>
         <div className="editor__wrap__display-window editor__sections">
           <EvalWindow
             codeToEval={this.state.codeToEval}
             performEval={this.state.performEval}
-            testCase={this.props.testCase}
+            test_spec={this.state.test_spec}
           />
         </div>
         <div className="editor__wrap__test-window editor__sections">
@@ -112,8 +162,3 @@ class Editor extends React.Component {
     );
   }
 }
-
-export default connect(
-  mapReduxStateToProps,
-  mapDispatchToProps
-)(Editor);

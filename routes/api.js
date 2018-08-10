@@ -8,7 +8,8 @@ const {
   getAllQuestions,
   sumbitQuestionOnDatabase,
   getUserData,
-  getUserProgress
+  getUserProgress,
+  addCodeOnSave
 } = require("./database");
 
 router.get("/question/:id", function(req, res) {
@@ -25,6 +26,16 @@ router.get("/questions", function(req, res) {
 router.post("/submitnewquestion", function(req, res) {
   const data = req.body;
   sumbitQuestionOnDatabase(data).then(data => res.json(data));
+});
+
+router.post("/updatequestion", function(req, res) {
+  const data = req.body;
+  updateYourQuestionOnDatabase(data).then(data => res.json(data));
+});
+
+router.post("/savecurrentcode", function(req, res) {
+  const data = req.body;
+  addCodeOnSave(data);
 });
 
 router.get("/getuserdata/:id", function(req, res) {
