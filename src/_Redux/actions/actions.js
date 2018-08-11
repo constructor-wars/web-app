@@ -1,10 +1,10 @@
 export function sendToServerAction(payload) {
-  fetch("/api/submitnewquestion", {
-    method: "POST",
+  fetch('/api/submitnewquestion', {
+    method: 'POST',
     body: JSON.stringify({ payload }),
-    credentials: "same-origin",
+    credentials: 'same-origin',
     headers: {
-      "content-type": "application/json"
+      'content-type': 'application/json'
     }
   })
     .then(
@@ -20,7 +20,7 @@ export function sendToServerAction(payload) {
 
 export function fetchAllQuestions() {
   return function(dispatch) {
-    fetch("/api/questions")
+    fetch('/api/questions')
       .then(response => response.json())
       .then(questions => {
         dispatch(allQuestionsAction(questions));
@@ -51,49 +51,49 @@ export function fetchQuestionById(id) {
 
 export function codeToEvalAction(payload) {
   return {
-    type: "CODE_TO_EVAL",
+    type: 'CODE_TO_EVAL',
     payload
   };
 }
 
 export function userByUsernameAction(payload) {
   return {
-    type: "USER_BY_USERNAME",
+    type: 'USER_BY_USERNAME',
     payload
   };
 }
 
 export function questionByIdAction(payload) {
   return {
-    type: "QUESTION_BY_ID",
+    type: 'QUESTION_BY_ID',
     payload
   };
 }
 
 export function allQuestionsAction(payload) {
   return {
-    type: "ALL_QUESTIONS",
+    type: 'ALL_QUESTIONS',
     payload
   };
 }
 
 export function sendQuestionToDatabaseAction(payload) {
   return {
-    type: "SEND_QUESTION_TO_DATABASE",
+    type: 'SEND_QUESTION_TO_DATABASE',
     payload
   };
 }
 
 export function userDataAction(payload) {
   return {
-    type: "USER_DATA",
+    type: 'USER_DATA',
     payload
   };
 }
 
 export function userProgressAction(payload) {
   return {
-    type: "USER_PROGRESS",
+    type: 'USER_PROGRESS',
     payload
   };
 }

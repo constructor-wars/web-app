@@ -96,5 +96,11 @@
   "devDependencies": {
     "jest-fetch-mock": "^1.6.5",
     "redux-mock-store": "^1.5.3"
+  },
+  "jest": {
+    "automock": false,
+    "setupFiles": [
+      "./setupJest.js"
+    ]
   }
 }
