@@ -45,7 +45,6 @@ export default class Editor extends React.Component {
       .then(res => (res.ok ? res.json() : Promise.reject()))
       .then(({ id }) => (window.location = `/editor/?question=${id}`))
       .catch(error => console.log(error));
-    console.log("addToDatabase(data)", data);
   }
 
   updateDatabase(data) {
@@ -59,7 +58,6 @@ export default class Editor extends React.Component {
     })
       .then(res => res.ok)
       .catch(error => console.log(error));
-    console.log("updateDatabase(data)", data);
   }
 
   saveCode() {

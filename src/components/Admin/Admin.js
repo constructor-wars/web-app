@@ -44,7 +44,7 @@ class Admin extends React.Component {
         instruction: "instructions: Add numbers",
         difficulty_id: 1,
         category_id: 1,
-        github_username: "jamesmcallister",
+        github_username: this.props.github_username,
         test_spec: {
           initialCode: "function add(a, b){return a+b};add(2, 4)",
           sampleInput: "[1,3]",
@@ -72,6 +72,7 @@ class Admin extends React.Component {
     console.log("addToDatabase(data)", data);
   }
 
+ 
   handleSubmit(event) {
     event.preventDefault();
     this.addToDatabase(this.state.question);
