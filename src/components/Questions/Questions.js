@@ -29,7 +29,7 @@ class Questions extends React.Component {
   render() {
     return (
       <div className="profile__progress__question">
-        <h2>Question or tasks</h2>
+        <h2>Question or tasks TOTAL: {this.props.questions.length}</h2>
         {this.props.questions.map(question => (
           <SingleQuestion key={question.id} {...question} />
         ))}
