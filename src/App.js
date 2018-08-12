@@ -5,7 +5,7 @@ import Header from "./components/Header/Header";
 import EditorContainer from "./Containers/EditorContainer";
 import ProfileRoute from "./Routes/ProfileRoute";
 import SyllabusRoute from "./Routes/SyllabusRoute";
-import AdminRoute from "./Routes/AdminRoute";
+import AdminContainer from "./Containers/AdminContainer";
 
 import DashboardRoute from "./Routes/DashboardRoute";
 
@@ -22,11 +22,11 @@ class App extends React.Component {
             path="/editor"
             render={() => <EditorContainer {...this.props.GITHUB_DATA} />}
           />
-          <Route exact path="/profile" render={() => <ProfileRoute />} />
           <Route exact path="/about" render={() => <AboutRoute />} />
           <Route exact path="/syllabus" render={() => <SyllabusRoute />} />
-          <Route exact path="/admin" render={() => <AdminRoute />} />
+          <Route exact path="/admin" render={() => <AdminContainer github_username={this.props.GITHUB_DATA.username} />} />
           <Route exact path="/dashboard" render={() => <DashboardRoute />} />
+          <Route exact path="/" render={() => <DashboardRoute />} />
         </Switch>
         <Footer />
       </div>

@@ -10,7 +10,7 @@ export default function NavBarProfile({
   profilepic
 }) {
   return (
-    <Link to="/profile">
+    <Link to="/">
       <div className="navbarprofile_container">
         <img
           className="navbarprofile_picture"

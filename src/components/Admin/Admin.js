@@ -1,12 +1,13 @@
 import React from "react";
 import "./StyleAdmin.css";
 
-const TextArea = ({ displayName, id, fn, value }) => (
+const TextArea = ({ placeholder, displayName, id, fn, value }) => (
   <div>
     <label className="admin__label" htmlFor={id}>
       {displayName}
     </label>
     <textarea
+      placeholder={placeholder}
       className="admin__text_area"
       onChange={fn}
       id={id}
@@ -38,18 +39,18 @@ class Admin extends React.Component {
 
     this.state = {
       question: {
-        question_title: "Add Function title",
+        question_title: "",
         link_syllabus:
-          "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
-        instruction: "instructions: Add numbers",
+          "",
+        instruction: "",
         difficulty_id: 1,
         category_id: 1,
-        github_username: "jamesmcallister",
+        github_username: this.props.github_username,
         test_spec: {
-          initialCode: "function add(a, b){return a+b};add(2, 4)",
-          sampleInput: "[1,3]",
-          functionName: "add",
-          expectedResult: "4"
+          initialCode: "",
+          sampleInput: "",
+          functionName: "",
+          expectedResult: ""
         }
       }
     };
@@ -72,6 +73,7 @@ class Admin extends React.Component {
     console.log("addToDatabase(data)", data);
   }
 
+ 
   handleSubmit(event) {
     event.preventDefault();
     this.addToDatabase(this.state.question);
@@ -99,42 +101,49 @@ class Admin extends React.Component {
         <form className="admin__container" onSubmit={this.handleSubmit}>
           <TextArea
             id="question_title"
+            placeholder="Add Function"
             value={this.state.question.question_title}
             displayName="Question"
             fn={this.handleChange}
           />
           <TextArea
             id="expectedResult"
-            displayName="expectedResult"
+            placeholder="4"
+            displayName="Expected Result"
             value={this.state.question.test_spec.expectedResult}
             fn={this.handleObject}
           />
           <TextArea
             id="instruction"
+            placeholder="Add all numbers"
             value={this.state.question.instruction}
-            displayName="instruction"
+            displayName="Instruction"
             fn={this.handleChange}
           />
           <TextArea
             id="link_syllabus"
+            placeholder="https://developer.mozilla.org/en-US/docs/Web/JavaScript"
             value={this.state.question.link_syllabus}
             displayName="Help Link"
             fn={this.handleChange}
           />
           <TextArea
             id="initialCode"
+            placeholder="function add(a, b){return a+b};add(2, 4);"
             displayName="Initial Code"
             value={this.state.question.test_spec.initialCode}
             fn={this.handleObject}
           />
           <TextArea
             id="sampleInput"
+            placeholder="[1,3]"
             displayName="Sample Input"
             value={this.state.question.test_spec.sampleInput}
             fn={this.handleObject}
           />
           <TextArea
             id="functionName"
+            placeholder="add"
             displayName="Function Name"
             value={this.state.question.test_spec.functionName}
             fn={this.handleObject}

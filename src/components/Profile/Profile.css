@@ -1,11 +1,35 @@
 .profileImg {
   height: 200px;
   width: 200px;
+  border-radius: 50%;
 }
 
 .profile_container {
+  text-align: center;
   margin: 30px 300px;
   padding: 20px;
   border: 1px solid black;
   border-radius: 5px;
 }
+
+.profile__name{
+  font-weight: bold;
+  color: var(--dark);
+  padding-left: 20px;
+  text-align: center;
+  padding: 40px;
+  text-decoration: none; 
+  font-size: 2em;
+
+}
+
+.profile__name:hover{
+  color: var(--monoco_background);
+}
+
+.profile__name > svg{
+  font-size: 60px;
+}
+
+
+
