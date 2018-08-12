@@ -1,0 +1,15 @@
+
+.question__list{
+  list-style: none;
+  
+}
+
+.question__list__item {
+  padding: 5px;
+  font-size: 1.6em;
+}
+
+
+.question__list__link {
+  text-decoration: none;
+}

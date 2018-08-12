@@ -29,9 +29,9 @@ export default class Dashboard extends React.Component {
         <Profile {...this.props.user} />
         <div>
           <ProgressBar current={this.props.current} total={this.props.total}  />
-          <Questions questions={this.state.questions.filter(item => item.github_username === this.props.user.username)} />  
+          <Questions title="Your questions or tasks" questions={this.state.questions.filter(item => item.github_username === this.props.user.username)} />  
         </div>
-        <Questions questions={this.state.questions.filter(item => item.github_username !== this.props.user.username)} />
+        <Questions title = "Questions or tasks" questions={this.state.questions.filter(item => item.github_username !== this.props.user.username)} />
         <AskDimi messages={this.props.messages} />
       </div>
     );
