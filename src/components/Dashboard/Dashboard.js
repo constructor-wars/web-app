@@ -6,9 +6,21 @@ import AskDimi from "../AskDimi/AskDimi";
 import "./style.css";
 
 export default class Dashboard extends React.Component {
-  componentDidMount() {
-    this.props.getAllQuestions();
-    this.props.getProgress(this.props.user.username);
+  constructor(props) {
+    super(props)
+    this.state = {
+      questions: []
+    }
+  }
+;  componentDidMount() {
+    this.props.getProgress(this.props.user.username)
+    this.fetchAllQuestions().then(questions => this.setState({questions}))
+  }
+ 
+  fetchAllQuestions() {
+    return fetch("/api/questions")
+        .then(response => response.json())
+        .catch(error => console.log(error));
   }
 
   render() {
@@ -16,7 +28,7 @@ export default class Dashboard extends React.Component {
       <div className="dashboard__wrapper">
         <Profile {...this.props.user} />
         <ProgressBar current={this.props.current} total={this.props.total} />
-        <Questions questions={this.props.questions || []} />
+        <Questions questions={this.state.questions} />
         <AskDimi messages={this.props.messages} />
       </div>
     );
