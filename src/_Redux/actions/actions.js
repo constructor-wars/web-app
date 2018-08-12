@@ -27,8 +27,15 @@ export function sendCurrentCodeToDatabaseAction(payload) {
       "content-type": "application/json"
     }
   })
-    .then(response => response.ok)
-    .catch(error => console.log(error));
+  .then(response => response.ok)
+  .catch(error => console.log(error));
+}
+
+export function allQuestionsAction(payload) {
+  return {
+    type: "ALL_QUESTIONS",
+    payload
+  };
 }
 
 export function fetchAllQuestions() {
@@ -36,11 +43,21 @@ export function fetchAllQuestions() {
     fetch("/api/questions")
       .then(response => response.json())
       .then(questions => {
+        console.log(questions)
         dispatch(allQuestionsAction(questions));
       })
       .catch(error => console.log(error));
   };
 }
+
+
+export function userProgressAction(payload) {
+  return {
+    type: "USER_PROGRESS",
+    payload
+  };
+}
+
 
 export function fetchUserProgress(username) {
   return function(dispatch) {
@@ -62,28 +79,22 @@ export function fetchQuestionById(id) {
   };
 }
 
-export function fetchUserData(user_id) {
-  return function(dispatch) {
-    fetch(`/api/getuserdata/${user_id}`)
-      .then(response => response.json())
-      .then(user_data => dispatch(userDataAction(user_data)))
-      .catch(error => console.log(error));
-  };
-}
+// export function fetchUserData(github_username) {
+//   return function(dispatch) {
+//     fetch(`/api/getuserdata/${github_username}`)
+//       .then(response => response.json())
+//       .then(data => dispatch(userDataAction(data)))
+//       .catch(error => console.log(error));
+//   };
+// }
 
-export function codeToEvalAction(payload) {
-  return {
-    type: "CODE_TO_EVAL",
-    payload
-  };
-}
 
-export function userByUsernameAction(payload) {
-  return {
-    type: "USER_BY_USERNAME",
-    payload
-  };
-}
+// export function userByUsernameAction(payload) {
+//   return {
+//     type: "USER_BY_USERNAME",
+//     payload
+//   };
+// }
 
 export function questionByIdAction(payload) {
   return {
@@ -92,12 +103,6 @@ export function questionByIdAction(payload) {
   };
 }
 
-export function allQuestionsAction(payload) {
-  return {
-    type: "ALL_QUESTIONS",
-    payload
-  };
-}
 
 export function sendQuestionToDatabaseAction(payload) {
   return {
@@ -106,16 +111,11 @@ export function sendQuestionToDatabaseAction(payload) {
   };
 }
 
-export function userDataAction(payload) {
-  return {
-    type: "USER_DATA",
-    payload
-  };
-}
+// export function userDataAction(payload) {
+//   return {
+//     type: "USER_DATA",
+//     payload
+//   };
+// }
 
-export function userProgressAction(payload) {
-  return {
-    type: "USER_PROGRESS",
-    payload
-  };
-}
+

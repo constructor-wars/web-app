@@ -6,23 +6,23 @@ require("dotenv").config({
   path: path.resolve(__dirname, `../.env.${process.env.NODE_ENV}`)
 });
 
-const db = pgp({
-  host: process.env.POSTGRES_HOST,
-  port: process.env.POSTGRES_PORT,
-  database: process.env.POSTGRES_DATABASE,
-  username: process.env.POSTGRES_USERNAME,
-  password: process.env.POSTGRES_PASSWORD
-});
-
 // const db = pgp({
-//   host: process.env.HEROKU_HOST,
-//   port: process.env.HEROKU_PORT,
-//   database: process.env.HEROKU_DATABASE_URL,
-//   user: process.env.HEROKU_USER,
-//   ssl: process.env.HEROKU_SSL,
-//   password: process.env.HEROKU_PASSWORD,
-//   uri: process.env.HEROKU_URI
+//   host: process.env.POSTGRES_HOST,
+//   port: process.env.POSTGRES_PORT,
+//   database: process.env.POSTGRES_DATABASE,
+//   username: process.env.POSTGRES_USERNAME,
+//   password: process.env.POSTGRES_PASSWORD
 // });
+
+const db = pgp({
+  host: process.env.HEROKU_HOST,
+  port: process.env.HEROKU_PORT,
+  database: process.env.HEROKU_DATABASE_URL,
+  user: process.env.HEROKU_USER,
+  ssl: process.env.HEROKU_SSL,
+  password: process.env.HEROKU_PASSWORD,
+  uri: process.env.HEROKU_URI
+});
 
 function getQuestions(id) {
   return db
@@ -99,26 +99,10 @@ function updateYourQuestionOnDatabase(data) {
 
     .catch(error => console.log(error));
 }
-// function editQuestion(id) {
-//   const {
-//     question_title,
-//     test,
-//     difficulty_id,
-//     category_id,
-//     instruction,
-//     link_syllabus,
-//     initial_code,
-//     test_spec
-//   } = data.payload;
 
-//   return db
-//     .none(`UPDATE questions_answers ()`)
-//     .catch(error => consoel.log(error));
-// }
-
-function getUserData(user_id) {
+function getUserData(github_username) {
   return db
-    .any(`SELECT * FROM   user_data WHERE user_data.user_id = $1`, [user_id])
+    .any(`SELECT * FROM questions_answers WHERE github_username = $1`, [github_username])
     .catch(error => console.log(error));
 }
 

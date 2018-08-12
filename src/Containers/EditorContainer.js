@@ -104,7 +104,7 @@ export default class Editor extends React.Component {
   componentDidMount() {
     getQueryParams.has("question")
       ? this.fetchQuestionById(getQueryParams.get("question"))
-      : this.fetchQuestionById(42);
+      : this.fetchQuestionById(1);
   }
 
   componentDidUpdate() {
