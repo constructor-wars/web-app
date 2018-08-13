@@ -3,8 +3,9 @@
   transform: translate3d(0, 0, 0);
   backface-visibility: hidden;
   perspective: 1000px;
-  height: 200px;
-  width: auto;
+  height: 250px;
+  width: 250px;
+  margin-top: 26px;
 }
 
 @keyframes shake {
