@@ -18,7 +18,7 @@
                 const { codeToEval, functionName, sampleInput } = event.data
 
                 eval(codeToEval);
-                const evalWithTest = eval(functionName)
+                const evalWithTest = eval(functionName);
                 result = evalWithTest.apply(null, sampleInput);
 
             } catch (err) {

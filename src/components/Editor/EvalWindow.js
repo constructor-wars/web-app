@@ -30,9 +30,8 @@ export default class EvalWindow extends Component {
     if (nextProps.performEval) {
       const dataToSendToIframe = {
         codeToEval: nextProps.codeToEval,
-        sampleInput: JSON.parse(
-          this.props.test_spec.sampleInput.replace(/'/g, '"')
-        ),
+        sampleInput: JSON.parse(this.props.test_spec.sampleInput),
+
         functionName: this.props.test_spec.functionName
       };
       this.targetFrame.contentWindow.postMessage(dataToSendToIframe, "*");
@@ -47,7 +46,8 @@ export default class EvalWindow extends Component {
         data: [event.data.result]
       };
       this.setState(prevState => ({
-        reply: [...prevState.reply, reply]
+        reply: [...prevState.reply, reply],
+        evaledCode: event.data.result
       }));
     }
   }
@@ -55,8 +55,11 @@ export default class EvalWindow extends Component {
   render() {
     return (
       <div>
-        {this.props.performEval ? (
-          <TestCase evaledCode="sa" testCase={this.props.test_spec} />
+        {this.state.evaledCode ? (
+          <TestCase
+            evaledCode={this.state.evaledCode}
+            {...this.props.test_spec}
+          />
         ) : null}
         <Console logs={this.state.reply} variant="dark" />
         <iframe

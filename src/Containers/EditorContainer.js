@@ -69,10 +69,10 @@ export default class Editor extends React.Component {
       instruction: this.state.instruction,
       link_syllabus: this.state.link_syllabus,
       test_spec: {
-        initialCode: this.state.currentCode || "asd",
-        sampleInput: this.state.sampleInput || "asd",
-        functionName: this.state.functionName || "asd",
-        expectedResult: this.state.expectedResult || "asd"
+        initialCode: this.state.currentCode,
+        sampleInput: this.state.sampleInput,
+        functionName: this.state.functionName,
+        expectedResult: this.state.expectedResul
       },
       github_username: this.props.username
     };
