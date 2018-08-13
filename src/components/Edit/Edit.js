@@ -3,13 +3,12 @@ import "./StyleEdit.css";
 
 const getQueryParams = new URLSearchParams(location.search);
 
-const TextArea = ({ placeholder, displayName, id, fn, value }) => (
+const TextArea = ({ displayName, id, fn, value }) => (
   <div>
     <label className="admin__label" htmlFor={id}>
       {displayName}
     </label>
     <textarea
-      placeholder={placeholder}
       className="admin__text_area"
       onChange={fn}
       id={id}
@@ -115,49 +114,42 @@ class Admin extends React.Component {
         <form className="admin__container" onSubmit={this.handleSubmit}>
           <TextArea
             id="question_title"
-            placeholder="Add Function"
             value={this.state.question.question_title}
             displayName="Question"
             fn={this.handleChange}
           />
           <TextArea
             id="expectedResult"
-            placeholder="4"
             displayName="Expected Result"
             value={this.state.question.test_spec.expectedResult}
             fn={this.handleObject}
           />
           <TextArea
             id="instruction"
-            placeholder="Add all numbers"
             value={this.state.question.instruction}
             displayName="Instruction"
             fn={this.handleChange}
           />
           <TextArea
             id="link_syllabus"
-            placeholder="https://developer.mozilla.org/en-US/docs/Web/JavaScript"
             value={this.state.question.link_syllabus}
             displayName="Help Link"
             fn={this.handleChange}
           />
           <TextArea
             id="initialCode"
-            placeholder="function add(a, b){return a+b};add(2, 4);"
             displayName="Initial Code"
             value={this.state.question.test_spec.initialCode}
             fn={this.handleObject}
           />
           <TextArea
             id="sampleInput"
-            placeholder="[1,3], this has to be an array and if an object user valid json"
             displayName="Sample Input"
             value={this.state.question.test_spec.sampleInput}
             fn={this.handleObject}
           />
           <TextArea
             id="functionName"
-            placeholder="add"
             displayName="Function Name"
             value={this.state.question.test_spec.functionName}
             fn={this.handleObject}
