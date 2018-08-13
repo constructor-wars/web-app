@@ -10,6 +10,7 @@ import AdminContainer from "./Containers/AdminContainer";
 import DashboardRoute from "./Routes/DashboardRoute";
 
 import AboutRoute from "./Routes/AboutRoute";
+import Edit from "./Containers/EditContainer";
 
 class App extends React.Component {
   render() {
@@ -24,8 +25,17 @@ class App extends React.Component {
           />
           <Route exact path="/about" render={() => <AboutRoute />} />
           <Route exact path="/syllabus" render={() => <SyllabusRoute />} />
-          <Route exact path="/admin" render={() => <AdminContainer github_username={this.props.GITHUB_DATA.username} />} />
+          <Route
+            exact
+            path="/admin"
+            render={() => (
+              <AdminContainer
+                github_username={this.props.GITHUB_DATA.username}
+              />
+            )}
+          />
           <Route exact path="/dashboard" render={() => <DashboardRoute />} />
+          <Route exact path="/edit" render={() => <Edit />} />
           <Route exact path="/" render={() => <DashboardRoute />} />
         </Switch>
         <Footer />
