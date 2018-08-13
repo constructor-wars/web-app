@@ -6,17 +6,24 @@
 </head>
 
 <body>
-    <textarea id='code'>let camel = 'duck'; camel</textarea>
+    <textarea id='code'>function add(a, b){return a + b;};</textarea>
 
     <button onclick='handelSubmit()'>click</button>
     <iframe sandbox='allow-scripts' id='targetFrame' src='iframePage.html' style="display: none;"></iframe>
     <pre><code id='code-result'></code></pre>
 
     <script>
+
         function handelSubmit() {
-            let code = document.getElementById('code').value;
+            const dataToSendToIframe = {
+                codeToEval: document.getElementById('code').value,
+                sampleInput: JSON.parse(
+                    '[2, 3]'.replace(/'/g, '"')
+                ),
+                functionName: 'add'
+            };
             document.getElementById('targetFrame')
-                .contentWindow.postMessage(code, '*')
+                .contentWindow.postMessage(dataToSendToIframe, '*')
         };
         window.addEventListener('message', event => {
             let codeResult = document.getElementById('code-result');

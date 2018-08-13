@@ -1,17 +1,15 @@
 import React from "react";
 import equal from "deep-equal";
 
-export const TestCase = ({ evaledCode, testCase }) => {
-  //   const { evaledCode, testCase } = { evaledCode: "qe", testCase: "qe" };
-  const result = equal(evaledCode, testCase);
-  console.log({ result });
+export const TestCase = ({ evaledCode, expectedResult, functionName }) => {
+  const result = equal(evaledCode, expectedResult);
 
   return (
-    <div style={{ textAlign: "center", padding: "5px" }}>
+    <div style={{ textAlign: "center", padding: "15px" }}>
       {result ? (
-        <div style={{ backgroundColor: "green" }}> "Dmitri" </div>
+        <div style={{ backgroundColor: "green", padding: "15px" }}>WOOHOO</div>
       ) : (
-        <div style={{ backgroundColor: "red" }}>"Oliver"</div>
+        <div style={{ backgroundColor: "red", padding: "15px" }}>Booo</div>
       )}
     </div>
   );

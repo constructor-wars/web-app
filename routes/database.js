@@ -81,10 +81,13 @@ function updateYourQuestionOnDatabase(data) {
     test_spec,
     github_username
   } = data;
+
   return db
-    .none(
-      `UPDATE questions_answers (question_title, difficulty_id, category_id, instruction, link_syllabus, test_spec,github_username)
-  SET($2, $3 ,$4 ,$5 ,$6 ,$7, $8) WHERE id=$1`,
+    .one(
+      `UPDATE questions_answers 
+      SET question_title = $2, difficulty_id = $3, category_id = $4, instruction = $5, link_syllabus = $6, test_spec = $7, github_username = $8
+      WHERE id=$1
+      returning id`,
       [
         id,
         question_title,
@@ -97,22 +100,24 @@ function updateYourQuestionOnDatabase(data) {
       ]
     )
 
-    .catch(error => console.log(error));
+    .catch(error => {
+      console.log(error);
+    });
 }
 
 function getUserData(github_username) {
   return db
-    .any(`SELECT * FROM questions_answers WHERE github_username = $1`, [github_username])
+    .any(`SELECT * FROM questions_answers WHERE github_username = $1`, [
+      github_username
+    ])
     .catch(error => console.log(error));
 }
 
 function getUserProgress(github_username) {
   return db
     .oneOrNone(
-      `SELECT COUNT(completed) from users, user_data 
-      WHERE users.github_username = $1
-      AND user_data.user_id = users.id 
-      AND completed = true`,
+      `SELECT COUNT(github_username) from questions_answers
+      WHERE github_username = $1`,
       [github_username]
     )
     .catch(error => console.log(error));

@@ -67,6 +67,20 @@ app.get("/editor/:id", (req, res) => {
   });
 });
 
+app.get("/edit", (req, res) => {
+  res.render("edit", {
+    title: "Edit",
+    GITHUB_DATA: JSON.stringify({ GITHUB_DATA: req.user })
+  });
+});
+
+app.get("/edit/:id", (req, res) => {
+  res.render("edit", {
+    title: "Edit",
+    GITHUB_DATA: JSON.stringify({ GITHUB_DATA: req.user })
+  });
+});
+
 app.use("/dashboard", connection.ensureLoggedIn());
 app.use("/dist", express.static(path.join(__dirname, "/dist")));
 
