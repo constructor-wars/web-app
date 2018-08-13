@@ -6,7 +6,6 @@ exports[`NavLinks matches the snapshot 1`] = `
 >
   <a
     href="/editor"
-    onClick={[Function]}
   >
     <div
       className="nav_buttons"
