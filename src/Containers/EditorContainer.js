@@ -123,6 +123,12 @@ export default class Editor extends React.Component {
             <FiSave />
             <span>Save</span>
           </div>
+          <a href={`/edit/?question=${getQueryParams.get("question")}`}>
+            <div className="editor__wrap__button editor__wrap__button--run">
+              <FiPlayCircle />
+              <span>Edit</span>
+            </div>
+          </a>
           <div
             className="editor__wrap__button editor__wrap__button--run"
             onClick={this.runCode}
