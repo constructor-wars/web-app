@@ -40,12 +40,11 @@ class Admin extends React.Component {
     this.state = {
       question: {
         question_title: "",
-        link_syllabus:
-          "",
+        link_syllabus: "",
         instruction: "",
         difficulty_id: 1,
         category_id: 1,
-        github_username: this.props.github_username,
+        github_username: "admin",
         test_spec: {
           initialCode: "",
           sampleInput: "",
@@ -73,7 +72,6 @@ class Admin extends React.Component {
     console.log("addToDatabase(data)", data);
   }
 
- 
   handleSubmit(event) {
     event.preventDefault();
     this.addToDatabase(this.state.question);
@@ -136,7 +134,7 @@ class Admin extends React.Component {
           />
           <TextArea
             id="sampleInput"
-            placeholder="[1,3]"
+            placeholder="[1,3], this has to be an array and if an object user valid json"
             displayName="Sample Input"
             value={this.state.question.test_spec.sampleInput}
             fn={this.handleObject}
