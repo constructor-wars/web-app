@@ -9,7 +9,8 @@ const {
   sumbitQuestionOnDatabase,
   getUserData,
   getUserProgress,
-  addCodeOnSave
+  addCodeOnSave,
+  updateYourQuestionOnDatabase
 } = require("./database");
 
 router.get("/questions", function(req, res) {
@@ -20,7 +21,6 @@ router.get("/question/:id", function(req, res) {
   const id = req.params.id;
   getQuestions(id).then(data => res.json(data));
 });
-
 
 router.post("/submitnewquestion", function(req, res) {
   const data = req.body;

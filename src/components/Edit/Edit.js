@@ -1,13 +1,14 @@
 import React from "react";
-import "./StyleAdmin.css";
+import "./StyleEdit.css";
 
-const TextArea = ({ placeholder, displayName, id, fn, value }) => (
+const getQueryParams = new URLSearchParams(location.search);
+
+const TextArea = ({ displayName, id, fn, value }) => (
   <div>
     <label className="admin__label" htmlFor={id}>
       {displayName}
     </label>
     <textarea
-      placeholder={placeholder}
       className="admin__text_area"
       onChange={fn}
       id={id}
@@ -56,25 +57,39 @@ class Admin extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleObject = this.handleObject.bind(this);
+    this.fetchQuestionById = this.fetchQuestionById.bind(this);
   }
 
-  addToDatabase(data) {
-    fetch("/api/submitnewquestion", {
+  componentDidMount() {
+    this.fetchQuestionById(getQueryParams.get("question"));
+  }
+
+  fetchQuestionById(id) {
+    return fetch(`/api/question/${id}`)
+      .then(response => response.json())
+      .then(data =>
+        this.setState({
+          question: data
+        })
+      )
+      .catch(error => console.log(error));
+  }
+  updateDatabase() {
+    fetch("/api/updatequestion", {
       method: "POST",
-      body: JSON.stringify(data),
+      body: JSON.stringify(this.state.question),
       credentials: "same-origin",
       headers: {
         "content-type": "application/json"
       }
     })
-      .then(res => (res.ok ? res.json() : Promise.reject()))
+      .then(res => res.ok)
       .catch(error => console.log(error));
-    console.log("addToDatabase(data)", data);
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    this.addToDatabase(this.state.question);
+    this.updateDatabase();
   }
 
   handleChange(event) {
@@ -99,49 +114,42 @@ class Admin extends React.Component {
         <form className="admin__container" onSubmit={this.handleSubmit}>
           <TextArea
             id="question_title"
-            placeholder="Add Function"
             value={this.state.question.question_title}
             displayName="Question"
             fn={this.handleChange}
           />
           <TextArea
             id="expectedResult"
-            placeholder="4"
             displayName="Expected Result"
             value={this.state.question.test_spec.expectedResult}
             fn={this.handleObject}
           />
           <TextArea
             id="instruction"
-            placeholder="Add all numbers"
             value={this.state.question.instruction}
             displayName="Instruction"
             fn={this.handleChange}
           />
           <TextArea
             id="link_syllabus"
-            placeholder="https://developer.mozilla.org/en-US/docs/Web/JavaScript"
             value={this.state.question.link_syllabus}
             displayName="Help Link"
             fn={this.handleChange}
           />
           <TextArea
             id="initialCode"
-            placeholder="function add(a, b){return a+b};add(2, 4);"
             displayName="Initial Code"
             value={this.state.question.test_spec.initialCode}
             fn={this.handleObject}
           />
           <TextArea
             id="sampleInput"
-            placeholder="[1,3], this has to be an array and if an object user valid json"
             displayName="Sample Input"
             value={this.state.question.test_spec.sampleInput}
             fn={this.handleObject}
           />
           <TextArea
             id="functionName"
-            placeholder="add"
             displayName="Function Name"
             value={this.state.question.test_spec.functionName}
             fn={this.handleObject}
@@ -160,7 +168,7 @@ class Admin extends React.Component {
               fn={this.handleChange}
             />
           </div>
-          <button className="admin__button">Submit</button>
+          <button className="admin__button">Edit</button>
         </form>
       </div>
     );
