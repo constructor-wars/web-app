@@ -15,11 +15,12 @@
                 return;
             let result = 'not run any code';
             try {
-                result = eval(event.data);
+                const { codeToEval, functionName, sampleInput } = event.data
 
-                // const sampleInput = [1, 2];
-                // const output = window['add'].apply(null, sampleInput);
-                // result = output
+                eval(codeToEval);
+                const evalWithTest = eval(functionName);
+                result = evalWithTest.apply(null, sampleInput);
+
             } catch (err) {
                 result = `eval() threw an exception. ${err}`;
             }
