@@ -87,18 +87,19 @@ describe('allQuestionsAction action', () => {
   });
 });
 
-describe('actions passing payload to update user', () => {
-  it('send userdata to reducer', () => {
-    const action = {
-      type: 'USER_DATA',
-      payload: 'test'
-    };
-    expect(userDataAction('test', action)).toEqual({
-      payload: 'test',
-      type: 'USER_DATA'
-    });
-  });
-});
+//function no longer in use
+// describe('actions passing payload to update user', () => {
+//   it('send userdata to reducer', () => {
+//     const action = {
+//       type: 'USER_DATA',
+//       payload: 'test'
+//     };
+//     expect(userDataAction('test', action)).toEqual({
+//       payload: 'test',
+//       type: 'USER_DATA'
+//     });
+//   });
+// });
 
 describe('action test for profile progress', () => {
   it('redux getting prgress data', () => {
