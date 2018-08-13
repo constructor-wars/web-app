@@ -27,7 +27,7 @@ export default class Dashboard extends React.Component {
     return (
       <div className="dashboard__wrapper">
         <Profile {...this.props.user} />
-        <div className="dashboard_progress_and_question">
+        <div className="dashboard__bar__questions">
           <ProgressBar current={this.props.current} total={this.props.total} />
           <Questions
             title="Your questions or tasks"
@@ -37,7 +37,6 @@ export default class Dashboard extends React.Component {
           />
         </div>
         <Questions
-          optionalClass="profile__progress__question"
           title="Questions or tasks"
           questions={this.state.questions.filter(
             item => item.github_username !== this.props.user.username
