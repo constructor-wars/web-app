@@ -61,20 +61,20 @@ app.get("/editor", (req, res) => {
 });
 
 app.get("/editor/:id", (req, res) => {
-  res.render("profile", {
+  res.render("dashboard", {
     title: "Editor",
     GITHUB_DATA: JSON.stringify({ GITHUB_DATA: req.user })
   });
 });
 
-app.use("/profile", connection.ensureLoggedIn());
+app.use("/dashboard", connection.ensureLoggedIn());
 app.use("/dist", express.static(path.join(__dirname, "/dist")));
 
 app.use("/api", apiRouter);
 app.use("/", indexRouter);
 
 app.get("*", function(req, res) {
-  res.redirect("/profile");
+  res.redirect("/dashboard");
 });
 
 app.use(function(req, res, next) {

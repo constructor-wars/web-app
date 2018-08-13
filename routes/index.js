@@ -12,7 +12,7 @@ router.get("/", function(req, res, next) {
     return res.redirect("/login");
   }
   res.render("profile", {
-    title: "Profile",
+    title: `${req.user.username}'s Dashboard`,
     GITHUB_DATA: JSON.stringify({ GITHUB_DATA: req.user })
   });
 });
@@ -21,9 +21,9 @@ router.get("/login", function(req, res, next) {
   res.render("login", { title: "Login" });
 });
 
-router.get("/profile", function(req, res, next) {
-  res.render("profile", {
-    title: "Profile",
+router.get("/dashboard", function(req, res, next) {
+  res.render("dashboard", {
+    title: `${req.user.username}'s Dashboard`,
     GITHUB_DATA: JSON.stringify({ GITHUB_DATA: req.user })
   });
 });
@@ -40,7 +40,7 @@ router.get(
   passport.authenticate("github", { failureRedirect: "/login" }),
   (req, res) => {
     database.addUserOnLogIn(req.user.username);
-    res.redirect("/profile");
+    res.redirect("/dashboard");
   }
 );
 

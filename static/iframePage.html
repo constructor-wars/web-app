@@ -16,6 +16,10 @@
             let result = 'not run any code';
             try {
                 result = eval(event.data);
+
+                // const sampleInput = [1, 2];
+                // const output = window['add'].apply(null, sampleInput);
+                // result = output
             } catch (err) {
                 result = `eval() threw an exception. ${err}`;
             }

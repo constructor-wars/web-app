@@ -8,11 +8,11 @@ import { GoInfo, GoGear, GoDashboard } from 'react-icons/go';
 export function NavLinks() {
   return (
     <div className="nav_links">
-      <Link to="/editor">
+      <a href="/editor">
         <div className="nav_buttons">
           <FiPlay className="nav_links__icon" /> Start Coding
         </div>
-      </Link>
+      </a>
       <Link to="/dashboard">
         <div className="nav_buttons">
           <GoDashboard className="nav_links__icon" /> Dashboard

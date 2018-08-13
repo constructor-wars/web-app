@@ -5,17 +5,18 @@
 .admin__container {
   display: grid;
   grid-gap: 30px;
-  grid-template-rows: 1fr 1fr;
-  grid-template-columns: repeat(auto-fit, 200px);
-  grid-template-areas:
-    "textareas"
-    "submit";
+  grid-template-rows: auto;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-areas: "textareas textareas" "textareas textareas""textareas textareas""textareas textareas" "submit submit";
   text-align: center;
+  justify-content: center;
 }
+
 
 .admin__text_area {
   grid-area: textareas;
-  width: 200px;
+  font-family: monospace;
+  width: 80%;
   height: 10vh;
   padding: 12px 20px;
   box-sizing: border-box;

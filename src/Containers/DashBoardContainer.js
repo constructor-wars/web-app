@@ -1,33 +1,10 @@
 import { connect } from "react-redux";
 import Dashboard from "../components/Dashboard/Dashboard";
 import {
-  allQuestionsAction,
   fetchAllQuestions,
   fetchUserProgress
 } from "../_Redux/actions/actions";
 
-const quesitons = [
-  {
-    id: 1,
-    question_tile: "sefsdfs",
-    test: "tobe equlal to()",
-    difficulty_id: 1,
-    category_id: 1,
-    instruction: "play with it baby camel",
-    link_syllabus: "https:findthecamel.com/babycamel",
-    initial_code: "skhhfkshfkhsf"
-  },
-  {
-    id: 2,
-    question_tile: "anthoeronf",
-    test: "tobe equlal to()",
-    difficulty_id: 2,
-    category_id: 2,
-    instruction: "play with it baby camel",
-    link_syllabus: "https:findthecamel.com/babycamel",
-    initial_code: "skhhfkshfkhsf"
-  }
-];
 
 const mapReduxStateToProps = reduxState => {
   const {
@@ -54,7 +31,7 @@ const mapReduxStateToProps = reduxState => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  getAllQuestions: () => dispatch(fetchAllQuestions()),
+  // getAllQuestions: () => dispatch(fetchAllQuestions()),
   getProgress: username => dispatch(fetchUserProgress(username))
 });
 
