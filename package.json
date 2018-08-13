@@ -90,9 +90,11 @@
     "start:w": "NODE_ENV=development nodemon server.js",
     "go": "concurrently 'npm run dev:w' 'npm run start:w' ",
     "db:w": "NODE_ENV=development nodemon ./routes/database.js",
-    "styling": "parcel ./static/styling.html"
+    "styling": "parcel ./static/styling.html",
+    "start-mdx": "mdx-deck ./deck.mdx"
   },
   "devDependencies": {
+    "mdx-deck": "^1.5.15",
     "redux-mock-store": "^1.5.3"
   }
 }

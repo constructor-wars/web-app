@@ -68,3 +68,5 @@ dist
 .env.production
 package-lock.json
 .cache
+
+.DS_Store

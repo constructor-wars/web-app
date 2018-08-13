@@ -45,7 +45,7 @@ class Admin extends React.Component {
         instruction: "",
         difficulty_id: 1,
         category_id: 1,
-        github_username: this.props.github_username,
+        github_username: "admin",
         test_spec: {
           initialCode: "",
           sampleInput: "",
