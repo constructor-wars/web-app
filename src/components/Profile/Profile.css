@@ -12,24 +12,22 @@
   border-radius: 5px;
 }
 
-.profile__name{
+.profile__name {
   font-weight: bold;
   color: var(--dark);
   padding-left: 20px;
   text-align: center;
-  padding: 40px;
-  text-decoration: none; 
+  padding: 25px;
+  text-decoration: none;
   font-size: 2em;
-
 }
 
-.profile__name:hover{
+.profile__name:hover {
   color: var(--monoco_background);
 }
 
-.profile__name > svg{
-  font-size: 60px;
+.profile__name > svg {
+  margin-top: 10px;
+  padding-right: 10px;
+  font-size: 30px;
 }
-
-
-

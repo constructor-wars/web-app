@@ -8,8 +8,10 @@ body {
   width: 600px;
   margin: 5em auto;
   padding: 50px;
-  background-color: var(--cyan);
-  border-radius: 1em;
+  border: 2px solid #2a4e61;
+  background-color: white;
+  box-shadow: 2px 5px darkgray;
+  border-radius: 3px;
   color: var(--dark);
   text-align: center;
 }

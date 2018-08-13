@@ -7,31 +7,42 @@ import "./style.css";
 
 export default class Dashboard extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       questions: []
-    }
+    };
   }
-;  componentDidMount() {
-    this.props.getProgress(this.props.user.username)
-    this.fetchAllQuestions().then(questions => this.setState({questions}))
+  componentDidMount() {
+    this.props.getProgress(this.props.user.username);
+    this.fetchAllQuestions().then(questions => this.setState({ questions }));
   }
- 
+
   fetchAllQuestions() {
     return fetch("/api/questions")
-        .then(response => response.json())
-        .catch(error => console.log(error));
+      .then(response => response.json())
+      .catch(error => console.log(error));
   }
 
   render() {
     return (
       <div className="dashboard__wrapper">
         <Profile {...this.props.user} />
-        <div>
-          <ProgressBar current={this.props.current} total={this.props.total}  />
-          <Questions title="Your questions or tasks" questions={this.state.questions.filter(item => item.github_username === this.props.user.username)} />  
+        <div className="dashboard_progress_and_question">
+          <ProgressBar current={this.props.current} total={this.props.total} />
+          <Questions
+            title="Your questions or tasks"
+            questions={this.state.questions.filter(
+              item => item.github_username === this.props.user.username
+            )}
+          />
         </div>
-        <Questions title = "Questions or tasks" questions={this.state.questions.filter(item => item.github_username !== this.props.user.username)} />
+        <Questions
+          optionalClass="profile__progress__question"
+          title="Questions or tasks"
+          questions={this.state.questions.filter(
+            item => item.github_username !== this.props.user.username
+          )}
+        />
         <AskDimi messages={this.props.messages} />
       </div>
     );

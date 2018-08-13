@@ -9,8 +9,8 @@
 
 .profile__container,
 .profile__askD,
-.profile__progress__bar,
-.profile__progress__question {
+.profile__progress__question,
+.dashboard_progress_and_question {
   display: flex;
   flex-direction: column;
 
@@ -36,10 +36,17 @@
 
 /*****PROFILE ASKD*********/
 .profile__askD {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /*****PROFILE PROGRESS BAR*********/
 .profile__progress__bar {
+  height: 100px;
+}
+
+.dashboard_progress_and_question {
   overflow: scroll;
 }
 
@@ -57,7 +64,6 @@
   transition: width 0.2s ease-in;
 }
 
-/*****PROFILE DIMS*********/
 .profile__progress__question {
   overflow: scroll;
 }

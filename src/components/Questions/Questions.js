@@ -17,7 +17,7 @@ const SingleQuestion = ({ id, question_title, link_syllabus }) => (
 class Questions extends React.Component {
   render() {
     return (
-      <div className="profile__progress__question">
+      <div className={this.props.optionalClass}>
         <h2>
           {this.props.title} TOTAL: {this.props.questions.length}
         </h2>
