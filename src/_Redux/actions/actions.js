@@ -1,10 +1,10 @@
 export function sendToServerAction(payload) {
-  fetch("/api/submitnewquestion", {
-    method: "POST",
+  fetch('/api/submitnewquestion', {
+    method: 'POST',
     body: JSON.stringify({ payload }),
-    credentials: "same-origin",
+    credentials: 'same-origin',
     headers: {
-      "content-type": "application/json"
+      'content-type': 'application/json'
     }
   })
     .then(
@@ -40,7 +40,7 @@ export function allQuestionsAction(payload) {
 
 export function fetchAllQuestions() {
   return function(dispatch) {
-    fetch("/api/questions")
+    fetch('/api/questions')
       .then(response => response.json())
       .then(questions => {
         console.log(questions)
@@ -98,7 +98,7 @@ export function fetchQuestionById(id) {
 
 export function questionByIdAction(payload) {
   return {
-    type: "QUESTION_BY_ID",
+    type: 'QUESTION_BY_ID',
     payload
   };
 }
@@ -106,7 +106,7 @@ export function questionByIdAction(payload) {
 
 export function sendQuestionToDatabaseAction(payload) {
   return {
-    type: "SEND_QUESTION_TO_DATABASE",
+    type: 'SEND_QUESTION_TO_DATABASE',
     payload
   };
 }
