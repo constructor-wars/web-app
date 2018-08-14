@@ -92,7 +92,7 @@
     "go": "concurrently 'npm run dev:w' 'npm run start:w' ",
     "db:w": "NODE_ENV=development nodemon ./routes/database.js",
     "styling": "parcel ./static/styling.html",
-    "start-mdx": "mdx-deck ./deck.mdx"
+    "start-mdx": "mdx-deck ./deck.mdx -p 8888"
   },
   "devDependencies": {
     "jest-fetch-mock": "^1.6.5",
