@@ -20,7 +20,6 @@ exports[`Header matches the snapshot 1`] = `
     >
       <a
         href="/editor"
-        onClick={[Function]}
       >
         <div
           className="nav_buttons"
@@ -257,7 +256,7 @@ exports[`Header matches the snapshot 1`] = `
       </a>
     </div>
     <a
-      href="/profile"
+      href="/"
       onClick={[Function]}
     >
       <div
