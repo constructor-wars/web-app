@@ -83,7 +83,8 @@ class Admin extends React.Component {
         "content-type": "application/json"
       }
     })
-      .then(res => res.ok)
+      .then(res => res.json())
+      .then(({ id }) => (window.location = `/editor/?question=${id}`))
       .catch(error => console.log(error));
   }
 
