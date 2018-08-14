@@ -78,7 +78,8 @@
     "style-loader": "^0.22.1",
     "url-loader": "^1.0.1",
     "webpack": "^4.16.1",
-    "webpack-cli": "^3.0.8"
+    "webpack-cli": "^3.0.8",
+    "whatwg-fetch": "^2.0.4"
   },
   "scripts": {
     "dev": "webpack --mode development",
@@ -94,7 +95,14 @@
     "start-mdx": "mdx-deck ./deck.mdx"
   },
   "devDependencies": {
+    "jest-fetch-mock": "^1.6.5",
     "mdx-deck": "^1.5.15",
     "redux-mock-store": "^1.5.3"
+  },
+  "jest": {
+    "automock": false,
+    "setupFiles": [
+      "./setupJest.js"
+    ]
   }
 }
