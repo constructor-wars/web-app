@@ -11,3 +11,11 @@ Coding challenges designed for Constructor Labs students
 5.  If there is no conflicts - `git push --set-upstream origin <branchname>`.
 6.  Merge it only Github (IMPORTANT: Only merge with papa James present.)
 7.  Delete branches you are not working on from github and localy. `git branch -D <branchname>`
+
+---
+
+`npm run presentation` - this will build webpack in production, express server and run the presentation slides.
+
+[Presentation Slides](http://127.0.0.1:8888)
+
+[Presentation Site](http://127.0.0.1:8080)
