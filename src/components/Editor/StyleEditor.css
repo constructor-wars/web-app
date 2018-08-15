@@ -32,6 +32,7 @@
 }
 
 .editor__wrap__display-window {
+  overflow: scroll;
   grid-row: 1 / 4;
   background-color: var(--monoco_background);
 }

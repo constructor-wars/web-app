@@ -1,14 +1,14 @@
-import React from "react";
-import { Router } from "react-router-dom";
-import NavLinks from "./NavLinks";
-import renderer from "react-test-renderer";
-import { shallow } from "enzyme";
-import configureStore from "redux-mock-store";
-import { MemoryRouter } from "react-router-dom";
-import { Provider } from "react-redux";
+import React from 'react';
+import { Router } from 'react-router-dom';
+import { NavLinks } from './NavLinks';
+import renderer from 'react-test-renderer';
+import { shallow } from 'enzyme';
+import configureStore from 'redux-mock-store';
+import { MemoryRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
 
-describe("NavLinks", () => {
-  it.skip("matches the snapshot", () => {
+describe('NavLinks', () => {
+  it('matches the snapshot', () => {
     const mockStore = configureStore();
     const tree = renderer
       .create(
@@ -17,10 +17,10 @@ describe("NavLinks", () => {
             store={mockStore({
               GITHUB_DATA: {
                 id: 10,
-                displayName: "bob",
-                profileUrl: "bob2",
-                username: "bob 3",
-                photos: [{ value: "bob4" }]
+                displayName: 'bob',
+                profileUrl: 'bob2',
+                username: 'bob 3',
+                photos: [{ value: 'bob4' }]
               }
             })}
           >

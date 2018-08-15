@@ -17,9 +17,9 @@ describe('navprofilebar', () => {
               GITHUB_DATA: {
                 id: 10,
                 displayName: 'bob',
-                profileUrl: 'bob2',
-                username: 'bob 3',
-                photos: [{ value: 'bob4' }]
+                profileUrl: 'bob',
+                username: 'bob',
+                photos: [{ value: 'bob' }]
               }
             })}
           >

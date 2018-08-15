@@ -6,14 +6,17 @@ describe("MDNhelp", () => {
   it("matches the snapshot", () => {
     const tree = renderer.create(<MDNhelp />).toJSON();
     expect(tree).toMatchInlineSnapshot(`
-<div>
+<div
+  className="searchbar__wrapper"
+>
   <input
-    className="searchbar"
+    className="searchbar__bar"
     onChange={[Function]}
     placeholder="Feeling stuck..? Let MDN help..."
     value=""
   />
   <button
+    className="searchbar__button"
     onClick={[Function]}
     type="Submit"
   >

@@ -5,7 +5,7 @@ import "./QuestionStyle.css";
 
 const SingleQuestion = ({ id, question_title, link_syllabus }) => (
   <li className="question__list__item">
-    <a className="question__list__link" href={link_syllabus}>
+    <a className="question__list__link" href={link_syllabus} target="_blank">
       <TiInfoLargeOutline />
     </a>
     <a className="question__list__link" href={`/editor/?question=${id}`}>

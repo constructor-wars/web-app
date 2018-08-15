@@ -13,13 +13,13 @@ export default class Editor extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      id: 1,
       codeToEval: "",
       currentCode: "",
       performEval: false,
-      completed: false,
       question_title: "",
       instruction: "",
-      test_spec: "",
+      test_spec: {},
       github_username: "github_username state"
     };
     this.onChange = this.onChange.bind(this);
@@ -42,7 +42,7 @@ export default class Editor extends React.Component {
         "content-type": "application/json"
       }
     })
-      .then(res => (res.ok ? res.json() : Promise.reject()))
+      .then(res => res.json())
       .then(({ id }) => (window.location = `/editor/?question=${id}`))
       .catch(error => console.log(error));
   }
@@ -70,30 +70,33 @@ export default class Editor extends React.Component {
       link_syllabus: this.state.link_syllabus,
       test_spec: {
         initialCode: this.state.currentCode,
-        sampleInput: this.state.sampleInput,
-        functionName: this.state.functionName,
-        expectedResult: this.state.expectedResul
+        sampleInput: this.state.test_spec.sampleInput,
+        functionName: this.state.test_spec.functionName,
+        expectedResult: this.state.test_spec.expectedResult
       },
       github_username: this.props.username
     };
 
-    if (this.state.questionCreator === this.props.username) {
+    if (this.state.github_username === this.props.username) {
+      console.log({ dataToSave });
       this.updateDatabase(dataToSave);
     }
 
-    if (this.state.questionCreator !== this.props.username) {
+    if (this.state.github_username !== this.props.username) {
+      console.log({ dataToSave });
       this.addToDatabase(dataToSave);
     }
   }
 
   fetchQuestionById(id) {
     return fetch(`/api/question/${id}`)
-      .then(response => response.json())
+      .then(response => {
+        return response.json();
+      })
       .then(data =>
         this.setState({
           ...data,
-          currentCode: data.test_spec.initialCode,
-          questionCreator: data.github_username
+          currentCode: data.test_spec.initialCode
         })
       )
       .catch(error => console.log(error));
@@ -102,7 +105,7 @@ export default class Editor extends React.Component {
   componentDidMount() {
     getQueryParams.has("question")
       ? this.fetchQuestionById(getQueryParams.get("question"))
-      : this.fetchQuestionById(1);
+      : this.fetchQuestionById(74);
   }
 
   componentDidUpdate() {

@@ -2,7 +2,7 @@
 
 exports[`navprofilebar it matches and update progress 1`] = `
 <a
-  href="/profile"
+  href="/"
   onClick={[Function]}
 >
   <div

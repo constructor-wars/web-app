@@ -78,7 +78,8 @@
     "style-loader": "^0.22.1",
     "url-loader": "^1.0.1",
     "webpack": "^4.16.1",
-    "webpack-cli": "^3.0.8"
+    "webpack-cli": "^3.0.8",
+    "whatwg-fetch": "^2.0.4"
   },
   "scripts": {
     "dev": "webpack --mode development",
@@ -91,10 +92,18 @@
     "go": "concurrently 'npm run dev:w' 'npm run start:w' ",
     "db:w": "NODE_ENV=development nodemon ./routes/database.js",
     "styling": "parcel ./static/styling.html",
-    "start-mdx": "mdx-deck ./deck.mdx"
+    "start-mdx": "mdx-deck ./deck.mdx -p 8888",
+    "presentation": "concurrently 'npm run start-mdx' 'npm run build' 'npm run start' "
   },
   "devDependencies": {
+    "jest-fetch-mock": "^1.6.5",
     "mdx-deck": "^1.5.15",
     "redux-mock-store": "^1.5.3"
+  },
+  "jest": {
+    "automock": false,
+    "setupFiles": [
+      "./setupJest.js"
+    ]
   }
 }
