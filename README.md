@@ -7,8 +7,8 @@ Coding challenges designed for Constructor Labs students. Student can log in and
 ---
 
 <img  width ="600px" src="./presentation/screenshots/screenshot1.png" alt="login Page"></img>
-<img  width ="600px" src="./presentation/screenshots/screenshot1.png" alt="dashboard"></img>
-<img  width ="600px" src="./presentation/screenshots/screenshot1.png" alt="code editor" ></img>
+<img  width ="600px" src="./presentation/screenshots/screenshot2.png" alt="dashboard"></img>
+<img  width ="600px" src="./presentation/screenshots/screenshot3.png" alt="code editor" ></img>
 
 ---
 
