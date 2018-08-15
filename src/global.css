@@ -15,3 +15,7 @@ body {
     "Segoe UI Symbol";
   margin: 0;
 }
+
+a {
+  color: inherit;
+}

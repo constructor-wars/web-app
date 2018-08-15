@@ -51,6 +51,8 @@
   padding: 5px;
 }
 .editor__wrap__button {
+  all: unset;
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -61,6 +63,7 @@
   padding: 5px;
   width: 80px;
   text-align: center;
+  text-decoration: none;
 }
 
 .editor__wrap__button span {
@@ -69,11 +72,16 @@
 
 .editor__wrap__button--run:hover {
   color: #67ac5b;
-  border: 1px solid #67ac5b;
+  border: 1px solid currentColor;
 }
 .editor__wrap__button--save:hover {
   color: gold;
-  border: 1px solid gold;
+  border: 1px solid currentColor;
+}
+
+.editor__wrap__button--edit:hover {
+  color: red;
+  border: 1px solid currentColor;
 }
 
 .search__links {

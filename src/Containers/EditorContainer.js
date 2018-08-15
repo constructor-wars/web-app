@@ -119,26 +119,27 @@ export default class Editor extends React.Component {
     return (
       <div className="editor__wrap">
         <div className="editor__wrap__buttons">
-          <div
+          <button
             className="editor__wrap__button editor__wrap__button--save"
             onClick={this.saveCode}
           >
             <FiSave />
             <span>Save</span>
-          </div>
-          <a href={`/edit/?question=${getQueryParams.get("question")}`}>
-            <div className="editor__wrap__button editor__wrap__button--run">
-              <FiPlayCircle />
-              <span>Edit</span>
-            </div>
+          </button>
+          <a
+            className="editor__wrap__button editor__wrap__button--edit"
+            href={`/edit/?question=${getQueryParams.get("question")}`}
+          >
+            <FiPlayCircle />
+            <span>Edit</span>
           </a>
-          <div
+          <button
             className="editor__wrap__button editor__wrap__button--run"
             onClick={this.runCode}
           >
             <FiPlayCircle />
             <span>Run</span>
-          </div>
+          </button>
         </div>
         <div className="editor__wrap__instructions editor__sections">
           <Instructions
