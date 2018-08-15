@@ -24,16 +24,16 @@ to run application
 npm run go
 ```
 
-to run test
+$to run test
 
 ```
-npm run test
+$npm run test
 ```
 
 to run it without server
 
 ```
-npm run styling
+$npm run styling
 ```
 
 ---
