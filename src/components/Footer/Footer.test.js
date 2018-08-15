@@ -5,6 +5,14 @@ import renderer from "react-test-renderer";
 describe("Footer", () => {
   it("matches the snapshot", () => {
     const tree = renderer.create(<Footer />).toJSON();
-    expect(tree).toMatchSnapshot();
+    expect(tree).toMatchInlineSnapshot(`
+<div
+  className="footer_container"
+>
+  <span>
+    🇭🇰 🇵🇱 󠁧󠁢󠁥󠁮󠁧󠁿🇬🇧 󠁧󠁢󠁥󠁮󠁧󠁿🇱🇹 🇪🇸󠁧󠁢󠁥 
+  </span>
+</div>
+`);
   });
 });
