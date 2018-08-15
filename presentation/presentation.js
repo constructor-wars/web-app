@@ -10,10 +10,10 @@ export theme from "./theme";
 
 export default [
   ...start,
-  ...jose,
   ...rafal,
   ...ethan,
   ...james,
+  ...jose,
   ...julius,
   ...end
 ];
