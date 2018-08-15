@@ -2,88 +2,58 @@
 import { Notes } from 'mdx-deck'
 import Small from './Small'
 
+# Technology
 
-![alt text](https://avatars2.githubusercontent.com/u/19479459?s=96&v=4 )
+## MDN search bar
 
-
-<Small name='Jose' quote='Shit, I knew I forgot to change my github photo!!'/>
-
-<Notes>
-    Jose
-30 second personal intro by each team member
-
-Name
-What were you doing before Constructor Labs
-Why did you join Constructor Labs
-What did you work in the project
-</Notes>
+```jsx
+const url = `https://developer.mozilla.org/en-US/search?q=${q}`;
+    fetch(`https://cors-anywhere.herokuapp.com/${url}`)
+      .then(res => res.text())
+      .then(text => makeHTML(text))
+      .catch(err => console.log(err));
+```
 
 ---
 
-handdels bars. 
-css
-react router
+### css and css modules /ie import in to react
+
+```css
+:root {
+  --dark: #2a4e61;
+  ...
+  --monaco_background: #1e1e1e;
+}
+.editor__layout__monaco {
+  display: grid;
+  grid-temp ...
+  background-color: var(--monaco_background);
+  }
+```
+
+---
+
+# Challenge 
+
+git merging with 5 people 
+that's a lot of pushing
+
+
+challnge working with git
+
 
 <Small name='Jose' quote='Shit, I knew I forgot to change my github photo!!'/>
 
-<Notes>
-    Jose
-   handdels bars. 
-css
-react router
-</Notes>
+
 ---
 # SO FAR WE'VE DONE SO LITTLE
 
 <img width="678px" src="./github.png" />
+
+# NEW ONE IMAGE TOMORROW
+
 <Notes>
     jose
-  Only visible in presenter mode
-</Notes>
-
----
-
-# REACT ROUTER
-
-
-```jsx
-  <Route
-    exact
-    path="/editor"
-    render={() => <EditorContainer {...this.props.GITHUB_DATA} />}
-  />
-  <Route exact path="/about" render={() => <AboutRoute />} />
-  <Route exact path="/syllabus" render={() => <SyllabusRoute />} />
-  <Route
-    exact
-    path="/admin"
-    render={() => (
-      <AdminContainer
-        github_username={this.props.GITHUB_DATA.username}
-      />
-    )}
-  />
-  <Route exact path="/dashboard" render={() => <DashboardRoute />} />
-  <Route exact path="/edit" render={() => <Edit />} />
-  <Route exact path="/" render={() => <DashboardRoute />} />
-
-```
-
-<Notes>
-  We are using render props, to help minimize prop drilling.
-</Notes>
----
-
-# HANDLEBARS
-
-<img height='60vh' src="./handlebar.png" />
-<Notes>
-  Only visible in presenter mode
-</Notes>
----
-
-# REACT AND REDUX
-<Notes>
   Only visible in presenter mode
 </Notes>
 
