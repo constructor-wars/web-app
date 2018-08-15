@@ -46,10 +46,31 @@ react router
 # REACT ROUTER
 
 
-<img src="./router.png" />
+```jsx
+  <Route
+    exact
+    path="/editor"
+    render={() => <EditorContainer {...this.props.GITHUB_DATA} />}
+  />
+  <Route exact path="/about" render={() => <AboutRoute />} />
+  <Route exact path="/syllabus" render={() => <SyllabusRoute />} />
+  <Route
+    exact
+    path="/admin"
+    render={() => (
+      <AdminContainer
+        github_username={this.props.GITHUB_DATA.username}
+      />
+    )}
+  />
+  <Route exact path="/dashboard" render={() => <DashboardRoute />} />
+  <Route exact path="/edit" render={() => <Edit />} />
+  <Route exact path="/" render={() => <DashboardRoute />} />
+
+```
 
 <Notes>
-  Only visible in presenter mode
+  We are using render props, to help minimize prop drilling.
 </Notes>
 ---
 
