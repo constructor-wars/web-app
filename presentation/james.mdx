@@ -1,0 +1,97 @@
+import { Notes } from 'mdx-deck'
+import Small from './Small'
+
+James ![alt text](https://avatars2.githubusercontent.com/u/1286700?s=96&v=4 )
+
+
+<Small name='james' quote='@ Rafal, dont copy and paste'/>
+
+<Notes>
+   Hi, now this is Julius...
+</Notes>
+
+---
+
+<Small name='james' quote='@ Rafal, dont copy and paste'/>
+
+<Notes>
+    James
+   Monaco and iframe eval etc...
+</Notes>
+
+# MONACO EDITOR - VS CODE TO DISPLAY OUR CODE IN THE BROWSER
+
+<img src="./monaco.gif"/>
+<Notes>
+    James
+  Only visible in presenter mode
+</Notes>
+---
+
+``` jsx
+    <textarea id='code'>function add(a, b){return a + b;};</textarea>
+
+    <button onclick='handelSubmit()'>click</button>
+    <iframe sandbox='allow-scripts' id='targetFrame' src='iframePage.html' style="display: none;"></iframe>
+    <pre><code id='code-result'></code></pre>
+
+    <script>
+
+        function handelSubmit() {
+            const dataToSendToIframe = {
+                codeToEval: document.getElementById('code').value,
+                sampleInput: JSON.parse(
+                    '[2, 3]'.replace(/'/g, '"')
+                ),
+                functionName: 'add'
+            };
+            document.getElementById('targetFrame')
+                .contentWindow.postMessage(dataToSendToIframe, '*')
+        };
+        window.addEventListener('message', event => {
+            let codeResult = document.getElementById('code-result');
+            if (event.origin === "null"
+                || (event.origin === (window.location.protocol + "//" + window.location.host))) {
+                codeResult.innerHTML = event.data.result
+            }
+        });
+    </script>
+
+```
+
+---
+
+# IFRAME TO EXECUTE AND TEST THE CODE
+
+``` jsx
+    <script>
+        window.addEventListener('message', event => {
+            if (event.origin !== (window.location.protocol + "//" + window.location.host))
+                return;
+            let result = 'not run any code';
+            try {
+                const { codeToEval, functionName, sampleInput } = event.data
+
+                eval(codeToEval);
+                const evalWithTest = eval(functionName);
+                result = evalWithTest.apply(null, sampleInput);
+
+            } catch (err) {
+                result = `eval() threw an exception. ${err}`;
+            }
+            const send = {
+                result,
+                evalCode: 'evalCode'
+            }
+            event.source.postMessage(send, event.origin);
+        });
+    </script>
+
+```
+
+
+<Notes>
+    James
+  Only visible in presenter mode
+</Notes>
+---

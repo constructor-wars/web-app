@@ -92,12 +92,12 @@
     "go": "concurrently 'npm run dev:w' 'npm run start:w' ",
     "db:w": "NODE_ENV=development nodemon ./routes/database.js",
     "styling": "parcel ./static/styling.html",
-    "start-mdx": "mdx-deck ./deck.mdx -p 8888",
+    "start-mdx": "mdx-deck ./presentation/presentation.js -p 8888",
     "presentation": "concurrently 'npm run start-mdx' 'npm run build' 'npm run start' "
   },
   "devDependencies": {
     "jest-fetch-mock": "^1.6.5",
-    "mdx-deck": "^1.5.15",
+    "mdx-deck": "^1.6.0",
     "redux-mock-store": "^1.5.3"
   },
   "jest": {
