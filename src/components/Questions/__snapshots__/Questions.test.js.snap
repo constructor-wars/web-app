@@ -15,6 +15,7 @@ exports[`qeustions snapshot 1`] = `
       <a
         className="question__list__link"
         href="https:findthecamel.com/babycamel"
+        target="_blank"
       >
         <svg
           attr={
@@ -54,6 +55,7 @@ exports[`qeustions snapshot 1`] = `
       <a
         className="question__list__link"
         href="https:findthecamel.com/babycamel"
+        target="_blank"
       >
         <svg
           attr={
