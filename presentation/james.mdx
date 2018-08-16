@@ -1,16 +1,12 @@
 import { Notes } from 'mdx-deck'
 import Small from './Small'
 
-# Technology
-
-- Monaco
-- iframe
-- Eval
+# Editor Technologies
 
 ---
 
-## MONACO EDITOR
-### VS CODE TO DISPLAY OUR CODE IN THE BROWSER
+## Monaco Editor
+#### VS Code editor in the browser
 
 <img src="./monaco.gif"/>
 <Notes>
@@ -20,7 +16,10 @@ import Small from './Small'
 
 ---
 
-## Sending data to be eval to the iFrame
+# Evaluating data 
+
+#### Sending data via `postMessage()`
+
 
 ``` jsx
 <script>
@@ -36,7 +35,10 @@ document.getElementById('targetFrame')
 
 ---
 
-## IFRAME TO EXECUTE AND TEST THE CODE
+
+## Executing data 
+
+#### Replying via `postMessage()`
 
 ``` jsx
 <script>
@@ -52,8 +54,7 @@ document.getElementById('targetFrame')
 
 
 <Notes>
-    James
-  Only visible in presenter mode
+We are executing the code in a sure html file
 </Notes>
 ---
 # Challenge 
