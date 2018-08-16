@@ -19,19 +19,49 @@ import Small from './Small'
 </Notes>
 
 ---
-one
+## Passport and GitHub authorisation
 ```jsx
-PropTypes.objectOf()
+passport.use(
+  new GitHubStrategy(
+    {
+      clientID: process.env.GITHUB_CLIENT,
+      clientSecret: process.env.GITHUB_SECRET,
+      callbackURL: process.env.GITHUB_CALLBACK_URL
+    },
+    (accessToken, refreshToken, profile, cb) => {
+      return cb(null, profile);
+    }
+  )
+);
 ```
 
 ---
 
-two
+## Express Routes
 
-``` sql
-
-selcet * from world
 ``` 
+const router = express.Router();
+
+router.get("/questions", function(req, res) {
+  getAllQuestions().then(data => res.json(data));
+});
+
+router.get("/question/:id", function(req, res) {
+  const id = req.params.id;
+  getQuestions(id).then(data => res.json(data));
+});
+
+router.post("/submitnewquestion", function(req, res) {
+  const data = req.body;
+  sumbitQuestionOnDatabase(data).then(data => res.json(data));
+});
+``` 
+---
+
+## Database sturcture
+
+![alt](./screenshots/db.png)
+
 ---
 
 
