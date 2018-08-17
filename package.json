@@ -93,7 +93,7 @@
     "db:w": "NODE_ENV=development nodemon ./routes/database.js",
     "styling": "parcel ./static/styling.html",
     "start-mdx": "mdx-deck ./presentation/presentation.js -p 8888",
-    "presentation": "concurrently 'npm run start-mdx' 'npm run build' 'npm run start' "
+    "presentation": "concurrently 'npm run start-mdx' 'npm run dev' 'npm run start' "
   },
   "devDependencies": {
     "jest-fetch-mock": "^1.6.5",
