@@ -1,71 +1,52 @@
 # Constructor Wars
 
-## Constructor Wars Web Application
+## Technologies used:
+
+- React with Redux
+- Postgres Database
+- Express server
+- Github OAuth authorisation
+- Monaco Editor
+- iFrame for code evaluating with in sandbox enviroment
+
+## Web Application for javascript code challenges.
 
 Coding challenges designed for Constructor Labs students. Student can log in and practice on exercises tailored for the course to order to practice. This application features profile page to monitor learning progress, useful links for Constructor Labs syllabus for references, search field for more information on specific topic on MDN and monaco editor to run codes on broswer, and admin page to update the exercise database.
 
 ---
 
-<img  width ="600px" src="./presentation/screenshots/screenshot1.png" alt="login Page"></img>
-<img  width ="600px" src="./presentation/screenshots/screenshot2.png" alt="dashboard"></img>
-<img  width ="600px" src="./presentation/screenshots/screenshot3.png" alt="code editor" ></img>
+<img  width ="600px" src="./presentation/screenshots/screenshot1.png" alt="login Page"/>
+<img  width ="600px" src="./presentation/screenshots/screenshot2.png" alt="dashboard"/>
+<img  width ="600px" src="./presentation/screenshots/screenshot3.png" alt="code editor"/>
 
 ---
 
-## Constructor Wars App is available on
-
-> [Constructor Wars] ('//insert live Heroku link here')
+## Constructor Wars App is available soon as Rafal is back from Mexico.
 
 ---
 
-to run application
+Start the app in dev and watch mode `npm run go`
 
-```
-npm run go
-```
+Run the jest test: `npm run test`
 
-$to run test
-
-```
-$npm run test
-```
-
-to run it without server
-
-```
-$npm run styling
-```
+Build for deployment `npm run build`
 
 ---
-
-## Technologies used:
-
-- React & redux
-- Monaco Editor
-- iFrame
-- Postgres Database
-- Express server
-- github OAuth authorisation for login
 
 ## Team
 
-James //insert contact details!
-Rafal
-Ethan ([@ethanng329](https://twitter.com/Ethanng329))
-Julius
-Jose
+Ethan - ([Twitter](https://twitter.com/Ethanng329)) - ([Github](https://github.com/ethan329))
+James - ([Twitter](https://twitter.com/rb30)) - ([Github](https://github.com/jamesmcallister))
+Jose - ([Twitter](https://twitter.com/_enpap)) - ([Github](https://github.com/0750kosse))
+Julius ([Github](https://github.com/juliusvai))
+Rafal - ([Github](https://github.com/Cantem))
 
 ## potential features and extension
- 
+
 - use pupeteer to run test on the whole application
 - alternative log in methods
 - higher test coverage
 - explore graphQL?
-
-
-
-
-
 
 ## github-instructions
 
