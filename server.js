@@ -1,20 +1,21 @@
-const path = require("path");
-const createError = require("http-errors");
-const express = require("express");
-const logger = require("morgan");
-const bodyParser = require("body-parser");
-const session = require("express-session");
-const connection = require("connect-ensure-login");
+const path = require('path');
+const createError = require('http-errors');
+const express = require('express');
+const logger = require('morgan');
+const bodyParser = require('body-parser');
+const session = require('express-session');
+const connection = require('connect-ensure-login');
+const favicon = require('express-favicon');
 
-const passport = require("passport");
-const GitHubStrategy = require("passport-github").Strategy;
+const passport = require('passport');
+const GitHubStrategy = require('passport-github').Strategy;
 
-require("dotenv").config({
+require('dotenv').config({
   path: path.resolve(__dirname, `.env.${process.env.NODE_ENV}`)
 });
 
-const indexRouter = require("./routes/index");
-const apiRouter = require("./routes/api");
+const indexRouter = require('./routes/index');
+const apiRouter = require('./routes/api');
 
 passport.use(
   new GitHubStrategy(
@@ -34,17 +35,17 @@ passport.deserializeUser((obj, cb) => cb(null, obj));
 
 const app = express();
 
-app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "hbs");
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'hbs');
 
-app.use(logger("dev"));
+app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(
   session({
-    secret: "to infinity and beyond",
+    secret: 'to infinity and beyond',
     resave: true,
     saveUninitialized: true
   })
@@ -53,42 +54,43 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.get("/editor", (req, res) => {
-  res.render("profile", {
-    title: "Editor",
+app.get('/editor', (req, res) => {
+  res.render('profile', {
+    title: 'Editor',
     GITHUB_DATA: JSON.stringify({ GITHUB_DATA: req.user })
   });
 });
 
-app.get("/editor/:id", (req, res) => {
-  res.render("dashboard", {
-    title: "Editor",
+app.get('/editor/:id', (req, res) => {
+  res.render('dashboard', {
+    title: 'Editor',
     GITHUB_DATA: JSON.stringify({ GITHUB_DATA: req.user })
   });
 });
 
-app.get("/edit", (req, res) => {
-  res.render("edit", {
-    title: "Edit",
+app.get('/edit', (req, res) => {
+  res.render('edit', {
+    title: 'Edit',
     GITHUB_DATA: JSON.stringify({ GITHUB_DATA: req.user })
   });
 });
 
-app.get("/edit/:id", (req, res) => {
-  res.render("edit", {
-    title: "Edit",
+app.get('/edit/:id', (req, res) => {
+  res.render('edit', {
+    title: 'Edit',
     GITHUB_DATA: JSON.stringify({ GITHUB_DATA: req.user })
   });
 });
 
-app.use("/dashboard", connection.ensureLoggedIn());
-app.use("/dist", express.static(path.join(__dirname, "/dist")));
+app.use('/dashboard', connection.ensureLoggedIn());
+app.use('/dist', express.static(path.join(__dirname, '/dist')));
+app.use(favicon(__dirname + '/dist'));
 
-app.use("/api", apiRouter);
-app.use("/", indexRouter);
+app.use('/api', apiRouter);
+app.use('/', indexRouter);
 
-app.get("*", function(req, res) {
-  res.redirect("/dashboard");
+app.get('*', function(req, res) {
+  res.redirect('/dashboard');
 });
 
 app.use(function(req, res, next) {
@@ -97,9 +99,9 @@ app.use(function(req, res, next) {
 
 app.use(function(err, req, res, next) {
   res.locals.message = err.message;
-  res.locals.error = req.app.get("env") === "development" ? err : {};
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
   res.status(err.status || 500);
-  res.render("error");
+  res.render('error');
 });
 
 const port = process.env.PORT || 8080;
