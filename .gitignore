@@ -60,8 +60,7 @@ typings/
 # next.js build output
 .next
 
-/static/bundle.js
-/static/bundle.js.map
+
 
 dist
 .env.development
