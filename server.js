@@ -5,7 +5,6 @@ const logger = require('morgan');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const connection = require('connect-ensure-login');
-const favicon = require('express-favicon');
 
 const passport = require('passport');
 const GitHubStrategy = require('passport-github').Strategy;
@@ -84,7 +83,6 @@ app.get('/edit/:id', (req, res) => {
 
 app.use('/dashboard', connection.ensureLoggedIn());
 app.use('/dist', express.static(path.join(__dirname, '/dist')));
-app.use(favicon(__dirname + '/dist'));
 
 app.use('/api', apiRouter);
 app.use('/', indexRouter);
